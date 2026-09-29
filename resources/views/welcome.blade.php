@@ -1,697 +1,709 @@
 <x-guest-layout>
-    <link rel="stylesheet" href="{{ asset('css/skin.css') }}" type="text/css" media="all" />
-    <style>
-        @media (max-width: 767px) {
+    <link rel="stylesheet" href="{{ asset('css/skin.css') }}" type="text/css" media="all">
+    <link rel="stylesheet" href="{{ asset('css/home.css') }}" type="text/css" media="all">
 
-            .content_wrap {
-                width: 100% !important;
-                padding: 0 5px !important;
-                /* ลด padding ด้านข้างเพื่อให้เต็มจอมากขึ้น */
-            }
+    <div class="buffbridge-home">
 
-            .div-products .products,
-            .product-category-div .products {
-                display: grid !important;
-                grid-template-columns: repeat(2, 1fr);
-                gap: 0.5rem;
-                padding: 0 !important;
-                /* สำคัญ — ต้องไม่มี padding */
-            }
+        {{-- HERO --}}
+        <section class="bb-hero">
+            <div class="bb-hero-slider">
+                <div class="bb-hero-slide active">
+                    <img src="{{ asset('images/hero1.png') }}"
+                         alt="Buffbridge Custom Crew"
+                         class="bb-hero-image">
+                </div>
 
-            .woocommerce ul.products::before,
-            .woocommerce ul.products::after {
-                display: none !important;
-                content: none !important;
-            }
+                <div class="bb-hero-slide">
+                    <img src="{{ asset('images/hero2.png') }}"
+                         alt="Buffbridge Custom Crew"
+                         class="bb-hero-image">
+                </div>
 
-            .div-products .product {
-                background: #fff;
-                overflow: hidden;
-                padding-bottom: 10px;
-                text-align: center;
-                /* จัดกึ่งกลางเนื้อหาและรูปภาพ */
-            }
+                <div class="bb-hero-slide">
+                    <img src="{{ asset('images/hero3.png') }}"
+                         alt="Buffbridge Custom Crew"
+                         class="bb-hero-image">
+                </div>
 
-            .div-products .product .post_thumb {
-                margin-bottom: 5px;
-            }
+                <div class="bb-hero-slide">
+                    <img src="{{ asset('images/hero4.png') }}"
+                         alt="Buffbridge Custom Crew"
+                         class="bb-hero-image">
+                </div>
+            </div>
 
-            .div-products .product .post_thumb img {
-                width: 100%;
-                height: auto;
-                object-fit: cover;
-                margin: 0 auto;
-                /* จัดรูปกึ่งกลาง */
-            }
+            <div class="bb-hero-overlay">
+                <div class="bb-hero-content">
+                    <h1 class="bb-hero-title">
+                        NEW
+                        <span>ARRIVALS</span>
+                    </h1>
 
-            .div-products .product h2 {
-                font-size: 0.95rem;
-                line-height: 1.2rem;
-                min-height: 2.4rem;
-                margin-top: 0.5rem;
-            }
+                    <div class="bb-hero-line"></div>
 
-            .div-products .price {
-                font-size: 1rem;
-                font-weight: 600;
-                display: block;
-                margin-bottom: 6px;
-            }
+                    <p class="bb-hero-subtitle">
+                        SELECTED GEAR<br>
+                        FOR REAL PLAYERS.
+                    </p>
 
-            .div-products .star-rating {
-                display: none !important;
-            }
+                    <a href="{{ route('products.index') }}" class="bb-primary-btn">
+                        VIEW ALL
+                        <span>→</span>
+                    </a>
+                </div>
+            </div>
 
-            .div-products .button.add_to_cart_button {
-                width: 100%;
-                padding: 8px 0;
-                font-size: 0.9rem;
-            }
+            <div class="bb-hero-dots">
+                <button type="button"
+                        class="bb-hero-dot active"
+                        data-slide="0"
+                        aria-label="Slide 1"></button>
 
-            /* Spacing Adjustments for Mobile */
-            .product-category-div {
-                margin-top: 0.5rem !important;
-                padding-top: 0.5rem !important;
-            }
+                <button type="button"
+                        class="bb-hero-dot"
+                        data-slide="1"
+                        aria-label="Slide 2"></button>
 
-            .product-category-div .empty_space {
-                display: none !important;
-            }
+                <button type="button"
+                        class="bb-hero-dot"
+                        data-slide="2"
+                        aria-label="Slide 3"></button>
 
-            .custom_texture_bg1 .empty_space {
-                height: 1.5rem !important;
-            }
+                <button type="button"
+                        class="bb-hero-dot"
+                        data-slide="3"
+                        aria-label="Slide 4"></button>
+            </div>
+        </section>
 
-            /* Slider Adjustments for Mobile */
-            .slider_wrap .rev_slider_wrapper,
-            .slider_wrap .rev_slider {
-                height: 220px !important;
-                min-height: 220px !important;
-            }
+        {{-- CATEGORY NAVIGATION --}}
+        <section class="bb-category-bar">
+            <div class="bb-page-padding bb-category-inner">
 
-            .slider_wrap .rev_slider img {
-                object-fit: cover !important;
-                height: 100% !important;
-                width: 100% !important;
-            }
-        }
-    </style>
-    <section class="slider_wrap slider_fullwide slider_engine_revo slider_alias_home-4">
-        <div id="rev_slider_4_1_wrapper" class="rev_slider_wrapper fullwidthbanner-container" data-source="gallery">
-            <!-- START REVOLUTION SLIDER -->
-            <div id="rev_slider_4_1" class="rev_slider fullwidthabanner" data-version="5.4.3">
-                <ul>
-                    <!-- SLIDE 1 -->
-                    <li data-index="rs-12" data-transition="fade" data-slotamount="default" data-hideafterloop="0"
-                        data-hideslideonmobile="off" data-easein="default" data-easeout="default" data-masterspeed="300"
-                        data-thumb="" data-rotate="0" data-saveperformance="off" data-title="Slide" data-param1=""
-                        data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7=""
-                        data-param8="" data-param9="" data-param10="" data-description="">
-                        <!-- MAIN IMAGE -->
-                        <img src="js/vendor/revslider/images/transparent.png" data-bgcolor='rgb(29 30 35)'
-                            alt="" title="Home 4" data-bgposition="center center" data-bgfit="contain"
-                            data-bgrepeat="no-repeat" class="rev-slidebg" data-no-retina>
-                        <!-- LAYERS -->
-                        <!-- LAYER NR. 1 -->
-                        <div class="tp-caption tp-resizeme" id="slide-12-layer-1" data-x="center" data-hoffset=""
-                            data-y="center" data-voffset="" data-width="['none','none','none','none']"
-                            data-height="['none','none','none','none']" data-type="image" data-responsive_offset="on"
-                            data-frames='[{"from":"opacity:0;","speed":300,"to":"o:1;","delay":300,"ease":"Linear.easeNone"},{"delay":"wait","speed":300,"to":"opacity:0;","ease":"nothing"}]'
-                            data-textAlign="['left','left','left','left']" data-paddingtop="[0,0,0,0]"
-                            data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]">
-                            <img src="{{ asset('images/slide_1.png') }}" alt="" data-ww="100%" data-hh="100%"
-                                style="object-fit: cover; width: 100%; height: 100%;">
-                        </div>
+                <nav class="bb-category-list" aria-label="Product categories">
+                    <a href="{{ route('products.index') }}"
+                       class="bb-category-item active">
+                        ALL
+                    </a>
 
-                    </li>
-                    <!-- SLIDE  2 -->
-                    <li data-index="rs-11" data-transition="fade" data-slotamount="default" data-hideafterloop="0"
-                        data-hideslideonmobile="off" data-easein="default" data-easeout="default" data-masterspeed="300"
-                        data-thumb="" data-rotate="0" data-saveperformance="off" data-title="Slide" data-param1=""
-                        data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7=""
-                        data-param8="" data-param9="" data-param10="" data-description="">
-                        <!-- MAIN IMAGE -->
-                        <img src="js/vendor/revslider/images/transparent.png" data-bgcolor='rgb(29 30 35)'
-                            alt="" title="Home 4" data-bgposition="center center" data-bgfit="contain"
-                            data-bgrepeat="no-repeat" class="rev-slidebg" data-no-retina>
-                        <!-- LAYERS -->
-                        <!-- LAYER NR. 6 -->
-                        <div class="tp-caption tp-resizeme" id="slide-11-layer-1" data-x="center" data-hoffset=""
-                            data-y="center" data-voffset="" data-width="['none','none','none','none']"
-                            data-height="['none','none','none','none']" data-type="image" data-responsive_offset="on"
-                            data-frames='[{"from":"opacity:0;","speed":300,"to":"o:1;","delay":300,"ease":"Linear.easeNone"},{"delay":"wait","speed":300,"to":"opacity:0;","ease":"nothing"}]'
-                            data-textAlign="['left','left','left','left']" data-paddingtop="[0,0,0,0]"
-                            data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]"
-                            data-paddingleft="[0,0,0,0]">
-                            <img src="{{ asset('images/slide_2.png') }}" alt="" data-ww="100%"
-                                data-hh="100%" style="object-fit: cover; width: 100%; height: 100%;">
-                        </div>
+                    <a href="/products?category=1"
+                       class="bb-category-item">
+                        CATEGORY 01
+                    </a>
 
-                    </li>
-                    <!-- SLIDE 3 -->
-                    <li data-index="rs-13" data-transition="fade" data-slotamount="default" data-hideafterloop="0"
-                        data-hideslideonmobile="off" data-easein="default" data-easeout="default"
-                        data-masterspeed="300" data-thumb="" data-rotate="0" data-saveperformance="off"
-                        data-title="Slide" data-param1="" data-param2="" data-param3="" data-param4=""
-                        data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-param10=""
-                        data-description="">
-                        <!-- MAIN IMAGE -->
-                        <img src="js/vendor/revslider/images/transparent.png" data-bgcolor='rgb(29 30 35)'
-                            alt="" title="Home 4" data-bgposition="center center" data-bgfit="contain"
-                            data-bgrepeat="no-repeat" class="rev-slidebg" data-no-retina>
-                        <!-- LAYERS -->
-                        <!-- LAYER NR. 12 -->
-                        <div class="tp-caption tp-resizeme" id="slide-13-layer-1" data-x="center" data-hoffset=""
-                            data-y="center" data-voffset="" data-width="['none','none','none','none']"
-                            data-height="['none','none','none','none']" data-type="image" data-responsive_offset="on"
-                            data-frames='[{"from":"opacity:0;","speed":300,"to":"o:1;","delay":300,"ease":"Linear.easeNone"},{"delay":"wait","speed":300,"to":"opacity:0;","ease":"nothing"}]'
-                            data-textAlign="['left','left','left','left']" data-paddingtop="[0,0,0,0]"
-                            data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]"
-                            data-paddingleft="[0,0,0,0]">
-                            <img src="{{ asset('images/slide_3.png') }}" alt="" data-ww="100%"
-                                data-hh="100%" style="object-fit: cover; width: 100%; height: 100%;">
-                        </div>
+                    <a href="/products?category=28"
+                       class="bb-category-item">
+                        CATEGORY 02
+                    </a>
 
-                    </li>
-                    <!-- SLIDE 4 -->
-                    <li data-index="rs-14" data-transition="fade" data-slotamount="default" data-hideafterloop="0"
-                        data-hideslideonmobile="off" data-easein="default" data-easeout="default"
-                        data-masterspeed="300" data-thumb="" data-rotate="0" data-saveperformance="off"
-                        data-title="Slide" data-param1="" data-param2="" data-param3="" data-param4=""
-                        data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-param10=""
-                        data-description="">
-                        <!-- MAIN IMAGE -->
-                        <img src="js/vendor/revslider/images/transparent.png" data-bgcolor='rgb(29 30 35)'
-                            alt="" title="Home 4" data-bgposition="center center" data-bgfit="contain"
-                            data-bgrepeat="no-repeat" class="rev-slidebg" data-no-retina>
-                        <!-- LAYERS -->
-                        <!-- LAYER NR. 12 -->
-                        <div class="tp-caption tp-resizeme" id="slide-14-layer-1" data-x="center" data-hoffset=""
-                            data-y="center" data-voffset="" data-width="['none','none','none','none']"
-                            data-height="['none','none','none','none']" data-type="image" data-responsive_offset="on"
-                            data-frames='[{"from":"opacity:0;","speed":300,"to":"o:1;","delay":300,"ease":"Linear.easeNone"},{"delay":"wait","speed":300,"to":"opacity:0;","ease":"nothing"}]'
-                            data-textAlign="['left','left','left','left']" data-paddingtop="[0,0,0,0]"
-                            data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]"
-                            data-paddingleft="[0,0,0,0]">
-                            <img src="{{ asset('images/slide_4.png') }}" alt="" data-ww="100%"
-                                data-hh="100%" style="object-fit: cover; width: 100%; height: 100%;">
-                        </div>
+                    <a href="/products?category=62"
+                       class="bb-category-item">
+                        CATEGORY 03
+                    </a>
 
-                    </li>
+                    <a href="/products?category=84"
+                       class="bb-category-item">
+                        CATEGORY 04
+                    </a>
+                </nav>
+
+                <div class="bb-sort">
+                    <select aria-label="Sort products"
+                            onchange="if(this.value) window.location.href=this.value">
+
+                        <option value="{{ route('products.index') }}">
+                            NEWEST
+                        </option>
+
+                        <option value="{{ route('products.index', ['orderby' => 'price']) }}">
+                            PRICE LOW - HIGH
+                        </option>
+
+                        <option value="{{ route('products.index', ['orderby' => 'price-desc']) }}">
+                            PRICE HIGH - LOW
+                        </option>
+                    </select>
+                </div>
+            </div>
+        </section>
+
+        {{-- NEW ARRIVALS --}}
+        <section class="bb-product-section">
+            <div class="bb-page-padding">
+
+                <div class="bb-section-heading">
+                    <div class="bb-section-heading-left">
+                        <span class="bb-section-kicker">
+                            SELECTED GEAR
+                        </span>
+
+                        <h2 class="bb-section-title">
+                            NEW ARRIVALS
+                        </h2>
+                    </div>
+
+                    <a href="{{ route('products.index') }}"
+                       class="bb-view-all">
+                        VIEW ALL
+                    </a>
+                </div>
+
+                <ul class="bb-product-grid">
+                    @foreach ($products as $product)
+
+                        <li class="bb-product-card">
+
+                            <div class="bb-product-badge {{ strtolower(str_replace(' ', '-', $product->availability)) }}">
+                                {{ $product->availability }}
+                            </div>
+
+                            <div class="bb-product-image">
+                                <a href="{{ route('products.show', $product->id) }}">
+
+                                    @if ($product->images->isNotEmpty())
+
+                                        <img
+                                            src="{{ env('APP_ADMIN_URL') . '/storage/' . $product->images->first()->image_path }}"
+                                            alt="{{ $product->name }}"
+                                            loading="lazy">
+
+                                    @else
+
+                                        <div class="bb-product-image-placeholder">
+                                            NO IMAGE
+                                        </div>
+
+                                    @endif
+
+                                </a>
+                            </div>
+
+                            <div class="bb-product-info">
+
+                                <h3 class="bb-product-name">
+                                    <a href="{{ route('products.show', $product->id) }}">
+                                        {{ $product->name }}
+                                    </a>
+                                </h3>
+
+                                <div class="bb-product-price">
+                                    @if ($product->variants->count() > 0)
+
+                                        {{ number_format($product->variants->first()->price, 2) }}฿
+
+                                    @else
+
+                                        {{ number_format($product->price, 2) }}฿
+
+                                    @endif
+                                </div>
+
+                                <div class="bb-product-actions">
+
+                                    @if ($product->availability !== 'Out of Stock')
+
+                                        <button
+                                            type="button"
+                                            class="button add_to_cart_button bb-cart-button"
+                                            aria-label="Add {{ $product->name }} to cart"
+                                            data-url="{{ route('cart.add', ['id' => $product->id]) }}">
+                                            Add to cart
+                                        </button>
+
+                                    @endif
+
+                                    <a href="{{ route('products.show', $product->id) }}"
+                                       class="bb-detail-button"
+                                       aria-label="View {{ $product->name }}">
+                                        ♡
+                                    </a>
+
+                                    <a href="{{ route('products.show', $product->id) }}"
+                                       class="bb-more"
+                                       aria-label="More details">
+                                        ···
+                                    </a>
+                                </div>
+                            </div>
+                        </li>
+
+                    @endforeach
                 </ul>
-                <div class="tp-bannertimer tp-bottom"></div>
             </div>
-        </div>
-        <!-- END REVOLUTION SLIDER -->
-        <!-- Page Content -->
-        <div class="page_content_wrap page_paddings_no">
-            <!-- Content -->
-            <div class="content">
-                <article class="post_item post_item_single">
-                    <section class="post_content">
-                        <!-- Product categories -->
-                        <div class="bg_dark_style_2 mt-5 product-category-div" style="margin-top:3rem;">
-                            <div class="content_wrap">
-                                <div class="empty_space height_2_8em"></div>
-                                <div class="woocommerce columns-2">
-                                    <ul class="products">
-                                        <li class="product-category product first"
-                                            onclick="window.location.href='/products?category=1'">
-                                            <div class="post_item_wrap">
-                                                <div class="post_featured">
-                                                    <div class="post_thumb home_cate">
-                                                        <a href="/products?category=1">
-                                                            <img src="{{ asset('images/cate_1.png') }}"
-                                                                alt="" />
-                                                        </a>
-                                                    </div>
-                                                </div>
+        </section>
 
-                                            </div>
-                                        </li>
-                                        <li class="product-category product"
-                                            onclick="window.location.href='/products?category=28'">
-                                            <div class="post_item_wrap">
-                                                <div class="post_featured">
-                                                    <div class="post_thumb home_cate">
-                                                        <a href="/products?category=28">
-                                                            <img src="{{ asset('images/cate_2.png') }}"
-                                                                alt="" />
-                                                        </a>
-                                                    </div>
-                                                </div>
+        {{-- PRE ORDER --}}
+        @if (isset($products_preorder) && $products_preorder->count() > 0)
 
-                                            </div>
-                                        </li>
-                                        <li class="product-category product"
-                                            onclick="window.location.href='/products?category=62'">
-                                            <div class="post_item_wrap">
-                                                <div class="post_featured">
-                                                    <div class="post_thumb home_cate">
-                                                        <a href="/products?category=62">
-                                                            <img src="{{ asset('images/cate_3.png') }}"
-                                                                alt="" />
-                                                        </a>
-                                                    </div>
-                                                </div>
+            <section class="bb-product-section">
+                <div class="bb-page-padding">
 
-                                            </div>
-                                        </li>
-                                        <li class="product-category product last"
-                                            onclick="window.location.href='/products?category=84'">
-                                            <div class="post_item_wrap">
-                                                <div class="post_featured">
-                                                    <div class="post_thumb home_cate">
-                                                        <a href="/products?category=84">
-                                                            <img src="{{ asset('images/cate_4.png') }}"
-                                                                alt="" />
-                                                        </a>
-                                                    </div>
-                                                </div>
+                    <div class="bb-section-heading">
+                        <div class="bb-section-heading-left">
 
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="empty_space height_0_7em"></div>
-                            </div>
-                        </div>
-                        <!-- /Product categories -->
-                        <!-- Featured Products -->
-                        <div class="custom_texture_bg1">
-                            <div class="content_wrap">
-                                <div class="empty_space height_5_5em"></div>
-                                <div class="sc_section scheme_light">
-                                    <div class="sc_section_inner">
-                                        <h2 class="sc_section_title sc_item_title text-white"
-                                            style="color:white !important;">
-                                            NEW ARRIVALS
-                                        </h2>
-                                        <div class="sc_section_descr sc_item_descr">
-                                        </div>
-                                        <div class="product-section-header">
-                                            <div class="spacer"></div> <!-- ใช้ดัน View All ไปทางขวา -->
-                                            <a href="{{ route('products.index') }}" class="product-view-all">View
-                                                All</a>
-                                        </div>
-                                        <div class="woocommerce columns-4 div-products">
-                                            <ul class="products">
-                                                <!-- Product Item -->
-                                                @foreach ($products as $product)
-                                                    <li class="product">
-                                                        <div
-                                                            class="availability-badge {{ strtolower(str_replace(' ', '-', $product->availability)) }}">
-                                                            {{ $product->availability }}
-                                                        </div>
-                                                        <div class="post_item_wrap">
-                                                            <div class="post_featured">
-                                                                <div class="post_thumb">
-                                                                    <a
-                                                                        href="{{ route('products.show', $product->id) }}">
-                                                                        @if ($product->images->isNotEmpty())
-                                                                            <img src="{{ env('APP_ADMIN_URL') . '/storage/' . $product->images->first()->image_path }}"
-                                                                                alt="{{ $product->name }}">
-                                                                        @endif
-                                                                    </a>
-                                                                </div>
-                                                            </div>
-                                                            <div class="post_content">
-                                                                <h2 class="woocommerce-loop-product__title"><a
-                                                                        href="{{ route('products.show', $product->id) }}">{{ $product->name }}</a>
-                                                                </h2>
-                                                                <span class="price">
-                                                                    <ins>
-                                                                        <span class="woocommerce-Price-amount amount">
-                                                                            @if ($product->variants->count() > 0)
-                                                                                <div>
-                                                                                    <span
-                                                                                        class="woocommerce-Price-currencySymbol"></span>
-                                                                                    {{ number_format($product->variants->first()->price, 2) }}฿
-                                                                                </div>
-                                                                            @else
-                                                                                <span
-                                                                                    class="woocommerce-Price-currencySymbol"></span>
-                                                                                {{ number_format($product->price, 2) }}฿
-                                                                            @endif
-                                                                        </span>
-                                                                    </ins>
-                                                                </span>
+                            <span class="bb-section-kicker">
+                                COMING SOON
+                            </span>
 
-                                                                <button type="button"
-                                                                    class="button add_to_cart_button"
-                                                                    data-url="{{ route('cart.add', ['id' => $product->id]) }}">
-                                                                    Add to cart
-                                                                </button>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                @endforeach
-                                                <!-- /Product Item -->
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="empty_space height_2em"></div>
-                                <!-- /Featured Products -->
-                                <!-- Pre-Order Section -->
-                                @if (isset($products_preorder) && $products_preorder->count() > 0)
-                                    <div class="empty_space height_2em"></div>
-                                    <div class="sc_section scheme_light">
-                                        <div class="sc_section_inner">
-                                            <h2 class="sc_section_title sc_item_title text-white"
-                                                style="color:white !important;">PRE ORDER
-                                            </h2>
-                                            <div class="sc_section_descr sc_item_descr">
-                                            </div>
-                                            <div class="product-section-header">
-                                                <div class="spacer"></div>
-                                                <a href="{{ route('products.index', ['search' => 'Pre-Order']) }}"
-                                                    class="product-view-all">View All</a>
-                                            </div>
-                                            <div class="woocommerce columns-4 div-products">
-                                                <ul class="products">
-                                                    <!-- Product Item -->
-                                                    @foreach ($products_preorder as $product)
-                                                        <li class="product">
-                                                            <div
-                                                                class="availability-badge {{ strtolower(str_replace(' ', '-', $product->availability)) }}">
-                                                                {{ $product->availability }}
-                                                            </div>
-                                                            <div class="post_item_wrap">
-                                                                <div class="post_featured">
-                                                                    <div class="post_thumb">
-                                                                        <a
-                                                                            href="{{ route('products.show', $product->id) }}">
-                                                                            @if ($product->images->isNotEmpty())
-                                                                                <img src="{{ env('APP_ADMIN_URL') . '/storage/' . $product->images->first()->image_path }}"
-                                                                                    alt="{{ $product->name }}">
-                                                                            @endif
-                                                                        </a>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="post_content">
-                                                                    <h2 class="woocommerce-loop-product__title"><a
-                                                                            href="{{ route('products.show', $product->id) }}">{{ $product->name }}</a>
-                                                                    </h2>
-                                                                    <span class="price">
-                                                                        <ins>
-                                                                            <span
-                                                                                class="woocommerce-Price-amount amount">
-                                                                                @if ($product->variants->count() > 0)
-                                                                                    <div>
-                                                                                        <span
-                                                                                            class="woocommerce-Price-currencySymbol"></span>
-                                                                                        {{ number_format($product->variants->first()->price, 2) }}฿
-                                                                                    </div>
-                                                                                @else
-                                                                                    <span
-                                                                                        class="woocommerce-Price-currencySymbol"></span>
-                                                                                    {{ number_format($product->price, 2) }}฿
-                                                                                @endif
-                                                                            </span>
-                                                                        </ins>
-                                                                    </span>
-
-                                                                    <button type="button"
-                                                                        class="button add_to_cart_button"
-                                                                        data-url="{{ route('cart.add', ['id' => $product->id]) }}">
-                                                                        Add to cart
-                                                                    </button>
-                                                                </div>
-                                                            </div>
-                                                        </li>
-                                                    @endforeach
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                @endif
-                                <!-- /Pre-Order Section -->
-
-                                <!-- Restock Section -->
-                                <div class="empty_space height_2em"></div>
-                                <div class="sc_section scheme_light">
-                                    <div class="sc_section_inner">
-                                        <h2 class="sc_section_title sc_item_title text-white"
-                                            style="color:white !important;">RE-STOCK
-                                        </h2>
-                                        <div class="sc_section_descr sc_item_descr">
-                                        </div>
-                                        <div class="product-section-header">
-                                            <div class="spacer"></div> <!-- ใช้ดัน View All ไปทางขวา -->
-                                            <a href="/products?restock=true" class="product-view-all">View
-                                                All</a>
-                                        </div>
-                                        <div class="woocommerce columns-4 div-products">
-                                            <ul class="products">
-                                                <!-- Product Item -->
-                                                @foreach ($products_restock as $log)
-                                                    <li class="product">
-                                                        <div
-                                                            class="availability-badge {{ strtolower(str_replace(' ', '-', $log->product->availability)) }}">
-                                                            {{ $log->product->availability }}
-                                                        </div>
-                                                        <div class="post_item_wrap">
-                                                            <div class="post_featured">
-                                                                <div class="post_thumb">
-                                                                    <a
-                                                                        href="{{ route('products.show', $log->product->id) }}">
-                                                                        @if ($log->product->images->isNotEmpty())
-                                                                            <img src="{{ env('APP_ADMIN_URL') . '/storage/' . $log->product->images->first()->image_path }}"
-                                                                                alt="{{ $log->product->name }}">
-                                                                        @endif
-                                                                    </a>
-                                                                </div>
-                                                            </div>
-                                                            <div class="post_content">
-                                                                <h2 class="woocommerce-loop-product__title"><a
-                                                                        href="{{ route('products.show', $log->product->id) }}">{{ $log->product->name }}</a>
-                                                                </h2>
-                                                                {{-- @php
-                                                                $rating = $log->product->average_rating ?? 0;
-                                                                $widthPercent = ($rating / 5) * 100;
-                                                            @endphp
-
-                                                            <div class="star-rating" title="Rated {{ number_format($rating, 2) }} out of 5">
-                                                                <span class="width_100_per" style="width: {{ $widthPercent }}%;">
-                                                                    <strong class="rating">{{ number_format($rating, 2) }}</strong> out of 5
-                                                                </span>
-                                                            </div> --}}
-                                                                <span class="price">
-                                                                    <ins>
-                                                                        <span class="woocommerce-Price-amount amount">
-                                                                            @if ($log->product->variants->count() > 0)
-                                                                                <div>
-                                                                                    <span
-                                                                                        class="woocommerce-Price-currencySymbol"></span>
-                                                                                    {{ number_format($log->product->variants->first()->price, 2) }}฿
-                                                                                </div>
-                                                                            @else
-                                                                                <span
-                                                                                    class="woocommerce-Price-currencySymbol"></span>
-                                                                                {{ number_format($log->product->price, 2) }}฿
-                                                                            @endif
-                                                                        </span>
-                                                                    </ins>
-                                                                </span>
-
-                                                                @if ($log->product->availability !== 'Out of Stock')
-                                                                    <button type="button"
-                                                                        class="button add_to_cart_button"
-                                                                        data-url="{{ route('cart.add', ['id' => $log->product->id]) }}">
-                                                                        Add to cart
-                                                                    </button>
-                                                                @endif
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                @endforeach
-                                                <!-- /Product Item -->
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="empty_space height_5_7em"></div>
-                            </div>
-                        </div>
-                        <!-- /Featured Products -->
-                        <!-- Promo section -->
-                        <div class="bg_dark_style_2" style="display: none;">
-                            <div class="content_wrap">
-                                <div class="empty_space height_2_857em"></div>
-                                <div
-                                    class="columns_wrap sc_columns columns_nofluid sc_columns_count_2 responsive_columns ">
-                                    <div class="column-1_2 sc_column_item sc_column_item_1 odd first">
-                                        <div class="sc_promo sc_promo_size_small">
-                                            <div class="sc_promo_inner">
-                                                <div class="sc_promo_image custom_promo_bg1"></div>
-                                                <div class="sc_promo_block sc_align_left custom_promo_block_1">
-                                                    <div class="sc_promo_block_inner">
-                                                        <h2 class="sc_promo_title sc_item_title">Save Up to 40%
-                                                        </h2>
-                                                        <div class="sc_promo_descr sc_item_descr">on new
-                                                            handguns</div>
-                                                        <div class="sc_promo_button sc_item_button">
-                                                            <a href="#"
-                                                                class="sc_button sc_button_square sc_button_style_border sc_button_size_small">Shop
-                                                                Now</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="column-1_2 sc_column_item sc_column_item_2 even">
-                                        <div class="sc_promo sc_promo_size_small">
-                                            <div class="sc_promo_inner">
-                                                <div class="sc_promo_image custom_promo_bg2"></div>
-                                                <div class="sc_promo_block sc_align_left custom_promo_block_1">
-                                                    <div class="sc_promo_block_inner">
-                                                        <h2 class="sc_promo_title sc_item_title">Free Shipping
-                                                        </h2>
-                                                        <div class="sc_promo_descr sc_item_descr">on Order Over
-                                                            $500
-                                                        </div>
-                                                        <div class="sc_promo_button sc_item_button">
-                                                            <a href="#"
-                                                                class="sc_button sc_button_square sc_button_style_border sc_button_size_small">Shop
-                                                                Now</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="empty_space height_2_857em"></div>
-                            </div>
+                            <h2 class="bb-section-title">
+                                PRE ORDER
+                            </h2>
                         </div>
 
-                        <div class="custom_texture_bg1">
-                            <div class="content_wrap banner_bottom">
-                                <div class="sc_section scheme_light">
-                                    {{-- <div class="sc_section_inner">
-                                        <img src="{{ asset('images/Bar ล่าง 01.png') }}" alt=""  style="margin-bottom: 1rem;"/>
-                                        <img src="{{ asset('images/Bar ล่าง 02.png') }}" alt=""  style="margin-bottom: 1rem;"/>
-                                        <img src="{{ asset('images/Bar ล่าง 03.png') }}" alt=""  style="margin-bottom: 1rem;"/>
-                                        <img src="{{ asset('images/Bar ล่าง 04.png') }}" alt=""  style="margin-bottom: 1rem;"/>
-                                    </div> --}}
-                                    <!-- ติดตั้ง swiper -->
-                                    <!-- ติดตั้ง Swiper -->
-                                    <link rel="stylesheet"
-                                        href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+                        <a href="{{ route('products.index', ['search' => 'Pre-Order']) }}"
+                           class="bb-view-all">
+                            VIEW ALL
+                        </a>
+                    </div>
 
-                                    <div class="swiper mySwiper">
-                                        <div class="swiper-wrapper">
-                                            <div class="swiper-slide"><img
-                                                    src="{{ asset('images/Bar ล่าง 01.png') }}" alt=""></div>
-                                            <div class="swiper-slide"><img
-                                                    src="{{ asset('images/Bar ล่าง 02.png') }}" alt=""></div>
-                                            <div class="swiper-slide"><img
-                                                    src="{{ asset('images/Bar ล่าง 03.png') }}" alt=""></div>
-                                            <div class="swiper-slide"><img
-                                                    src="{{ asset('images/Bar ล่าง 04.png') }}" alt=""></div>
-                                        </div>
+                    <ul class="bb-product-grid">
+
+                        @foreach ($products_preorder as $product)
+
+                            <li class="bb-product-card">
+
+                                <div class="bb-product-badge {{ strtolower(str_replace(' ', '-', $product->availability)) }}">
+                                    {{ $product->availability }}
+                                </div>
+
+                                <div class="bb-product-image">
+
+                                    <a href="{{ route('products.show', $product->id) }}">
+
+                                        @if ($product->images->isNotEmpty())
+
+                                            <img
+                                                src="{{ env('APP_ADMIN_URL') . '/storage/' . $product->images->first()->image_path }}"
+                                                alt="{{ $product->name }}"
+                                                loading="lazy">
+
+                                        @else
+
+                                            <div class="bb-product-image-placeholder">
+                                                NO IMAGE
+                                            </div>
+
+                                        @endif
+
+                                    </a>
+                                </div>
+
+                                <div class="bb-product-info">
+
+                                    <h3 class="bb-product-name">
+                                        <a href="{{ route('products.show', $product->id) }}">
+                                            {{ $product->name }}
+                                        </a>
+                                    </h3>
+
+                                    <div class="bb-product-price">
+
+                                        @if ($product->variants->count() > 0)
+
+                                            {{ number_format($product->variants->first()->price, 2) }}฿
+
+                                        @else
+
+                                            {{ number_format($product->price, 2) }}฿
+
+                                        @endif
+
                                     </div>
 
-                                    <!-- ติดตั้ง Swiper Script -->
-                                    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+                                    <div class="bb-product-actions">
 
-                                    <script>
-                                        var swiper = new Swiper(".mySwiper", {
-                                            effect: "coverflow",
-                                            grabCursor: true,
-                                            centeredSlides: true,
-                                            slidesPerView: "auto",
-                                            loop: true, // แก้ตรงนี้
-                                            speed: 800,
-                                            autoplay: {
-                                                delay: 2000,
-                                                disableOnInteraction: false,
-                                                waitForTransition: false,
-                                            },
-                                            coverflowEffect: {
-                                                rotate: 30,
-                                                stretch: 0,
-                                                depth: 100,
-                                                modifier: 1,
-                                                slideShadows: true,
-                                            },
-                                        });
-                                    </script>
-                                    <style>
-                                        .swiper {
-                                            width: 100%;
-                                            /* height: 400px; ปรับความสูงของ Slider */
-                                        }
+                                        <button
+                                            type="button"
+                                            class="button add_to_cart_button bb-cart-button"
+                                            aria-label="Add {{ $product->name }} to cart"
+                                            data-url="{{ route('cart.add', ['id' => $product->id]) }}">
+                                            Add to cart
+                                        </button>
 
-                                        .swiper-slide {
-                                            background-position: center;
-                                            background-size: cover;
-                                            width: 80%;
-                                            /* height: 350px; */
-                                            overflow: hidden;
-                                            border-radius: 10px;
-                                        }
+                                        <a href="{{ route('products.show', $product->id) }}"
+                                           class="bb-detail-button"
+                                           aria-label="View {{ $product->name }}">
+                                            ♡
+                                        </a>
 
-                                        .swiper-slide img {
-                                            width: 100%;
-                                            /* height: 100%; */
-                                            object-fit: cover;
-                                        }
-                                    </style>
+                                        <a href="{{ route('products.show', $product->id) }}"
+                                           class="bb-more"
+                                           aria-label="More details">
+                                            ···
+                                        </a>
 
-
-
+                                    </div>
                                 </div>
-                                <div class="empty_space height_5_7em"></div>
-                            </div>
+                            </li>
+
+                        @endforeach
+
+                    </ul>
+                </div>
+            </section>
+
+        @endif
+
+        {{-- RE-STOCK --}}
+        @if (isset($products_restock) && $products_restock->count() > 0)
+
+            <section class="bb-product-section">
+                <div class="bb-page-padding">
+
+                    <div class="bb-section-heading">
+
+                        <div class="bb-section-heading-left">
+
+                            <span class="bb-section-kicker">
+                                BACK IN STOCK
+                            </span>
+
+                            <h2 class="bb-section-title">
+                                RE-STOCK
+                            </h2>
+
                         </div>
 
-                        {{-- <div class="accent2_bg scheme_light">
-                            <div class="empty_space height_6_2em"></div>
-                            <div class="sc_call_to_action sc_call_to_action_style_1 sc_call_to_action_align_center">
-                                <div class="sc_call_to_action_info">
-                                    <h2 class="sc_call_to_action_title sc_item_title"><b>Save up to 60%</b></h2>
-                                    <div class="sc_call_to_action_descr sc_item_descr">Lorem ipsum dolor sit amet, consectetur adipiscing
-                                        <br /> elit. Nunc erat massa, sodales at odio eget</div>
-                                    <div class="sc_call_to_action_buttons sc_item_buttons">
-                                        <div class="sc_call_to_action_button sc_item_button">
-                                            <a href="#" class="sc_button sc_button_square sc_button_style_dark sc_button_size_small">More Information</a>
+                        <a href="/products?restock=true"
+                           class="bb-view-all">
+                            VIEW ALL
+                        </a>
+                    </div>
+
+                    <ul class="bb-product-grid">
+
+                        @foreach ($products_restock as $log)
+
+                            @if ($log->product)
+
+                                <li class="bb-product-card">
+
+                                    <div class="bb-product-badge {{ strtolower(str_replace(' ', '-', $log->product->availability)) }}">
+                                        {{ $log->product->availability }}
+                                    </div>
+
+                                    <div class="bb-product-image">
+
+                                        <a href="{{ route('products.show', $log->product->id) }}">
+
+                                            @if ($log->product->images->isNotEmpty())
+
+                                                <img
+                                                    src="{{ env('APP_ADMIN_URL') . '/storage/' . $log->product->images->first()->image_path }}"
+                                                    alt="{{ $log->product->name }}"
+                                                    loading="lazy">
+
+                                            @else
+
+                                                <div class="bb-product-image-placeholder">
+                                                    NO IMAGE
+                                                </div>
+
+                                            @endif
+
+                                        </a>
+                                    </div>
+
+                                    <div class="bb-product-info">
+
+                                        <h3 class="bb-product-name">
+                                            <a href="{{ route('products.show', $log->product->id) }}">
+                                                {{ $log->product->name }}
+                                            </a>
+                                        </h3>
+
+                                        <div class="bb-product-price">
+
+                                            @if ($log->product->variants->count() > 0)
+
+                                                {{ number_format($log->product->variants->first()->price, 2) }}฿
+
+                                            @else
+
+                                                {{ number_format($log->product->price, 2) }}฿
+
+                                            @endif
+
+                                        </div>
+
+                                        <div class="bb-product-actions">
+
+                                            @if ($log->product->availability !== 'Out of Stock')
+
+                                                <button
+                                                    type="button"
+                                                    class="button add_to_cart_button bb-cart-button"
+                                                    aria-label="Add {{ $log->product->name }} to cart"
+                                                    data-url="{{ route('cart.add', ['id' => $log->product->id]) }}">
+                                                    Add to cart
+                                                </button>
+
+                                            @endif
+
+                                            <a href="{{ route('products.show', $log->product->id) }}"
+                                               class="bb-detail-button"
+                                               aria-label="View {{ $log->product->name }}">
+                                                ♡
+                                            </a>
+
+                                            <a href="{{ route('products.show', $log->product->id) }}"
+                                               class="bb-more"
+                                               aria-label="More details">
+                                                ···
+                                            </a>
+
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="empty_space height_6em"></div>
-                        </div> --}}
-                        <!-- /Call To Action -->
-                    </section>
-                </article>
+                                </li>
+
+                            @endif
+
+                        @endforeach
+
+                    </ul>
+                </div>
+            </section>
+
+        @endif
+
+        {{-- PROMOTIONAL BANNER --}}
+        <section class="bb-promo">
+            <div class="bb-page-padding">
+
+                <a href="{{ route('products.index') }}"
+                   class="bb-promo-card">
+
+                    <div class="bb-promo-image"></div>
+
+                    <div class="bb-promo-copy">
+
+                        <div class="bb-promo-label">
+                            BUFFBRIDGE
+                        </div>
+
+                        <div class="bb-promo-subtitle">
+                            CUSTOM CREW
+                        </div>
+
+                        <div class="bb-promo-jp">
+                            エアガンの収集家です。
+                        </div>
+
+                        <span class="bb-promo-arrow">
+                            →
+                        </span>
+
+                    </div>
+                </a>
             </div>
-            <!-- /Content -->
-        </div>
-        <!-- /Page Content -->
-    </section>
+        </section>
+
+        {{-- BENEFITS --}}
+        <section class="bb-benefits">
+            <div class="bb-page-padding">
+
+                <div class="bb-benefits-grid">
+
+                    {{-- SHIPPING --}}
+                    <div class="bb-benefit">
+
+                        <div class="bb-benefit-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M3 5h11v10H3V5Zm11 4h3.4L21 12.6V15h-7V9Z"/>
+                                <circle cx="7" cy="17" r="2"/>
+                                <circle cx="18" cy="17" r="2"/>
+                                <path d="M3 15h2M9 15h7"/>
+                            </svg>
+                        </div>
+
+                        <div class="bb-benefit-content">
+                            <h3 class="bb-benefit-title">
+                                FAST SHIPPING
+                            </h3>
+
+                            <p class="bb-benefit-text">
+                                THAILAND WIDE
+                            </p>
+                        </div>
+
+                    </div>
+
+                    {{-- ORIGINAL PRODUCT --}}
+                    <div class="bb-benefit">
+
+                        <div class="bb-benefit-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12 2.5 19 5v5.6c0 4.6-2.8 8.8-7 10.9-4.2-2.1-7-6.3-7-10.9V5l7-2.5Z"/>
+                                <path d="m8.5 12 2.2 2.2 4.8-5"/>
+                            </svg>
+                        </div>
+
+                        <div class="bb-benefit-content">
+                            <h3 class="bb-benefit-title">
+                                TRUSTED STORE
+                            </h3>
+
+                            <p class="bb-benefit-text">
+                                100% ORIGINAL PRODUCTS
+                            </p>
+                        </div>
+
+                    </div>
+
+                    {{-- SUPPORT --}}
+                    <div class="bb-benefit">
+
+                        <div class="bb-benefit-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24">
+                                <circle cx="12" cy="12" r="8.5"/>
+                                <path d="M12 7v5l3.2 2"/>
+                            </svg>
+                        </div>
+
+                        <div class="bb-benefit-content">
+                            <h3 class="bb-benefit-title">
+                                SUPPORT
+                            </h3>
+
+                            <p class="bb-benefit-text">
+                                TUE - SAT 13.00 - 18.30
+                            </p>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </div>
+
     <x-slot name="script">
+
         <script>
-            $(document).ready(function() {
-                $('.add_to_cart_button').click(function() {
-                    let url = $(this).data('url'); // ดึง URL จาก data-url ของปุ่ม
+            document.addEventListener('DOMContentLoaded', function () {
+
+                /* HERO SLIDER */
+                const slides = document.querySelectorAll('.bb-hero-slide');
+                const dots = document.querySelectorAll('.bb-hero-dot');
+
+                let currentSlide = 0;
+                let sliderTimer = null;
+
+                function showSlide(index) {
+
+                    if (!slides.length) {
+                        return;
+                    }
+
+                    slides.forEach(function (slide) {
+                        slide.classList.remove('active');
+                    });
+
+                    dots.forEach(function (dot) {
+                        dot.classList.remove('active');
+                    });
+
+                    currentSlide = index;
+
+                    if (currentSlide >= slides.length) {
+                        currentSlide = 0;
+                    }
+
+                    if (currentSlide < 0) {
+                        currentSlide = slides.length - 1;
+                    }
+
+                    slides[currentSlide].classList.add('active');
+
+                    if (dots[currentSlide]) {
+                        dots[currentSlide].classList.add('active');
+                    }
+                }
+
+                function nextSlide() {
+                    showSlide(currentSlide + 1);
+                }
+
+                function stopSlider() {
+                    if (sliderTimer) {
+                        clearInterval(sliderTimer);
+                        sliderTimer = null;
+                    }
+                }
+
+                function startSlider() {
+                    stopSlider();
+
+                    sliderTimer = setInterval(function () {
+                        nextSlide();
+                    }, 5000);
+                }
+
+                dots.forEach(function (dot) {
+
+                    dot.addEventListener('click', function () {
+
+                        const index = Number(this.dataset.slide);
+
+                        showSlide(index);
+                        startSlider();
+                    });
+
+                });
+
+                const hero = document.querySelector('.bb-hero');
+
+                if (hero) {
+                    hero.addEventListener('mouseenter', stopSlider);
+                    hero.addEventListener('mouseleave', startSlider);
+                }
+
+                showSlide(0);
+                startSlider();
+
+                /* ADD TO CART */
+                $('.add_to_cart_button').click(function () {
+
+                    let url = $(this).data('url');
+
                     $.ajax({
-                        url: url, // ใช้ Route เดิมที่อยู่ใน data-url
+
+                        url: url,
                         type: "POST",
+
                         data: {
-                            _token: "{{ csrf_token() }}", // ส่ง CSRF Token ไปด้วย
+                            _token: "{{ csrf_token() }}"
                         },
-                        success: function(response) {
+
+                        success: function () {
                             window.location.reload();
                         },
-                        error: function(xhr) {
-                            if (xhr.responseJSON.message == 'Unauthenticated.') {
-                                let l = document.querySelector('.popup_login_link');
-                                l.click();
+
+                        error: function (xhr) {
+
+                            if (
+                                xhr.responseJSON &&
+                                xhr.responseJSON.message === 'Unauthenticated.'
+                            ) {
+
+                                let loginButton =
+                                    document.querySelector('.popup_login_link');
+
+                                if (loginButton) {
+                                    loginButton.click();
+                                }
+
                             } else {
-                                alert("Error: " + xhr.responseJSON.message);
+
+                                alert(
+                                    "Error: " +
+                                    (
+                                        xhr.responseJSON?.message ??
+                                        'Unable to add product to cart.'
+                                    )
+                                );
+
                             }
                         }
                     });
@@ -700,19 +712,33 @@
         </script>
 
         @if (request('showLoginModal') || request('showRegisterModal'))
+
             <script>
-                document.addEventListener('DOMContentLoaded', function() {
+                document.addEventListener('DOMContentLoaded', function () {
+
                     if ({{ request('showLoginModal') ? 'true' : 'false' }}) {
-                        const loginBtn = document.querySelector('.popup_login_link');
-                        if (loginBtn) loginBtn.click();
+
+                        const loginBtn =
+                            document.querySelector('.popup_login_link');
+
+                        if (loginBtn) {
+                            loginBtn.click();
+                        }
                     }
 
                     if ({{ request('showRegisterModal') ? 'true' : 'false' }}) {
-                        const registerBtn = document.querySelector('.popup_register_link');
-                        if (registerBtn) registerBtn.click();
+
+                        const registerBtn =
+                            document.querySelector('.popup_register_link');
+
+                        if (registerBtn) {
+                            registerBtn.click();
+                        }
                     }
+
                 });
             </script>
+
         @endif
 
     </x-slot>

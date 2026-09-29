@@ -1,857 +1,2247 @@
-                <!-- Header -->
-                <header class="top_panel_wrap top_panel_style_2 scheme_original">
-                    <div class="top_panel_wrap_inner top_panel_inner_style_2 top_panel_position_above">
-                        <!-- Top panel 1 -->
-                        <div class="top_panel_top">
-                            <div class="content_wrap clearfix">
-                                <div class="top_panel_top_user_area">
-                                    <!-- Socials -->
-                                    <div class="top_panel_top_socials" style="margin-top:0px;padding-top:0.5rem;">
-                                        <div
-                                            class="sc_socials sc_socials_type_icons sc_socials_shape_square sc_socials_size_tiny">
-                                            <div class="sc_socials_item">
-                                                <a href="https://www.facebook.com/share/1ABFfSy5QZ/?mibextid=wwXIfr"
-                                                    target="_blank" class="social_icons social_facebook">
-                                                    <span class="icon-facebook"></span>
-                                                </a>
-                                            </div>
-                                            <div class="sc_socials_item">
-                                                <a href="https://lin.ee/FLk15Ps" target="_blank"
-                                                    class="social_icons social_facebook">
-                                                    <img src="{{ asset('images/icons8-line.svg') }}" alt=""
-                                                        style="filter: invert(1);width: 20px;height: 20px;vertical-align: middle;">
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- /Socials -->
-                                    <ul class="menu_user_nav">
-                                        <li></li>
-                                    </ul>
-                                </div>
-                                <!-- Open hours -->
-                                <div class="top_panel_top_open_hours" style="margin-top:5px;">
-                                    <ul class="menu_user_nav">
-                                        <!-- Register -->
-                                        @if (!auth('customer')->check())
-                                            <li class="menu_user_register">
-                                                <a href="#popup_registration_1"
-                                                    class="popup_link popup_register_link icon-pencil"
-                                                    title="">Register</a>
-                                                <div id="popup_registration_1"
-                                                    class="popup_wrap popup_registration bg_tint_light">
-                                                    <a href="#" class="popup_close"></a>
-                                                    <div class="form_wrap">
-                                                        <form name="registration_form" action="{{ route('register') }}"
-                                                            method="post" class="popup_form registration_form">
-                                                            @csrf
-                                                            <div class="form_left">
-                                                                <div
-                                                                    class="popup_form_field login_field iconed_field icon-user">
-                                                                    <input type="text" id="registration_username_1"
-                                                                        name="name" value=""
-                                                                        placeholder="User name (login)">
-                                                                </div>
-                                                                <div
-                                                                    class="popup_form_field email_field iconed_field icon-mail">
-                                                                    <input type="text" id="registration_email_1"
-                                                                        name="email" value=""
-                                                                        placeholder="E-mail">
-                                                                </div>
-                                                                <div class="popup_form_field agree_field">
-                                                                    <input type="checkbox" value="agree"
-                                                                        id="registration_agree_1"
-                                                                        name="registration_agree">
-                                                                    <label for="registration_agree">I agree with</label>
-                                                                    <a href="{{ route('term') }}">Terms &amp;
-                                                                        Conditions</a>
-                                                                </div>
-                                                                <div class="popup_form_field submit_field">
-                                                                    <input type="submit" class="submit_button"
-                                                                        value="Sign Up">
-                                                                </div>
-                                                            </div>
-                                                            <div class="form_right">
-                                                                <div
-                                                                    class="popup_form_field password_field iconed_field icon-lock">
-                                                                    <input type="password" id="registration_pwd_1"
-                                                                        name="password" value=""
-                                                                        placeholder="Password">
-                                                                </div>
-                                                                <div
-                                                                    class="popup_form_field password_field iconed_field icon-lock">
-                                                                    <input type="password" id="registration_pwd2_1"
-                                                                        name="password_confirmation" value=""
-                                                                        placeholder="Confirm Password">
-                                                                </div>
-                                                                <div class="popup_form_field description_field">Minimum
-                                                                    6 characters</div>
-                                                            </div>
-                                                        </form>
-                                                        <div class="result message_block"></div>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <!-- /Register -->
-                                            <!-- Login -->
-                                            <li class="menu_user_login">
-                                                <a href="#popup_login_1" class="popup_link popup_login_link icon-user"
-                                                    title="">Login</a>
-                                                <div class="login">
-                                                    <div id="popup_login_1"
-                                                        class="popup_wrap popup_login bg_tint_light">
-                                                        <a href="#" class="popup_close"></a>
-                                                        <div class="form_wrap">
-                                                            <div class="form_left">
-                                                                <form action="{{ route('customer.login.submit') }}"
-                                                                    method="post" name="login_form"
-                                                                    class="popup_form login_form">
-                                                                    @csrf
-                                                                    <div
-                                                                        class="popup_form_field login_field iconed_field icon-user">
-                                                                        <input type="text" id="log_1"
-                                                                            name="email" value=""
-                                                                            placeholder="Login or Email">
-                                                                    </div>
-                                                                    <div
-                                                                        class="popup_form_field password_field iconed_field icon-lock">
-                                                                        <input type="password" id="password_1"
-                                                                            name="password" value=""
-                                                                            placeholder="Password">
-                                                                    </div>
-                                                                    <div class="popup_form_field remember_field">
-                                                                        <a href="#"
-                                                                            class="forgot_password">Forgot
-                                                                            password?</a>
-                                                                        <input type="checkbox" value="forever"
-                                                                            id="rememberme_1" name="rememberme">
-                                                                        <label for="rememberme">Remember me</label>
-                                                                    </div>
-                                                                    <div class="popup_form_field submit_field">
-                                                                        <input type="submit" class="submit_button"
-                                                                            value="Login">
-                                                                    </div>
-                                                                </form>
-                                                            </div>
-                                                            <div class="form_right">
-                                                                <div class="login_socials_title">You can login using
-                                                                    your social profile</div>
-                                                                <div class="login_socials_list">
-                                                                    <div class="social-login-widget">
-                                                                        <div class="social-login-connect-with">Connect
-                                                                            with:</div>
-                                                                        <div class="social-login-provider-list"
-                                                                            style="width: fit-content;">
-                                                                            <a href="{{ route('google.login') }}"
-                                                                                class="google-login-btn">
-                                                                                <img src="https://developers.google.com/identity/images/g-logo.png"
-                                                                                    alt="Google Logo">
-                                                                                With Google
-                                                                            </a>
+@php
+    $customerId = \Auth::guard('customer')->id();
 
+    $cartItems = $customerId
+        ? \App\Models\CartItem::with(['product', 'variant'])
+            ->where('customer_id', $customerId)
+            ->get()
+        : collect();
 
-                                                                        </div>
-                                                                        <div class="social-login-widget-clearing">
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        @else
-                                            <li class="menu_user_login">
-                                            <li class="menu-item menu-item-has-children">
-                                                <a href="javascript:void(0);"
-                                                    class="popup_link popup_login_link icon-user">{{ auth('customer')->user()->email }}</a>
-                                                <ul class="sub-menu">
-                                                    <li class="menu-item">
-                                                        <a href="{{ route('profile.edit') }}">Profile</a>
-                                                    </li>
-                                                    <li class="menu-item">
-                                                        <a href="{{ route('cart.index') }}">My Cart</a>
-                                                    </li>
-                                                    <li class="menu-item">
-                                                        <a href="{{ route('order.history') }}">History</a>
-                                                    </li>
-                                                    <li class="menu-item">
-                                                        <a href="javascript:void(0);"
-                                                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
-                                                        <form id="logout-form" action="{{ route('logout2') }}"
-                                                            method="POST" style="display: none;">
-                                                            @csrf
-                                                        </form>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            </li>
-                                        @endif
-                                        <!-- /Login -->
-                                    </ul>
-                                </div>
-                                <!-- /Open hours -->
-                            </div>
-                        </div>
-                        <!-- /Top panel 1 -->
-                        @php
-                            $customerId_ = \Auth::guard('customer')->id(); // ดึง ID ของลูกค้าปัจจุบัน
+    $cartCount = $cartItems->sum('quantity');
 
-                            $cartItems = \App\Models\CartItem::with(['product', 'variant']) // ดึงข้อมูลสินค้าที่อยู่ในตะกร้า
-                                ->where('customer_id', $customerId_)
-                                ->get();
+    $categoriesMenu = \App\Models\Category::whereNull('parent_id')
+        ->with('children.children')
+        ->get();
 
-                            $subtotal = $cartItems->sum(function ($item) {
-                                $price = $item->variant ? $item->variant->price : $item->product->price;
-                                return $price * $item->quantity;
-                            });
-                        @endphp
-                        <!-- Top panel 2 -->
-                        <div class="top_panel_middle">
-                            <div class="content_wrap">
-                                <div class="columns_wrap columns_fluid">
-                                    <!-- Contacts -->
-                                    <div class="column-1_4 contact_field contact_phone">
-                                        <span class="contact_icon icon-iconmonstr-phone-2-icon"></span>
-                                        <span class="contact_label contact_phone"><a
-                                                href="tel:0902998211">+66902998211</a></span>
-                                        <span class="contact_email">Info@buffbridge.com</span>
-                                    </div>
-                                    <!-- /Contacts -->
+    $isHome = request()->routeIs('home');
 
-                                    <!-- Logo -->
-                                    <div class="column-1_3 contact_logo" style="width: 48%;">
-                                        <div class="logo">
-                                            <a href="{{ url('/') }}">
-                                                <img src="{{ asset('BUFF_LOGO.png') }}" class="logo_main"
-                                                    alt="Logo">
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <!-- /Logo -->
+    $isBuffbridgeCustom =
+        request()->routeIs('products.index') &&
+        (string) request('category') === '85';
 
-                                    <!-- Cart -->
-                                    <div class="column-1_4 contact_field contact_cart">
-                                        <a href="{{ route('cart.index') }}" class="top_panel_cart_button">
-                                            <span class="cart_item">{{ $cartItems->count() }}</span>
-                                            <span class="contact_icon icon-iconmonstr-shopping-cart-4-icon"></span>
-                                            <span class="contact_label contact_cart_label">Your cart:</span>
-                                            <span class="contact_cart_totals">
-                                                <span class="cart_items">{{ $cartItems->count() }} Items</span> -
-                                                <span class="cart_summa">{{ number_format($subtotal, 2) }}฿</span>
-                                            </span>
-                                        </a>
+    $isProducts =
+        request()->routeIs('products.*') &&
+        !$isBuffbridgeCustom;
 
-                                        <ul class="widget_area sidebar_cart sidebar">
-                                            <li>
-                                                <div class="widget woocommerce widget_shopping_cart">
-                                                    <div class="hide_cart_widget_if_empty">
-                                                        <div class="widget_shopping_cart_content">
-                                                            <ul class="cart_list product_list_widget">
-                                                                @foreach ($cartItems as $key => $item)
-                                                                    <li class="mini_cart_item">
-                                                                        <form
-                                                                            action="{{ route('cart.remove', $item->id) }}"
-                                                                            method="POST"
-                                                                            id="h_cart_{{ $key }}"
-                                                                            style="display: inline;">
-                                                                            @csrf
-                                                                            @method('DELETE')
-                                                                            <a class="remove"
-                                                                                href="javascript:void(0);"
-                                                                                type="submit"
-                                                                                onclick="$('#h_cart_{{ $key }}').submit();">×</a>
-                                                                        </form>
+    $isBlog = request()->routeIs('posts.*');
+    $isContact = request()->routeIs('contact');
+@endphp
 
-                                                                        <a
-                                                                            href="{{ route('products.show', $item->product->id) }}">
-                                                                            {{ $item->product->name }}
-                                                                            @if ($item->variant)
-                                                                                <br><small
-                                                                                    style="color: #666;">Variant:
-                                                                                    {{ $item->variant->type }}</small>
-                                                                            @endif
-                                                                        </a>
+<header class="bb-header">
+    <div class="bb-header-container">
 
-                                                                        <span class="quantity">
-                                                                            {{ $item->quantity }} ×
-                                                                            <span
-                                                                                class="woocommerce-Price-amount amount">
-                                                                                <span
-                                                                                    class="woocommerce-Price-currencySymbol"></span>
-                                                                                {{ number_format($item->variant ? $item->variant->price : $item->product->price, 2) }}฿
-                                                                            </span>
-                                                                        </span>
-                                                                    </li>
-                                                                @endforeach
+        <a href="{{ route('home') }}" class="bb-brand">
+            <img
+                src="{{ asset('BUFF_LOGO.png') }}"
+                alt="Buffbridge Custom Crew"
+                class="bb-brand-logo"
+            >
 
+            <div class="bb-brand-copy">
+                <div class="bb-brand-name">BUFFBRIDGE</div>
+                <div class="bb-brand-sub">CUSTOM CREW</div>
+                <div class="bb-brand-jp">エアガンの収集家です。</div>
+            </div>
+        </a>
 
-                                                            </ul>
-                                                            <p class="total">
-                                                                <strong>Subtotal:</strong>
-                                                                <span class="woocommerce-Price-amount amount">
-                                                                    <span
-                                                                        class="woocommerce-Price-currencySymbol"></span>
-                                                                    {{ number_format($subtotal, 2) }}฿
-                                                                </span>
-                                                            </p>
-                                                            <p class="buttons">
-                                                                <a class="button wc-forward"
-                                                                    href="{{ route('cart.index') }}">View cart</a>
-                                                                <a class="button checkout wc-forward"
-                                                                    href="{{ route('checkout.index') }}">Checkout</a>
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
+        <nav class="bb-desktop-nav">
 
-                                    <!-- /Cart -->
-                                </div>
-                            </div>
-                        </div>
+            <a
+                href="{{ route('home') }}"
+                class="bb-nav-link {{ $isHome ? 'is-active' : '' }}"
+            >
+                HOME
+            </a>
 
-                        <!-- /Top panel 2 -->
-                        <!-- Top panel 3 -->
-                        <div class="top_panel_bottom">
-                            <div class="content_wrap clearfix">
-                                <!-- Menu -->
-                                <nav class="menu_main_nav_area">
-                                    <ul class="menu_main_nav">
-                                        <!-- Home -->
-                                        <li class="menu-item current-menu-ancestor">
-                                            <a href="/">Home</a>
-                                        </li>
-                                        <!-- /Home -->
-                                        <!-- Products -->
-                                        {{-- <li class="menu-item">
-                                            <a href="/products">Products</a>
-                                        </li> --}}
-                                        <!-- /Products -->
-                                        <!-- Promotion -->
-                                        <li class="menu-item">
-                                            <a href="{{ route('posts.index') }}">Blogs</a>
-                                        </li>
-                                        <!-- /Promotion -->
-                                        @php
-                                            $categories_menu = \App\Models\Category::whereNull('parent_id')
-                                                ->with('children.children')
-                                                ->get();
-                                        @endphp
+            <a
+                href="{{ route('posts.index') }}"
+                class="bb-nav-link {{ $isBlog ? 'is-active' : '' }}"
+            >
+                BLOG
+            </a>
 
-                                        <li class="menu-item menu-item-has-children">
-                                            <a href="/products">Products</a>
-                                            <ul class="sub-menu">
-                                                @foreach ($categories_menu->where('active', 1) as $category)
-                                                    <li class="menu-item menu-item-has-children">
-                                                        <a
-                                                            href="{{ route('products.index', ['category' => $category->id]) }}">{{ $category->name }}</a>
-                                                        @if ($category->children->isNotEmpty())
-                                                            <ul class="sub-menu">
-                                                                @foreach ($category->children->where('active', 1) as $subCategory)
-                                                                    <li class="menu-item menu-item-has-children">
-                                                                        <a
-                                                                            href="{{ route('products.index', ['category' => $subCategory->id]) }}">{{ $subCategory->name }}</a>
-                                                                        @if ($subCategory->children->isNotEmpty())
-                                                                            <ul class="sub-menu">
-                                                                                @foreach ($subCategory->children->where('active', 1) as $subSubCategory)
-                                                                                    <li class="menu-item">
-                                                                                        <a
-                                                                                            href="{{ route('products.index', ['category' => $subSubCategory->id]) }}">{{ $subSubCategory->name }}</a>
-                                                                                    </li>
-                                                                                @endforeach
-                                                                            </ul>
-                                                                        @endif
-                                                                    </li>
-                                                                @endforeach
-                                                            </ul>
-                                                        @endif
-                                                    </li>
-                                                @endforeach
-                                            </ul>
-                                        </li>
+            <div class="bb-nav-dropdown">
 
-                                        <!-- Contact Us -->
-                                        <li class="menu-item">
-                                            <a href="{{ route('products.index', ['category' => 85]) }}">BuffBridge
-                                                Custom</a>
-                                        </li>
-                                        <!-- Contact Us -->
-                                        <li class="menu-item">
-                                            <a href="javascript:void(0)">Contact us</a>
-                                        </li>
-                                        <li class="menu-item">
-                                            <a href="#" class="custom-search-trigger"
-                                                style="background:#fea526;">
-                                                <i class="search_submit icon-iconmonstr-magnifier-2-icon"
-                                                    style="color: white;font-size: 20px;margin-left: 5px;"></i>
-                                            </a>
-                                            <div class="custom-search-form-wrap">
-                                                <form role="search" method="get" class="search_form"
-                                                    action="{{ route('products.index') }}">
-                                                    <input type="text" class="search_field" placeholder="Search"
-                                                        value="{{ request('search') }}" name="search" />
-                                                    <button type="submit"
-                                                        class="search_submit icon-iconmonstr-magnifier-2-icon"
-                                                        style="color:white;" title="Start search"></button>
-                                                </form>
-                                            </div>
-                                            <div class="search_results widget_area scheme_original hidden">
-                                                <a class="search_results_close icon-cancel"></a>
-                                                <div class="search_results_content"></div>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </nav>
-                                <!-- /Menu -->
-                            </div>
-                        </div>
-                        <!-- /Top panel 3 -->
-                    </div>
-                </header>
-                <style>
-                    .menu-item {
-                        position: relative;
-                    }
+                <a
+                    href="{{ route('products.index') }}"
+                    class="bb-nav-link bb-products-link {{ $isProducts ? 'is-active' : '' }}"
+                >
+                    PRODUCTS
 
-                    .custom-search-form-wrap {
-                        position: absolute;
-                        top: 100%;
-                        right: 0;
-                        /* จัดให้อยู่ชิดขวาขององค์ประกอบแม่ */
-                        width: 300px;
-                        padding: 10px;
-                        background-color: #333;
-                        z-index: 100;
-                        opacity: 0;
-                        /* ซ่อนและทำให้โปร่งใส */
-                        visibility: hidden;
-                        /* ซ่อนจากเครื่องมือเข้าถึง */
-                        transform: translateY(10px);
-                        /* ซ่อนโดยเลื่อนลงมาเล็กน้อย */
-                        transition: all 0.3s ease-in-out;
-                        /* เพิ่ม animation ให้ดูราบรื่น */
-                    }
+                    <svg viewBox="0 0 24 24" class="bb-chevron">
+                        <path d="m6 9 6 6 6-6"/>
+                    </svg>
+                </a>
 
-                    .custom-search-form-wrap.is-active {
-                        opacity: 1;
-                        /* แสดงผล */
-                        visibility: visible;
-                        transform: translateY(0);
-                        /* เลื่อนกลับมาตำแหน่งปกติ */
-                    }
+                <div class="bb-dropdown-menu">
+                    <div class="bb-dropdown-inner">
 
-                    #search_submit_mobile {
-                        display: block !important;
-                        right: -26px !important;
-                        top: 8px !important;
-                        left: auto !important;
-                    }
-                </style>
-                <script>
-                    document.addEventListener('DOMContentLoaded', function() {
-                        const searchTrigger = document.querySelector('.custom-search-trigger');
-                        const searchForm = document.querySelector('.custom-search-form-wrap');
+                        <a
+                            href="{{ route('products.index') }}"
+                            class="bb-dropdown-all"
+                        >
+                            <span>ALL PRODUCTS</span>
+                            <span>→</span>
+                        </a>
 
-                        if (searchTrigger && searchForm) {
-                            searchTrigger.addEventListener('click', function(event) {
-                                event.preventDefault();
-                                // ใช้แค่การสลับคลาส 'is-active' อย่างเดียว
-                                searchForm.classList.toggle('is-active');
-                            });
+                        @foreach ($categoriesMenu->where('active', 1) as $category)
+                            @php
+                                $activeChildren = $category->children->where('active', 1);
+                            @endphp
 
-                            document.addEventListener('click', function(event) {
-                                const isClickInsideSearchForm = searchForm.contains(event.target);
-                                const isClickOnSearchTrigger = searchTrigger.contains(event.target);
+                            <div class="bb-category">
 
-                                // ตรวจสอบและลบคลาส 'is-active' เท่านั้น
-                                if (!isClickInsideSearchForm && !isClickOnSearchTrigger && searchForm.classList
-                                    .contains('is-active')) {
-                                    searchForm.classList.remove('is-active');
-                                }
-                            });
-                        }
+                                <a
+                                    href="{{ route('products.index', ['category' => $category->id]) }}"
+                                    class="bb-category-title"
+                                >
+                                    <span>{{ $category->name }}</span>
 
-
-
-
-                    });
-                    document.addEventListener('DOMContentLoaded', function() {
-
-                        const searchForm = document.getElementById('searchform_mobile');
-
-                        // ตรวจสอบว่าฟอร์มมีอยู่จริงก่อนที่จะเพิ่ม event listener
-                        if (searchForm) {
-                            searchForm.addEventListener('submit', function(event) {
-                                // เมื่อฟอร์มถูก submit โค้ดส่วนนี้จะทำงาน
-                                // event.preventDefault(); // หากต้องการป้องกันไม่ให้ฟอร์มส่งข้อมูลตามปกติ
-
-                                // คุณสามารถเพิ่มโค้ดอื่นๆ ที่นี่ได้ เช่น:
-                                const searchInput = searchForm.querySelector('.search_field');
-                                const searchValue = searchInput.value;
-
-                                console.log('ข้อมูลที่ต้องการค้นหา:', searchValue);
-
-                                // ตัวอย่าง: ตรวจสอบว่ามีค่าในช่องค้นหาหรือไม่
-                                if (searchValue.trim() === '') {
-                                    // หากไม่มีข้อมูล ให้แสดงข้อความเตือน
-                                    alert('กรุณาป้อนข้อความที่ต้องการค้นหา');
-                                    event.preventDefault(); // ป้องกันไม่ให้ฟอร์มส่งข้อมูล
-                                }
-                            });
-                        }
-
-
-
-
-                    });
-                </script>
-                <!-- /Header -->
-                <!-- Header Mobile -->
-                <div class="header_mobile">
-                    <div class="content_wrap">
-                        <div class="menu_button icon-menu"></div>
-                        <!-- Logo -->
-                        <div class="logo">
-                            <a href="/">
-                                <img src="{{ asset('BUFF_LOGO.png') }}" class="logo_main" alt="">
-                            </a>
-                        </div>
-                        <!-- /Logo -->
-                        <!-- Cart -->
-                        <div class="menu_main_cart top_panel_icon">
-                            <a href="{{ route('cart.index') }}" class="top_panel_cart_button">
-                                <span class="cart_item">{{ $cartItems->count() }}</span>
-                                <span class="contact_icon icon-iconmonstr-shopping-cart-4-icon"></span>
-                                <span class="contact_label contact_cart_label">Your cart:</span>
-                                <span class="contact_cart_totals">
-                                    <span class="cart_items">{{ $cartItems->count() }} Items</span> -
-                                    <span class="cart_summa">฿{{ number_format($subtotal, 2) }}</span>
-                                </span>
-                            </a>
-                            <ul class="widget_area sidebar_cart sidebar">
-                                <li>
-                                    <div class="widget woocommerce widget_shopping_cart">
-                                        <div class="hide_cart_widget_if_empty">
-                                            <div class="widget_shopping_cart_content">
-                                                <ul class="cart_list product_list_widget">
-                                                    @foreach ($cartItems as $key => $item)
-                                                        <li class="mini_cart_item">
-                                                            <form action="{{ route('cart.remove', $item->id) }}"
-                                                                method="POST" id="h_cart_{{ $key }}"
-                                                                style="display: inline;">
-                                                                @csrf
-                                                                @method('DELETE')
-                                                                <a class="remove" href="javascript:void(0);"
-                                                                    onclick="$('#h_cart_{{ $key }}').submit();">×</a>
-                                                            </form>
-                                                            <a
-                                                                href="{{ route('products.show', $item->product->id) }}">
-                                                                {{ $item->product->name }}
-                                                            </a>
-                                                            <span class="quantity">
-                                                                {{ $item->quantity }} ×
-                                                                <span class="woocommerce-Price-amount amount">
-                                                                    <span
-                                                                        class="woocommerce-Price-currencySymbol">฿</span>
-                                                                    {{ number_format($item->product->price, 2) }}
-                                                                </span>
-                                                            </span>
-                                                        </li>
-                                                    @endforeach
-                                                </ul>
-                                                <p class="total">
-                                                    <strong>Subtotal:</strong>
-                                                    <span class="woocommerce-Price-amount amount">
-                                                        <span class="woocommerce-Price-currencySymbol">฿</span>
-                                                        {{ number_format($subtotal, 2) }}
-                                                    </span>
-                                                </p>
-                                                <p class="buttons">
-                                                    <a class="button wc-forward"
-                                                        href="{{ route('cart.index') }}">View cart</a>
-                                                    <a class="button checkout wc-forward"
-                                                        href="{{ route('checkout.index') }}">Checkout</a>
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                        <!-- /Cart -->
-                    </div>
-                    <!-- Side wrap -->
-                    <div class="side_wrap">
-                        <div class="close">Close</div>
-                        <!-- Top panel -->
-                        <div class="panel_top">
-                            <!-- Menu -->
-                            <nav class="menu_main_nav_area">
-                                <ul class="menu_main_nav">
-                                    <!-- Home -->
-                                    <li class="menu-item current-menu-ancestor current-menu-parent">
-                                        <a href="/">Home</a>
-                                    </li>
-                                    <li class="menu-item">
-                                        <a href="#">Promotion</a>
-                                    </li>
-                                    <!-- /Promotion -->
-                                    @php
-                                        $categories_menu = \App\Models\Category::whereNull('parent_id')
-                                            ->with('children.children')
-                                            ->get();
-                                    @endphp
-
-                                    <li class="menu-item menu-item-has-children">
-                                        <a href="/products">Products</a>
-                                        <ul class="sub-menu">
-                                            @foreach ($categories_menu as $category)
-                                                <li class="menu-item menu-item-has-children">
-                                                    <a
-                                                        href="{{ route('products.index', ['category' => $category->id]) }}">{{ $category->name }}</a>
-                                                    @if ($category->children->isNotEmpty())
-                                                        <ul class="sub-menu">
-                                                            @foreach ($category->children as $subCategory)
-                                                                <li class="menu-item menu-item-has-children">
-                                                                    <a
-                                                                        href="{{ route('products.index', ['category' => $subCategory->id]) }}">{{ $subCategory->name }}</a>
-                                                                    @if ($subCategory->children->isNotEmpty())
-                                                                        <ul class="sub-menu">
-                                                                            @foreach ($subCategory->children as $subSubCategory)
-                                                                                <li class="menu-item">
-                                                                                    <a
-                                                                                        href="{{ route('products.index', ['category' => $subSubCategory->id]) }}">{{ $subSubCategory->name }}</a>
-                                                                                </li>
-                                                                            @endforeach
-                                                                        </ul>
-                                                                    @endif
-                                                                </li>
-                                                            @endforeach
-                                                        </ul>
-                                                    @endif
-                                                </li>
-                                            @endforeach
-                                        </ul>
-                                    </li>
-
-                                    <!-- Contact Us -->
-                                    <li class="menu-item">
-                                        <a href="{{ route('products.index', ['category' => 85]) }}">BuffBridge
-                                            Custom</a>
-                                    </li>
-                                    <!-- Contact Us -->
-                                    <li class="menu-item">
-                                        <a href="javascript:void(0)">Contact us</a>
-                                    </li>
-                                    @if (auth('customer')->check())
-                                        <li class="menu-item menu-item-has-children">
-                                            <a
-                                                href="javascript:void(0);">{{ \Auth::guard('customer')->user()->name }}</a>
-                                            <ul class="sub-menu">
-                                                <li class="menu-item">
-                                                    <a href="{{ route('profile.edit') }}">Profile</a>
-                                                </li>
-                                                <li class="menu-item">
-                                                    <a href="{{ route('cart.index') }}">My Cart</a>
-                                                </li>
-                                                <li class="menu-item">
-                                                    <a href="{{ route('order.history') }}">History</a>
-                                                </li>
-                                            </ul>
-                                        </li>
+                                    @if ($activeChildren->isNotEmpty())
+                                        <span class="bb-category-arrow">›</span>
                                     @endif
-                                </ul>
-                            </nav>
-                            <!-- /Menu -->
-                            <!-- Search -->
-                            <style>
-                                /* .search_submit {
-                                    font-size: 20px;
-                                } */
+                                </a>
 
-                                #search_mobile .search_field {
-                                    font-size: 18px !important;
-                                }
+                                @if ($activeChildren->isNotEmpty())
+                                    <div class="bb-subcategory">
+                                        @foreach ($activeChildren as $subCategory)
+                                            <a href="{{ route('products.index', ['category' => $subCategory->id]) }}">
+                                                {{ $subCategory->name }}
+                                            </a>
+                                        @endforeach
+                                    </div>
+                                @endif
 
-                                #search_mobile .search_field,
-                                #search_mobile .search_field::placeholder {
-                                    color: #ffffff !important;
-                                    font-size: 20px;
-                                }
-                            </style>
-                            <div class="search_wrap search_style_regular search_state_fixed" id="search_mobile"
-                                style="background: #fea526;">
-                                <div class="search_form_wrap">
-                                    <form role="search" method="get" class="search_form" id="searchform_mobile"
-                                        action="{{ route('products.index') }}">
-                                        <button type="submit" class="search_submit  icon-iconmonstr-magnifier-2-icon"
-                                            id="search_submit_mobile" title="Start search"></button>
-                                        <input type="text" class="search_field" placeholder="Search"
-                                            value="{{ request('search') }}" name="search" />
-                                    </form>
-
-                                </div>
-                                <div class="search_results widget_area scheme_original">
-                                    <a class="search_results_close icon-cancel"></a>
-                                    <div class="search_results_content"></div>
-                                </div>
                             </div>
-                            <!-- /Search -->
-                            @if (!auth('customer')->check())
-                                <!-- Login -->
-                                <div class="login">
-                                    <a href="#popup_login" class="popup_link popup_login_link icon-user"
-                                        title="">Login</a>
-                                    <div id="popup_login" class="popup_wrap popup_login bg_tint_light">
-                                        <a href="#" class="popup_close"></a>
-                                        <div class="form_wrap">
-                                            <div class="form_left">
-                                                <form action="{{ route('customer.login.submit') }}" method="post"
-                                                    name="login_form" class="popup_form login_form">
-                                                    @csrf
-                                                    <div class="popup_form_field login_field iconed_field icon-user">
-                                                        <input type="text" id="log" name="email"
-                                                            value="" placeholder="Login or Email">
-                                                    </div>
-                                                    <div
-                                                        class="popup_form_field password_field iconed_field icon-lock">
-                                                        <input type="password" id="password" name="password"
-                                                            value="" placeholder="Password">
-                                                    </div>
-                                                    <div class="popup_form_field remember_field">
-                                                        <a href="#" class="forgot_password">Forgot password?</a>
-                                                        <input type="checkbox" value="forever" id="rememberme"
-                                                            name="rememberme">
-                                                        <label for="rememberme">Remember me111</label>
-                                                    </div>
-                                                    <div class="popup_form_field submit_field">
-                                                        <input type="submit" class="submit_button" value="Login">
-                                                    </div>
-                                                </form>
-                                            </div>
-                                            <div class="form_right">
-                                                <div class="login_socials_title">You can login using your social
-                                                    profile</div>
-                                                <div class="login_socials_list">
-                                                    <div class="social-login-widget">
-                                                        <div class="social-login-connect-with">Connect with:</div>
-                                                        <div class="social-login-provider-list"
-                                                            style="width: fit-content;">
-                                                            <a href="{{ route('google.login') }}"
-                                                                class="google-login-btn">
-                                                                <img src="https://developers.google.com/identity/images/g-logo.png"
-                                                                    alt="Google Logo">
-                                                                With Google
-                                                            </a>
+                        @endforeach
 
+                    </div>
+                </div>
+            </div>
 
-                                                        </div>
-                                                        <div class="social-login-widget-clearing"></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- /Login -->
-                                <!-- Register -->
-                                <div class="login">
-                                    <a href="#popup_registration" class="popup_link popup_register_link icon-pencil"
-                                        title="">Register</a>
-                                    <div id="popup_registration" class="popup_wrap popup_registration bg_tint_light">
-                                        <a href="#" class="popup_close"></a>
-                                        <div class="form_wrap">
-                                            <form name="registration_form" action="{{ route('register') }}"
-                                                method="post" class="popup_form registration_form">
-                                                @csrf
-                                                <div class="form_left">
-                                                    <div class="popup_form_field login_field iconed_field icon-user">
-                                                        <input type="text" id="registration_username_1"
-                                                            name="name" value=""
-                                                            placeholder="User name (login)">
-                                                    </div>
-                                                    <div class="popup_form_field email_field iconed_field icon-mail">
-                                                        <input type="text" id="registration_email_1"
-                                                            name="email" value="" placeholder="E-mail">
-                                                    </div>
-                                                    <div class="popup_form_field agree_field">
-                                                        <input type="checkbox" value="agree"
-                                                            id="registration_agree_1" name="registration_agree">
-                                                        <label for="registration_agree">I agree with</label> <a
-                                                            href="{{ route('term') }}">Terms &amp; Conditions</a>
-                                                    </div>
-                                                    <div class="popup_form_field submit_field">
-                                                        <input type="submit" class="submit_button" value="Sign Up">
-                                                    </div>
-                                                </div>
-                                                <div class="form_right">
-                                                    <div
-                                                        class="popup_form_field password_field iconed_field icon-lock">
-                                                        <input type="password" id="registration_pwd_1"
-                                                            name="password" value="" placeholder="Password">
-                                                    </div>
-                                                    <div
-                                                        class="popup_form_field password_field iconed_field icon-lock">
-                                                        <input type="password" id="registration_pwd2_1"
-                                                            name="password_confirmation" value=""
-                                                            placeholder="Confirm Password">
-                                                    </div>
-                                                    <div class="popup_form_field description_field">Minimum 6
-                                                        characters</div>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- /Register -->
-                            @else
-                                <div class="login">
-                                    <a href="javascript:void(0);" class="popup_link popup_login_link icon-user"
-                                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
-                                        title="">Logout</a>
+            <a
+                href="{{ route('products.index', ['category' => 85]) }}"
+                class="bb-nav-link {{ $isBuffbridgeCustom ? 'is-active' : '' }}"
+            >
+                BUFFBRIDGE CUSTOM
+            </a>
+
+            <a
+                href="{{ route('contact') }}"
+                class="bb-nav-link {{ $isContact ? 'is-active' : '' }}"
+            >
+                CONTACT US
+            </a>
+
+        </nav>
+
+        <div class="bb-header-actions">
+
+            <button
+                type="button"
+                class="bb-icon-btn bb-search-button"
+                id="bbSearchButton"
+                aria-label="Search"
+            >
+                <svg viewBox="0 0 24 24">
+                    <circle cx="11" cy="11" r="7"></circle>
+                    <path d="m20 20-4-4"></path>
+                </svg>
+            </button>
+
+            <div class="bb-account-wrap">
+
+                <button
+                    type="button"
+                    class="bb-icon-btn bb-account-button"
+                    id="bbAccountButton"
+                    aria-label="Account"
+                >
+                    <svg viewBox="0 0 24 24">
+                        <circle cx="12" cy="8" r="4"></circle>
+                        <path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"></path>
+                    </svg>
+                </button>
+
+                <div
+                    class="bb-account-dropdown"
+                    id="bbAccountDropdown"
+                >
+                    @guest('customer')
+
+                        <button
+                            type="button"
+                            class="bb-account-item"
+                            data-bb-modal="login"
+                        >
+                            LOGIN
+                        </button>
+
+                        <button
+                            type="button"
+                            class="bb-account-item"
+                            data-bb-modal="register"
+                        >
+                            REGISTER
+                        </button>
+
+                    @else
+
+                        <div class="bb-account-email">
+                            {{ auth('customer')->user()->email }}
+                        </div>
+
+                        <a
+                            href="{{ route('profile.edit') }}"
+                            class="bb-account-item"
+                        >
+                            PROFILE
+                        </a>
+
+                        <a
+                            href="{{ route('cart.index') }}"
+                            class="bb-account-item"
+                        >
+                            MY CART
+                        </a>
+
+                        <a
+                            href="{{ route('order.history') }}"
+                            class="bb-account-item"
+                        >
+                            ORDER HISTORY
+                        </a>
+
+                        <form
+                            action="{{ route('logout2') }}"
+                            method="POST"
+                        >
+                            @csrf
+
+                            <button
+                                type="submit"
+                                class="bb-account-item bb-logout"
+                            >
+                                LOGOUT
+                            </button>
+                        </form>
+
+                    @endguest
+                </div>
+            </div>
+
+            <a
+                href="{{ route('cart.index') }}"
+                class="bb-header-cart"
+                aria-label="Cart"
+            >
+                <svg viewBox="0 0 24 24">
+                    <path d="M3 3h2l2.4 11.2a2 2 0 0 0 2 1.6h7.9a2 2 0 0 0 2-1.6L21 7H6"></path>
+                    <circle cx="10" cy="20" r="1"></circle>
+                    <circle cx="18" cy="20" r="1"></circle>
+                </svg>
+
+                @if ($cartCount > 0)
+                    <span class="bb-cart-count">
+                        {{ $cartCount > 99 ? '99+' : $cartCount }}
+                    </span>
+                @endif
+            </a>
+
+            <button
+                type="button"
+                class="bb-mobile-toggle"
+                id="bbMobileToggle"
+                aria-label="Menu"
+                aria-expanded="false"
+            >
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+        </div>
+    </div>
+
+<div class="bb-search-panel" id="bbSearchPanel">
+    <div class="bb-search-container">
+
+        <div
+            class="bb-search-live"
+            data-bbls
+            data-endpoint="{{ route('products.live-search') }}"
+            data-products-url="{{ route('products.index') }}"
+        >
+            <div class="bbls-field">
+                <span class="bbls-icon">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <circle cx="11" cy="11" r="7"></circle>
+                        <path d="m20 20-4-4"></path>
+                    </svg>
+                </span>
+
+                <input
+                    type="search"
+                    class="bbls-input"
+                    data-bbls-input
+                    id="bbSearchInput"
+                    value="{{ request('search') }}"
+                    placeholder="Search products, brands, gear..."
+                    autocomplete="off"
+                    aria-label="Search products"
+                >
+            </div>
+
+            <div class="bbls-panel" data-bbls-panel>
+                <div class="bbls-head">
+                    <strong>SUGGESTIONS</strong>
+                    <span data-bbls-count></span>
+                </div>
+
+                <div class="bbls-list" data-bbls-list></div>
+
+                <div class="bbls-footer">
+                    <a
+                        href="{{ route('products.index') }}"
+                        class="bbls-all"
+                        data-bbls-all
+                    >
+                        VIEW ALL RESULTS →
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <button
+            type="button"
+            class="bb-search-close"
+            id="bbSearchClose"
+            aria-label="Close search"
+        >
+            ×
+        </button>
+
+    </div>
+</div>
+
+    <div
+        class="bb-mobile-menu"
+        id="bbMobileMenu"
+    >
+        <div class="bb-mobile-menu-inner">
+
+            <div
+                class="bb-mobile-search-live"
+                data-bbls
+                data-endpoint="{{ route('products.live-search') }}"
+                data-products-url="{{ route('products.index') }}"
+            >
+                <div class="bbls-field">
+                    <span class="bbls-icon">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <circle cx="11" cy="11" r="7"></circle>
+                            <path d="m20 20-4-4"></path>
+                        </svg>
+                    </span>
+
+                    <input
+                        type="search"
+                        class="bbls-input"
+                        data-bbls-input
+                        value="{{ request('search') }}"
+                        placeholder="Search products..."
+                        autocomplete="off"
+                        aria-label="Search products"
+                    >
+                </div>
+
+                <div class="bbls-panel" data-bbls-panel aria-hidden="true">
+                    <div class="bbls-head">
+                        <strong>SUGGESTIONS</strong>
+                        <span data-bbls-count></span>
+                    </div>
+
+                    <div class="bbls-list" data-bbls-list></div>
+
+                    <div class="bbls-footer">
+                        <a
+                            href="{{ route('products.index') }}"
+                            class="bbls-all"
+                            data-bbls-all
+                        >
+                            VIEW ALL RESULTS →
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <a
+                href="{{ route('home') }}"
+                class="bb-mobile-link {{ $isHome ? 'is-active' : '' }}"
+            >
+                HOME
+            </a>
+
+            <a
+                href="{{ route('posts.index') }}"
+                class="bb-mobile-link {{ $isBlog ? 'is-active' : '' }}"
+            >
+                BLOG
+            </a>
+
+            <div class="bb-mobile-products">
+
+                <button
+                    type="button"
+                    class="bb-mobile-link bb-mobile-product-toggle {{ $isProducts ? 'is-active' : '' }}"
+                    id="bbMobileProductToggle"
+                    aria-expanded="false"
+                >
+                    <span>PRODUCTS</span>
+                    <span class="bb-mobile-arrow">+</span>
+                </button>
+
+                <div
+                    class="bb-mobile-categories"
+                    id="bbMobileCategories"
+                >
+                    <a
+                        href="{{ route('products.index') }}"
+                        class="bb-mobile-category-all"
+                    >
+                        ALL PRODUCTS
+                    </a>
+
+                    @foreach ($categoriesMenu->where('active', 1) as $category)
+                        @php
+                            $activeChildren = $category->children->where('active', 1);
+                            $hasChildren = $activeChildren->isNotEmpty();
+                        @endphp
+
+                        <div class="bb-mobile-category-group">
+
+                            <div class="bb-mobile-category-row">
+
+                                <a
+                                    href="{{ route('products.index', ['category' => $category->id]) }}"
+                                    class="bb-mobile-category"
+                                >
+                                    {{ $category->name }}
+                                </a>
+
+                                @if ($hasChildren)
+                                    <button
+                                        type="button"
+                                        class="bb-mobile-category-toggle"
+                                        aria-label="Toggle {{ $category->name }}"
+                                        aria-expanded="false"
+                                    >
+                                        <span>+</span>
+                                    </button>
+                                @endif
+
+                            </div>
+
+                            @if ($hasChildren)
+                                <div class="bb-mobile-subcategories">
+
+                                    @foreach ($activeChildren as $subCategory)
+                                        <a
+                                            href="{{ route('products.index', ['category' => $subCategory->id]) }}"
+                                            class="bb-mobile-subcategory"
+                                        >
+                                            {{ $subCategory->name }}
+                                        </a>
+                                    @endforeach
+
                                 </div>
                             @endif
-                        </div>
-                        <!-- /Top panel -->
-                        <!-- Middle panel -->
-                        <div class="panel_middle">
-                            <div class="contact_field contact_address">
-                                <span class="contact_icon icon-home"></span>
-                                <span class="contact_label contact_address_1">132/2 Cozy6,</span>
-                                <span class="contact_address_2">
-                                    Ladprao, Bangkok 10230</span>
-                            </div>
-                            <div class="contact_field contact_phone">
-                                <span class="contact_icon icon-phone"></span>
-                                <span class="contact_label contact_phone">+66902998211</span>
-                                <span class="contact_email">Info@buffbridge.com</span>
-                            </div>
-                            <div class="top_panel_top_open_hours icon-clock">
-                                <span>Open hours: </span>Tue - Sat 13.00-18.30
-                            </div>
-                        </div>
-                        <!-- /Middle panel -->
-                        <!-- Bottom panel -->
-                        <div class="panel_bottom">
-                            <div class="contact_socials">
-                                <div
-                                    class="sc_socials sc_socials_type_icons sc_socials_shape_square sc_socials_size_tiny">
-                                    <div class="sc_socials_item">
-                                        <a href="https://www.facebook.com/share/1ABFfSy5QZ/?mibextid=wwXIfr"
-                                            target="_blank" class="social_icons social_facebook">
-                                            <span class="icon-facebook"></span>
-                                        </a>
-                                    </div>
 
-                                </div>
-                            </div>
                         </div>
-                        <!-- /Bottom panel -->
-                    </div>
-                    <!-- /Side wrap -->
-                    <div class="mask"></div>
+                    @endforeach
+
                 </div>
-                <!-- /Header Mobile -->
+            </div>
+
+            <a
+                href="{{ route('products.index', ['category' => 85]) }}"
+                class="bb-mobile-link {{ $isBuffbridgeCustom ? 'is-active' : '' }}"
+            >
+                BUFFBRIDGE CUSTOM
+            </a>
+
+            <a
+                href="{{ route('contact') }}"
+                class="bb-mobile-link {{ $isContact ? 'is-active' : '' }}"
+            >
+                CONTACT US
+            </a>
+
+            <div class="bb-mobile-account">
+
+                @guest('customer')
+
+                    <button
+                        type="button"
+                        class="bb-mobile-account-btn"
+                        data-bb-modal="login"
+                    >
+                        LOGIN
+                    </button>
+
+                    <button
+                        type="button"
+                        class="bb-mobile-account-btn yellow"
+                        data-bb-modal="register"
+                    >
+                        REGISTER
+                    </button>
+
+                @else
+
+                    <div class="bb-mobile-user">
+                        {{ auth('customer')->user()->email }}
+                    </div>
+
+                    <a href="{{ route('profile.edit') }}">
+                        PROFILE
+                    </a>
+
+                    <a href="{{ route('cart.index') }}">
+                        MY CART
+                    </a>
+
+                    <a href="{{ route('order.history') }}">
+                        ORDER HISTORY
+                    </a>
+
+                    <form
+                        action="{{ route('logout2') }}"
+                        method="POST"
+                    >
+                        @csrf
+
+                        <button type="submit">
+                            LOGOUT
+                        </button>
+                    </form>
+
+                @endguest
+
+            </div>
+        </div>
+    </div>
+</header>
+
+@guest('customer')
+
+<div class="bb-modal" id="bbLoginModal">
+
+    <div class="bb-modal-backdrop"></div>
+
+    <div class="bb-modal-box">
+
+        <button
+            type="button"
+            class="bb-modal-close"
+            aria-label="Close"
+        >
+            ×
+        </button>
+
+        <div class="bb-modal-brand">
+            BUFFBRIDGE
+        </div>
+
+        <h2>LOGIN</h2>
+
+        <p class="bb-modal-description">
+            Login to your Buffbridge account
+        </p>
+
+        <form
+            action="{{ route('customer.login.submit') }}"
+            method="POST"
+        >
+            @csrf
+
+            <label>EMAIL</label>
+
+            <input
+                type="email"
+                name="email"
+                value="{{ old('email') }}"
+                placeholder="Email address"
+                autocomplete="email"
+                required
+            >
+
+            <label>PASSWORD</label>
+
+            <input
+                type="password"
+                name="password"
+                placeholder="Password"
+                autocomplete="current-password"
+                required
+            >
+
+            <div class="bb-login-options">
+                <label class="bb-remember">
+                    <input
+                        type="checkbox"
+                        name="rememberme"
+                        value="forever"
+                        checked
+                    >
+                    <span>Remember me</span>
+                </label>
+
+                <a href="{{ route('password.request') }}" class="bb-forgot-password">
+                    Forgot password?
+                </a>
+            </div>
+
+            <button
+                type="submit"
+                class="bb-submit"
+            >
+                LOGIN
+            </button>
+        </form>
+
+        <div class="bb-or">
+            <span>OR</span>
+        </div>
+
+        <a
+            href="{{ route('google.login') }}"
+            class="bb-google"
+        >
+            <img
+                src="https://developers.google.com/identity/images/g-logo.png"
+                alt="Google"
+            >
+            CONTINUE WITH GOOGLE
+        </a>
+
+        <button
+            type="button"
+            class="bb-switch-modal"
+            data-bb-modal="register"
+        >
+            Don't have an account?
+            <strong>REGISTER</strong>
+        </button>
+
+    </div>
+</div>
+
+<div class="bb-modal" id="bbRegisterModal">
+
+    <div class="bb-modal-backdrop"></div>
+
+    <div class="bb-modal-box">
+
+        <button
+            type="button"
+            class="bb-modal-close"
+            aria-label="Close"
+        >
+            ×
+        </button>
+
+        <div class="bb-modal-brand">
+            BUFFBRIDGE
+        </div>
+
+        <h2>REGISTER</h2>
+
+        <p class="bb-modal-description">
+            Create your Buffbridge account
+        </p>
+
+        <form
+            action="{{ route('register') }}"
+            method="POST"
+        >
+            @csrf
+
+            <div class="bb-register-grid">
+                <div>
+                    <label>USER NAME (LOGIN)</label>
+
+                    <input
+                        type="text"
+                        name="name"
+                        value="{{ old('name') }}"
+                        placeholder="User name"
+                        autocomplete="username"
+                        required
+                    >
+
+                    <label>E-MAIL</label>
+
+                    <input
+                        type="email"
+                        name="email"
+                        value="{{ old('email') }}"
+                        placeholder="Email address"
+                        autocomplete="email"
+                        required
+                    >
+                </div>
+
+                <div>
+                    <label>PASSWORD</label>
+
+                    <input
+                        type="password"
+                        name="password"
+                        placeholder="Password"
+                        minlength="6"
+                        autocomplete="new-password"
+                        required
+                    >
+
+                    <label>CONFIRM PASSWORD</label>
+
+                    <input
+                        type="password"
+                        name="password_confirmation"
+                        placeholder="Confirm password"
+                        minlength="6"
+                        autocomplete="new-password"
+                        required
+                    >
+                </div>
+            </div>
+
+            <div class="bb-register-meta">
+                <label class="bb-remember">
+                    <input
+                        type="checkbox"
+                        name="registration_agree"
+                        value="agree"
+                        required
+                    >
+
+                    <span>
+                        I agree with
+                        <a href="{{ route('term') }}">
+                            Terms & Conditions
+                        </a>
+                    </span>
+                </label>
+
+                <span class="bb-password-note">Minimum 6 characters</span>
+            </div>
+
+            <button
+                type="submit"
+                class="bb-submit"
+            >
+                SIGN UP
+            </button>
+        </form>
+
+        <button
+            type="button"
+            class="bb-switch-modal"
+            data-bb-modal="login"
+        >
+            Already have an account?
+            <strong>LOGIN</strong>
+        </button>
+
+    </div>
+</div>
+
+@endguest
+
+<style>
+.bb-header,
+.bb-header *,
+.bb-modal,
+.bb-modal * {
+    box-sizing:border-box;
+}
+
+.bb-header {
+    --yellow:#ffd429;
+    --orange:#f5a000;
+    --black:#080808;
+    position:relative;
+    z-index:9990;
+    width:100%;
+    background:var(--black);
+    color:#fff;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+.bb-header-container {
+    width:100%;
+    height:96px;
+    padding:0 clamp(56px,4.8vw,96px);
+    display:flex;
+    align-items:center;
+    gap:clamp(28px,2.6vw,52px);
+}
+
+.bb-brand {
+    flex:none;
+    display:flex;
+    align-items:center;
+    gap:13px;
+    color:#fff!important;
+    text-decoration:none!important;
+}
+
+.bb-brand-logo {
+    width:64px;
+    height:64px;
+    object-fit:contain;
+}
+
+.bb-brand-copy {
+    line-height:1;
+    white-space:nowrap;
+}
+
+.bb-brand-name {
+    font-size:20px;
+    font-weight:900;
+}
+
+.bb-brand-sub {
+    margin-top:4px;
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:1.35px;
+}
+
+.bb-brand-jp {
+    margin-top:6px;
+    color:#aaa;
+    font-size:8px;
+    letter-spacing:.6px;
+}
+
+.bb-desktop-nav {
+    flex:1;
+    height:96px;
+    display:flex;
+    align-items:stretch;
+    justify-content:center;
+    gap:clamp(26px,2.15vw,44px);
+}
+
+.bb-nav-link {
+    position:relative;
+    height:96px;
+    display:flex;
+    align-items:center;
+    padding:0;
+    color:#fff!important;
+    font-family:Arial,Helvetica,sans-serif!important;
+    font-size:clamp(10px,.7vw,12px);
+    font-weight:800!important;
+    font-style:normal!important;
+    letter-spacing:.5px;
+    line-height:1!important;
+    text-transform:uppercase;
+    text-decoration:none!important;
+    white-space:nowrap;
+    transition:.2s;
+}
+
+.bb-nav-link:hover,
+.bb-nav-link.is-active {
+    color:var(--yellow)!important;
+}
+
+.bb-nav-link::after {
+    content:"";
+    position:absolute;
+    left:0;
+    right:100%;
+    bottom:20px;
+    height:2px;
+    background:var(--yellow);
+    transition:.2s;
+}
+
+.bb-nav-link:hover::after,
+.bb-nav-link.is-active::after {
+    right:0;
+}
+
+.bb-nav-dropdown {
+    position:relative;
+    display:flex;
+}
+
+.bb-products-link {
+    gap:5px;
+}
+
+.bb-chevron {
+    width:11px;
+    height:11px;
+    fill:none;
+    stroke:currentColor;
+    stroke-width:2;
+    transition:.2s;
+}
+
+.bb-nav-dropdown:hover .bb-chevron {
+    transform:rotate(180deg);
+}
+
+.bb-dropdown-menu {
+    position:absolute;
+    z-index:100;
+    top:calc(100% - 1px);
+    left:50%;
+    width:290px;
+    background:#111;
+    border-top:3px solid var(--yellow);
+    box-shadow:0 16px 40px rgba(0,0,0,.4);
+    opacity:0;
+    visibility:hidden;
+    pointer-events:none;
+    transform:translate(-50%,8px);
+    transition:.18s;
+}
+
+.bb-nav-dropdown:hover .bb-dropdown-menu {
+    opacity:1;
+    visibility:visible;
+    pointer-events:auto;
+    transform:translate(-50%,0);
+}
+
+.bb-dropdown-inner {
+    padding:8px 0;
+}
+
+.bb-dropdown-all,
+.bb-category-title,
+.bb-subcategory a {
+    font-family:Arial,Helvetica,sans-serif!important;
+    font-style:normal!important;
+    letter-spacing:.45px!important;
+    line-height:1.25!important;
+    text-transform:uppercase;
+    text-decoration:none!important;
+}
+
+.bb-dropdown-all {
+    min-height:46px;
+    padding:0 17px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    color:var(--yellow)!important;
+    font-size:10px!important;
+    font-weight:800!important;
+}
+
+.bb-dropdown-all:hover {
+    background:rgba(255,255,255,.04);
+}
+
+.bb-category {
+    position:relative;
+}
+
+.bb-category-title {
+    min-height:46px;
+    padding:0 17px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    border-top:1px solid rgba(255,255,255,.06);
+    color:#fff!important;
+    font-size:10px!important;
+    font-weight:800!important;
+}
+
+.bb-category-title:hover {
+    background:rgba(255,255,255,.04);
+    color:var(--yellow)!important;
+}
+
+.bb-category-arrow {
+    margin-left:15px;
+    color:var(--yellow);
+    font-size:17px;
+}
+
+.bb-subcategory {
+    position:absolute;
+    top:0;
+    left:100%;
+    width:235px;
+    padding:7px 0;
+    background:#151515;
+    border-left:1px solid rgba(255,255,255,.06);
+    box-shadow:10px 12px 28px rgba(0,0,0,.25);
+    opacity:0;
+    visibility:hidden;
+    pointer-events:none;
+}
+
+.bb-category:hover .bb-subcategory {
+    opacity:1;
+    visibility:visible;
+    pointer-events:auto;
+}
+
+.bb-subcategory a {
+    min-height:40px;
+    padding:0 16px;
+    display:flex;
+    align-items:center;
+    color:#ccc!important;
+    font-size:10px!important;
+    font-weight:800!important;
+}
+
+.bb-subcategory a:hover {
+    background:rgba(255,255,255,.05);
+    color:var(--yellow)!important;
+}
+
+.bb-header-actions {
+    flex:none;
+    display:flex;
+    align-items:center;
+    gap:4px;
+}
+
+.bb-icon-btn,
+.bb-header-cart,
+.bb-mobile-toggle {
+    position:relative;
+    width:44px;
+    height:46px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:0;
+    margin:0;
+    border:0;
+    border-radius:0;
+    background:transparent;
+    color:#fff!important;
+    text-decoration:none!important;
+    cursor:pointer;
+}
+
+.bb-search-button,
+.bb-account-button {
+    background:var(--orange);
+}
+
+.bb-icon-btn:hover,
+.bb-header-cart:hover {
+    background:var(--yellow);
+    color:#111!important;
+}
+
+.bb-icon-btn svg,
+.bb-header-cart svg {
+    width:19px;
+    height:19px;
+    fill:none;
+    stroke:currentColor;
+    stroke-width:1.8;
+    stroke-linecap:round;
+    stroke-linejoin:round;
+}
+
+.bb-cart-count {
+    position:absolute;
+    top:-3px;
+    right:-4px;
+    min-width:17px;
+    height:17px;
+    padding:0 4px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:20px;
+    background:var(--yellow);
+    color:#000;
+    font-size:8px;
+    font-weight:900;
+}
+
+.bb-account-wrap {
+    position:relative;
+}
+
+.bb-account-dropdown {
+    position:absolute;
+    z-index:200;
+    top:calc(100% + 12px);
+    right:0;
+    width:210px;
+    padding:7px;
+    background:#111;
+    border-top:3px solid var(--yellow);
+    box-shadow:0 15px 40px rgba(0,0,0,.35);
+    opacity:0;
+    visibility:hidden;
+    transform:translateY(7px);
+    transition:.18s;
+}
+
+.bb-account-dropdown.is-open {
+    opacity:1;
+    visibility:visible;
+    transform:none;
+}
+
+.bb-account-email {
+    padding:10px;
+    overflow:hidden;
+    color:#999;
+    font-size:10px;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+}
+
+.bb-account-item {
+    display:block;
+    width:100%;
+    padding:11px 10px;
+    border:0;
+    background:transparent;
+    color:#fff!important;
+    text-align:left;
+    text-decoration:none!important;
+    font-family:Arial,Helvetica,sans-serif!important;
+    font-size:10px;
+    font-weight:800;
+    cursor:pointer;
+}
+
+.bb-account-item:hover {
+    background:rgba(255,255,255,.05);
+    color:var(--yellow)!important;
+}
+
+.bb-logout {
+    border-top:1px solid rgba(255,255,255,.08);
+}
+
+.bb-search-panel {
+    position:absolute;
+    z-index:150;
+    top:100%;
+    left:0;
+    width:100%;
+    background:#111;
+    border-bottom:3px solid var(--yellow);
+    opacity:0;
+    visibility:hidden;
+    transform:translateY(-7px);
+    transition:.18s;
+}
+
+.bb-search-panel.is-open {
+    opacity:1;
+    visibility:visible;
+    transform:none;
+}
+
+.bb-search-container {
+    width:100%;
+    padding:18px clamp(56px,4.8vw,96px);
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.bb-search-form {
+    flex:1;
+    height:48px;
+    display:flex;
+    align-items:center;
+    background:#fff;
+}
+
+.bb-search-form svg {
+    width:18px;
+    height:18px;
+    margin-left:17px;
+    fill:none;
+    stroke:#111;
+    stroke-width:2;
+}
+
+.bb-search-form input {
+    flex:1;
+    min-width:0;
+    height:48px;
+    margin:0!important;
+    padding:0 15px!important;
+    border:0!important;
+    outline:0!important;
+    background:transparent!important;
+    color:#111!important;
+    font-size:13px!important;
+    box-shadow:none!important;
+}
+
+.bb-search-form button {
+    align-self:stretch;
+    min-width:115px;
+    border:0;
+    background:var(--yellow);
+    color:#111;
+    font-size:10px;
+    font-weight:900;
+    cursor:pointer;
+}
+
+.bb-search-close {
+    width:40px;
+    height:40px;
+    border:0;
+    background:transparent;
+    color:#fff;
+    font-size:28px;
+    cursor:pointer;
+}
+
+.bb-mobile-toggle {
+    display:none;
+    flex-direction:column;
+    gap:4px;
+}
+
+.bb-mobile-toggle span {
+    display:block;
+    width:21px;
+    height:2px;
+    background:#fff;
+    transition:.2s;
+}
+
+.bb-mobile-toggle.is-open span:nth-child(1) {
+    transform:translateY(6px) rotate(45deg);
+}
+
+.bb-mobile-toggle.is-open span:nth-child(2) {
+    opacity:0;
+}
+
+.bb-mobile-toggle.is-open span:nth-child(3) {
+    transform:translateY(-6px) rotate(-45deg);
+}
+
+.bb-mobile-menu {
+    display:none;
+    max-height:0;
+    overflow:hidden;
+    background:#0d0d0d;
+    border-top:1px solid rgba(255,255,255,.08);
+    transition:max-height .3s;
+}
+
+.bb-mobile-menu.is-open {
+    max-height:calc(100dvh - 72px);
+    overflow-y:auto;
+    overscroll-behavior:contain;
+}
+
+.bb-mobile-menu-inner {
+    padding:16px 20px 28px;
+}
+
+.bb-mobile-search {
+    position:relative;
+    width:100%;
+    height:48px;
+    margin-bottom:14px;
+    background:#fff;
+    border:1px solid #2a2a2a;
+}
+
+.bb-mobile-search input {
+    width:100%;
+    height:46px;
+    margin:0!important;
+    padding:0 52px 0 15px!important;
+    border:0!important;
+    outline:0!important;
+    background:#fff!important;
+    color:#111!important;
+    font-family:Arial,Helvetica,sans-serif!important;
+    font-size:13px!important;
+    box-shadow:none!important;
+    -webkit-appearance:none;
+}
+
+.bb-mobile-search input::placeholder {
+    color:#888;
+    opacity:1;
+}
+
+.bb-mobile-search button {
+    position:absolute;
+    top:4px;
+    right:4px;
+    width:40px;
+    height:40px;
+    padding:0!important;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border:0!important;
+    background:var(--yellow)!important;
+    color:#111!important;
+    cursor:pointer;
+}
+
+.bb-mobile-search svg {
+    width:17px;
+    height:17px;
+    fill:none;
+    stroke:currentColor;
+    stroke-width:2;
+    stroke-linecap:round;
+    stroke-linejoin:round;
+}
+
+.bb-mobile-link {
+    width:100%;
+    min-height:50px;
+    padding:0 4px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    border:0;
+    border-bottom:1px solid rgba(255,255,255,.09);
+    background:transparent;
+    color:#fff!important;
+    text-align:left;
+    text-decoration:none!important;
+    font-family:Arial,Helvetica,sans-serif!important;
+    font-size:11px;
+    font-weight:800;
+    font-style:normal;
+    letter-spacing:.45px;
+    line-height:1.2;
+    text-transform:uppercase;
+    cursor:pointer;
+}
+
+.bb-mobile-link.is-active {
+    color:var(--yellow)!important;
+}
+
+.bb-mobile-product-toggle {
+    padding:0 12px;
+}
+
+.bb-mobile-product-toggle.is-open {
+    background:var(--orange);
+    color:#fff!important;
+}
+
+.bb-mobile-arrow {
+    color:var(--yellow);
+    font-size:19px;
+    line-height:1;
+    transition:.2s;
+}
+
+.bb-mobile-product-toggle.is-open .bb-mobile-arrow {
+    color:#fff;
+    transform:rotate(45deg);
+}
+
+.bb-mobile-categories {
+    display:none;
+    padding:4px 0 8px;
+    background:#101010;
+}
+
+.bb-mobile-categories.is-open {
+    display:block;
+}
+
+.bb-mobile-category-all {
+    min-height:44px;
+    padding:0 18px;
+    display:flex;
+    align-items:center;
+    border-bottom:1px solid rgba(255,255,255,.06);
+    color:var(--yellow)!important;
+    text-decoration:none!important;
+    font-size:10px!important;
+    font-weight:800!important;
+    letter-spacing:.45px;
+    text-transform:uppercase;
+}
+
+.bb-mobile-category-group {
+    border-bottom:1px solid rgba(255,255,255,.06);
+}
+
+.bb-mobile-category-row {
+    min-height:44px;
+    display:flex;
+    align-items:stretch;
+}
+
+.bb-mobile-category {
+    flex:1;
+    min-width:0;
+    padding:0 18px;
+    display:flex;
+    align-items:center;
+    color:#fff!important;
+    text-decoration:none!important;
+    font-size:10px!important;
+    font-weight:800!important;
+    letter-spacing:.45px!important;
+    line-height:1.25!important;
+    text-transform:uppercase;
+}
+
+.bb-mobile-category-toggle {
+    flex:0 0 46px;
+    width:46px;
+    min-width:46px;
+    padding:0!important;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border:0!important;
+    border-left:1px solid rgba(255,255,255,.06)!important;
+    background:transparent!important;
+    color:var(--yellow)!important;
+    cursor:pointer;
+    box-shadow:none!important;
+}
+
+.bb-mobile-category-toggle span {
+    display:block;
+    font-size:18px;
+    font-weight:400;
+    line-height:1;
+    transition:transform .2s;
+}
+
+.bb-mobile-category-group.is-open .bb-mobile-category-toggle span {
+    transform:rotate(45deg);
+}
+
+.bb-mobile-subcategories {
+    display:none;
+    padding:3px 0 7px;
+    background:#161616;
+}
+
+.bb-mobile-category-group.is-open .bb-mobile-subcategories {
+    display:block;
+}
+
+.bb-mobile-subcategory {
+    min-height:40px;
+    padding:0 18px 0 34px;
+    display:flex;
+    align-items:center;
+    color:#aaa!important;
+    text-decoration:none!important;
+    font-size:9px!important;
+    font-weight:800!important;
+    letter-spacing:.45px!important;
+    line-height:1.25!important;
+    text-transform:uppercase;
+}
+
+.bb-mobile-category-all:hover,
+.bb-mobile-category:hover,
+.bb-mobile-subcategory:hover {
+    color:var(--yellow)!important;
+}
+
+.bb-mobile-category-toggle:hover {
+    background:rgba(255,255,255,.04)!important;
+}
+
+.bb-mobile-account {
+    display:flex;
+    gap:8px;
+    padding-top:18px;
+}
+
+.bb-mobile-account-btn {
+    flex:1;
+    min-height:43px;
+    border:1px solid rgba(255,255,255,.25);
+    background:transparent;
+    color:#fff;
+    font-size:10px;
+    font-weight:800;
+    cursor:pointer;
+}
+
+.bb-mobile-account-btn.yellow {
+    border-color:var(--yellow);
+    background:var(--yellow);
+    color:#111;
+}
+
+.bb-mobile-user {
+    width:100%;
+    padding-bottom:10px;
+    color:#888;
+    font-size:10px;
+}
+
+.bb-mobile-account:has(.bb-mobile-user) {
+    display:block;
+}
+
+.bb-mobile-account > a,
+.bb-mobile-account > form button {
+    display:block;
+    width:100%;
+    padding:11px 0;
+    border:0;
+    background:transparent;
+    color:#fff!important;
+    text-align:left;
+    text-decoration:none!important;
+    font-size:10px;
+    font-weight:700;
+    cursor:pointer;
+}
+
+.bb-modal {
+    position:fixed;
+    z-index:99999;
+    inset:0;
+    padding:20px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    opacity:0;
+    visibility:hidden;
+    transition:.2s;
+}
+
+.bb-modal.is-open {
+    opacity:1;
+    visibility:visible;
+}
+
+.bb-modal-backdrop {
+    position:absolute;
+    inset:0;
+    background:rgba(0,0,0,.73);
+    backdrop-filter:blur(4px);
+}
+
+.bb-modal-box {
+    position:relative;
+    z-index:2;
+    width:min(410px,100%);
+    max-height:calc(100vh - 40px);
+    max-height:calc(100dvh - 40px);
+    overflow-y:auto;
+    padding:38px 40px 0;
+    border:1px solid #e5e5e5;
+    border-radius:0;
+    background:#fff;
+    color:#111;
+    box-shadow:0 24px 65px rgba(0,0,0,.32);
+}
+
+#bbRegisterModal .bb-modal-box {
+    width:min(600px,100%);
+}
+
+.bb-modal-close {
+    position:absolute;
+    top:0;
+    right:0;
+    width:44px;
+    height:44px;
+    border:0;
+    border-radius:0;
+    background:#ffa51f;
+    color:#fff;
+    font-size:25px;
+    cursor:pointer;
+    transition:background .2s ease;
+}
+
+.bb-modal-close:hover {
+    background:#ffbd58;
+    color:#fff;
+}
+
+.bb-modal-brand {
+    margin-bottom:10px;
+    display:flex;
+    align-items:center;
+    gap:9px;
+    color:#d7aa00;
+    font-size:10px;
+    font-weight:900;
+    letter-spacing:2px;
+    text-transform:uppercase;
+}
+
+.bb-modal-brand::before {
+    content:"";
+    width:24px;
+    height:3px;
+    flex:none;
+    background:#d7aa00;
+}
+
+.bb-modal h2 {
+    margin:0!important;
+    color:#111!important;
+    font-size:30px!important;
+    font-weight:900!important;
+    font-style:italic;
+    line-height:1;
+    text-transform:uppercase;
+}
+
+.bb-modal-description {
+    margin:8px 0 24px!important;
+    color:#999;
+    font-size:11px;
+}
+
+.bb-modal label:not(.bb-remember) {
+    display:block;
+    margin:15px 0 7px;
+    color:#111;
+    font-size:9px;
+    font-weight:900;
+    letter-spacing:1.7px;
+    text-transform:uppercase;
+}
+
+.bb-modal input[type="email"],
+.bb-modal input[type="text"],
+.bb-modal input[type="password"] {
+    width:100%!important;
+    height:46px!important;
+    margin:0!important;
+    padding:0 15px!important;
+    border:1px solid #dadada!important;
+    border-radius:0!important;
+    outline:0!important;
+    background:#fff!important;
+    color:#111!important;
+    font-size:13px!important;
+    box-shadow:none!important;
+    transition:border-color .2s ease;
+}
+
+.bb-modal input[type="email"]::placeholder,
+.bb-modal input[type="text"]::placeholder,
+.bb-modal input[type="password"]::placeholder {
+    color:#999;
+    opacity:1;
+}
+
+.bb-modal input[type="email"]:focus,
+.bb-modal input[type="text"]:focus,
+.bb-modal input[type="password"]:focus {
+    border-color:#ffa51f!important;
+}
+
+.bb-modal input:-webkit-autofill,
+.bb-modal input:-webkit-autofill:hover,
+.bb-modal input:-webkit-autofill:focus {
+    -webkit-text-fill-color:#111!important;
+    -webkit-box-shadow:0 0 0 1000px #fff inset!important;
+}
+
+.bb-login-options {
+    margin:14px 0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    flex-wrap:wrap;
+}
+
+.bb-remember {
+    margin:0;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    color:#777;
+    font-size:11px;
+}
+
+.bb-remember input {
+    width:14px!important;
+    height:14px!important;
+    accent-color:#2f80ed;
+}
+
+.bb-remember a {
+    color:#555!important;
+    font-weight:700;
+    transition:color .2s ease;
+}
+
+.bb-remember a:hover {
+    color:#ffa51f!important;
+}
+
+.bb-forgot-password {
+    color:#888!important;
+    font-size:11px;
+    text-decoration:none!important;
+    transition:color .2s ease;
+}
+
+.bb-forgot-password:hover {
+    color:#ffa51f!important;
+}
+
+.bb-register-grid {
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:0 24px;
+}
+
+.bb-register-meta {
+    margin:16px 0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    flex-wrap:wrap;
+}
+
+.bb-password-note {
+    color:#999;
+    font-size:10px;
+}
+
+.bb-submit {
+    width:100%;
+    height:47px;
+    margin-top:4px;
+    border:0;
+    border-radius:0;
+    background:#ffa51f;
+    color:#fff;
+    font-size:10px;
+    font-weight:900;
+    cursor:pointer;
+    transition:background .2s ease;
+}
+
+.bb-submit:hover {
+    background:#ffb84a;
+}
+
+.bb-or {
+    position:relative;
+    margin:20px 0;
+    text-align:center;
+}
+
+.bb-or::before {
+    content:"";
+    position:absolute;
+    top:50%;
+    left:0;
+    width:100%;
+    height:1px;
+    background:#e3e3e3;
+}
+
+.bb-or span {
+    position:relative;
+    padding:0 10px;
+    background:#fff;
+    color:#999;
+    font-size:9px;
+}
+
+.bb-google {
+    width:100%;
+    min-height:46px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:9px;
+    border:1px solid #dadada;
+    border-radius:0;
+    background:#fff;
+    color:#111!important;
+    text-decoration:none!important;
+    font-size:10px;
+    font-weight:800;
+    transition:border-color .2s ease,color .2s ease;
+}
+
+.bb-google:hover {
+    border-color:#dadada;
+    background:#fafafa;
+    color:#111!important;
+}
+
+.bb-google img {
+    width:17px;
+    height:17px;
+}
+
+.bb-switch-modal {
+    display:block;
+    width:calc(100% + 80px);
+    height:50px;
+    margin:24px -40px 0;
+    border:0;
+    border-radius:0;
+    background:#ffa51f;
+    color:#fff;
+    font-size:11px;
+    cursor:pointer;
+    transition:background .2s ease;
+}
+
+.bb-switch-modal strong {
+    color:#111;
+    font-weight:900;
+}
+
+.bb-switch-modal:hover {
+    background:#ffb84a;
+}
+
+@media (min-width:1025px) and (max-width:1366px) {
+    .bb-header-container {
+        height:88px;
+        padding:0 32px;
+        gap:22px;
+    }
+
+    .bb-brand-logo {
+        width:57px;
+        height:57px;
+    }
+
+    .bb-brand-name {
+        font-size:17px;
+    }
+
+    .bb-brand-sub {
+        font-size:10px;
+    }
+
+    .bb-desktop-nav,
+    .bb-nav-link {
+        height:88px;
+    }
+
+    .bb-desktop-nav {
+        gap:clamp(17px,1.55vw,27px);
+    }
+
+    .bb-nav-link {
+        font-size:9.5px;
+    }
+
+    .bb-nav-link::after {
+        bottom:17px;
+    }
+}
+
+@media (max-width:1024px) {
+    .bb-header-container {
+        height:78px;
+        padding:0 20px;
+        justify-content:space-between;
+        gap:12px;
+    }
+
+    .bb-brand {
+        min-width:0;
+        margin-right:auto;
+    }
+
+    .bb-brand-logo {
+        width:52px;
+        height:52px;
+    }
+
+    .bb-brand-name {
+        font-size:16px;
+    }
+
+    .bb-brand-sub {
+        font-size:9px;
+    }
+
+    .bb-brand-jp {
+        font-size:6px;
+    }
+
+    .bb-desktop-nav,
+    .bb-search-button,
+    .bb-search-panel {
+        display:none;
+    }
+
+    .bb-header-actions {
+        margin-left:auto;
+    }
+
+    .bb-mobile-toggle {
+        display:flex;
+        background:var(--orange);
+    }
+
+    .bb-mobile-menu {
+        display:block;
+    }
+}
+
+@media (max-width:600px) {
+    .bb-header-container {
+        height:72px;
+        padding:0 16px;
+        gap:8px;
+    }
+
+    .bb-brand {
+        gap:8px;
+    }
+
+    .bb-brand-logo {
+        width:46px;
+        height:46px;
+    }
+
+    .bb-brand-name {
+        font-size:14px;
+    }
+
+    .bb-brand-sub {
+        margin-top:3px;
+        font-size:8px;
+    }
+
+    .bb-brand-jp {
+        margin-top:4px;
+        font-size:6px;
+    }
+
+    .bb-account-wrap {
+        display:none;
+    }
+
+    .bb-header-actions {
+        margin-left:auto;
+        gap:5px;
+    }
+
+    .bb-header-cart {
+        width:38px;
+        height:42px;
+    }
+
+    .bb-mobile-toggle {
+        width:44px;
+        height:44px;
+    }
+
+    .bb-mobile-menu-inner {
+        padding:14px 16px 24px;
+    }
+
+    .bb-modal-box {
+        padding:30px 26px 0;
+    }
+
+    .bb-switch-modal {
+        width:calc(100% + 52px);
+        margin-right:-26px;
+        margin-left:-26px;
+    }
+}
+
+@media (max-width:600px) {
+    .bb-modal {
+        padding:12px;
+    }
+
+    .bb-modal-box {
+        width:100%;
+        max-height:calc(100vh - 24px);
+        max-height:calc(100dvh - 24px);
+        padding:24px 22px 0;
+    }
+
+    .bb-modal h2 {
+        font-size:28px!important;
+    }
+
+    .bb-modal input[type="email"],
+    .bb-modal input[type="text"],
+    .bb-modal input[type="password"] {
+        font-size:16px!important;
+    }
+
+    .bb-register-grid {
+        grid-template-columns:1fr;
+    }
+
+    .bb-register-meta {
+        align-items:flex-start;
+        flex-direction:column;
+    }
+
+    .bb-switch-modal {
+        width:calc(100% + 44px);
+        margin-right:-22px;
+        margin-left:-22px;
+    }
+}
+
+@media (max-width:420px) {
+    .bb-header-container {
+        padding:0 12px;
+        gap:6px;
+    }
+
+    .bb-brand-logo {
+        width:43px;
+        height:43px;
+    }
+
+    .bb-brand-name {
+        font-size:13px;
+    }
+
+    .bb-brand-sub {
+        font-size:7px;
+    }
+
+    .bb-brand-jp {
+        font-size:5.5px;
+    }
+
+    .bb-header-cart {
+        width:34px;
+        height:40px;
+    }
+
+    .bb-mobile-toggle {
+        width:42px;
+        height:42px;
+    }
+}
+
+@media (max-width:350px) {
+    .bb-brand-copy {
+        display:none;
+    }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const searchButton = document.getElementById('bbSearchButton');
+    const searchPanel = document.getElementById('bbSearchPanel');
+    const searchClose = document.getElementById('bbSearchClose');
+    const searchInput = document.getElementById('bbSearchInput');
+
+    const mobileToggle = document.getElementById('bbMobileToggle');
+    const mobileMenu = document.getElementById('bbMobileMenu');
+    const productToggle = document.getElementById('bbMobileProductToggle');
+    const categories = document.getElementById('bbMobileCategories');
+
+    const accountButton = document.getElementById('bbAccountButton');
+    const accountDropdown = document.getElementById('bbAccountDropdown');
+
+    searchButton?.addEventListener('click', e => {
+        e.stopPropagation();
+        searchPanel?.classList.toggle('is-open');
+
+        if (searchPanel?.classList.contains('is-open')) {
+            setTimeout(() => searchInput?.focus(), 100);
+        }
+    });
+
+    searchClose?.addEventListener('click', () => {
+        searchPanel?.classList.remove('is-open');
+    });
+
+    accountButton?.addEventListener('click', e => {
+        e.stopPropagation();
+        accountDropdown?.classList.toggle('is-open');
+    });
+
+    mobileToggle?.addEventListener('click', () => {
+        const isOpen = mobileMenu?.classList.toggle('is-open');
+
+        mobileToggle.classList.toggle('is-open', isOpen);
+        mobileToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+
+    productToggle?.addEventListener('click', () => {
+        const isOpen = categories?.classList.toggle('is-open');
+
+        productToggle.classList.toggle('is-open', isOpen);
+        productToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+
+    document.querySelectorAll('.bb-mobile-category-toggle').forEach(toggle => {
+        toggle.addEventListener('click', e => {
+            e.preventDefault();
+            e.stopPropagation();
+
+            const group = toggle.closest('.bb-mobile-category-group');
+
+            if (!group) return;
+
+            const isOpening = !group.classList.contains('is-open');
+
+            document
+                .querySelectorAll('.bb-mobile-category-group.is-open')
+                .forEach(openGroup => {
+                    if (openGroup === group) return;
+
+                    openGroup.classList.remove('is-open');
+
+                    openGroup
+                        .querySelector('.bb-mobile-category-toggle')
+                        ?.setAttribute('aria-expanded', 'false');
+                });
+
+            group.classList.toggle('is-open', isOpening);
+            toggle.setAttribute(
+                'aria-expanded',
+                isOpening ? 'true' : 'false'
+            );
+        });
+    });
+
+    function closeModals() {
+        document.querySelectorAll('.bb-modal').forEach(modal => {
+            modal.classList.remove('is-open');
+        });
+
+        document.body.style.overflow = '';
+    }
+
+    function openModal(type) {
+        closeModals();
+
+        const modal =
+            type === 'login'
+                ? document.getElementById('bbLoginModal')
+                : document.getElementById('bbRegisterModal');
+
+        if (!modal) return;
+
+        modal.classList.add('is-open');
+        document.body.style.overflow = 'hidden';
+
+        accountDropdown?.classList.remove('is-open');
+        mobileMenu?.classList.remove('is-open');
+        mobileToggle?.classList.remove('is-open');
+        mobileToggle?.setAttribute('aria-expanded', 'false');
+    }
+
+    document.querySelectorAll('[data-bb-modal]').forEach(button => {
+        button.addEventListener('click', () => {
+            openModal(button.dataset.bbModal);
+        });
+    });
+
+    document.querySelectorAll('.bb-modal-close').forEach(button => {
+        button.addEventListener('click', closeModals);
+    });
+
+    document.querySelectorAll('.bb-modal-backdrop').forEach(backdrop => {
+        backdrop.addEventListener('click', closeModals);
+    });
+
+    document.addEventListener('keydown', e => {
+        if (e.key !== 'Escape') return;
+
+        searchPanel?.classList.remove('is-open');
+        accountDropdown?.classList.remove('is-open');
+        mobileMenu?.classList.remove('is-open');
+        mobileToggle?.classList.remove('is-open');
+        mobileToggle?.setAttribute('aria-expanded', 'false');
+
+        closeModals();
+    });
+
+    document.addEventListener('click', e => {
+        if (
+            accountDropdown &&
+            accountButton &&
+            !accountDropdown.contains(e.target) &&
+            !accountButton.contains(e.target)
+        ) {
+            accountDropdown.classList.remove('is-open');
+        }
+
+        if (
+            searchPanel &&
+            searchButton &&
+            !searchPanel.contains(e.target) &&
+            !searchButton.contains(e.target)
+        ) {
+            searchPanel.classList.remove('is-open');
+        }
+    });
+
+    window.addEventListener('resize', () => {
+        if (window.innerWidth <= 1024) return;
+
+        mobileMenu?.classList.remove('is-open');
+        mobileToggle?.classList.remove('is-open');
+        mobileToggle?.setAttribute('aria-expanded', 'false');
+
+        categories?.classList.remove('is-open');
+        productToggle?.classList.remove('is-open');
+        productToggle?.setAttribute('aria-expanded', 'false');
+
+        document
+            .querySelectorAll('.bb-mobile-category-group.is-open')
+            .forEach(group => {
+                group.classList.remove('is-open');
+
+                group
+                    .querySelector('.bb-mobile-category-toggle')
+                    ?.setAttribute('aria-expanded', 'false');
+            });
+
+        document.body.style.overflow = '';
+    });
+
+    @if (session('showLoginModal'))
+        openModal('login');
+    @endif
+
+    @if (session('showRegisterModal'))
+        openModal('register');
+    @endif
+});
+</script>

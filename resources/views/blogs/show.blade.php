@@ -108,17 +108,17 @@
                         @endif
                     </div>
 
-                    @if ($post->featured_image)
+                    @if ($post->featured_image_url)
                         <div class="post_featured">
                             <div class="post_thumb">
-                                <img src="{{ $post->featured_image }}" alt="{{ $post->title }}">
+                                <img src="{{ $post->featured_image_url }}" alt="{{ $post->title }}">
                             </div>
                         </div>
                     @endif
 
                     <div class="post_content">
                         {{-- Use {!! !!} to render HTML from TinyMCE --}}
-                        {!! $post->content !!}
+                        {!! $post->content_with_media_urls !!}
                     </div>
 
                     <!-- Social Share -->
@@ -161,7 +161,7 @@
                                             <div class="post_thumb">
                                                 <a href="{{ route('posts.show', $related->slug) }}">
                                                     <img alt="{{ $related->title }}"
-                                                        src="{{ $related->featured_image ?? 'https://placehold.co/370x370/f0f0f0/ccc?text=IMG' }}">
+                                                        src="{{ $related->featured_image_url ?? 'https://placehold.co/370x370/f0f0f0/ccc?text=IMG' }}">
                                                 </a>
                                             </div>
                                         </div>

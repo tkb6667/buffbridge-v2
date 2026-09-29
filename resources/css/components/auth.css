@@ -1,0 +1,274 @@
+.bb-auth{
+    width:min(100%,520px);
+    margin:70px auto;
+    padding:48px;
+    background:#0d0d0d;
+    border:1px solid #292929;
+    color:#fff;
+    font-family:"Lato",Arial,sans-serif;
+}
+
+.bb-auth *{box-sizing:border-box}
+
+.bb-auth__head{margin-bottom:38px}
+
+.bb-auth__eyebrow{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:12px;
+    color:#ffc400;
+    font-size:10px;
+    line-height:1;
+    font-weight:900;
+    letter-spacing:3px;
+}
+
+.bb-auth__eyebrow::before{
+    content:"";
+    width:25px;
+    height:3px;
+    background:#ffc400;
+}
+
+.bb-auth__head h1{
+    margin:0;
+    color:#fff;
+    font-size:40px;
+    line-height:1;
+    font-weight:900;
+    font-style:italic;
+    text-transform:uppercase;
+}
+
+.bb-auth__head p{
+    margin:12px 0 0;
+    color:#8e8e8e;
+    font-size:13px;
+}
+
+.bb-auth__form{
+    display:flex;
+    flex-direction:column;
+    gap:22px;
+}
+
+.bb-auth__field label{
+    display:block;
+    margin-bottom:9px;
+    color:#b7b7b7;
+    font-size:9px;
+    line-height:1;
+    font-weight:900;
+    letter-spacing:2px;
+}
+
+.bb-auth__field input{
+    width:100%;
+    height:54px;
+    padding:0 16px;
+    border:1px solid #333;
+    border-radius:0;
+    outline:0;
+    background:#151515;
+    color:#fff;
+    font:400 13px "Lato",Arial,sans-serif;
+    transition:border-color .2s,background .2s;
+}
+
+.bb-auth__field input::placeholder{color:#777}
+
+.bb-auth__field input:hover{border-color:#4a4a4a}
+
+.bb-auth__field input:focus{
+    border-color:#ffc400;
+    background:#181818;
+    box-shadow:none;
+}
+
+.bb-auth__error{
+    margin-top:7px!important;
+    color:#ff5b5b!important;
+    font-size:11px!important;
+}
+
+.bb-auth__error ul{
+    margin:0;
+    padding:0;
+    list-style:none;
+}
+
+.bb-auth__options{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:15px;
+    margin-top:-4px;
+    font-size:11px;
+}
+
+.bb-auth__options>a{
+    color:#999;
+    text-decoration:none;
+    transition:color .2s;
+}
+
+.bb-auth__options>a:hover{color:#ffc400}
+
+.bb-auth__remember,
+.bb-auth__terms{
+    display:flex;
+    align-items:center;
+    gap:9px;
+    color:#999;
+    font-size:11px;
+    cursor:pointer;
+}
+
+.bb-auth__remember input,
+.bb-auth__terms input{
+    width:15px;
+    height:15px;
+    margin:0;
+    accent-color:#ffc400;
+}
+
+.bb-auth__terms{
+    align-items:flex-start;
+    margin-top:-2px;
+}
+
+.bb-auth__terms a{
+    color:#fff;
+    font-weight:800;
+    text-decoration:none;
+}
+
+.bb-auth__terms a:hover{color:#ffc400}
+
+.bb-auth__submit{
+    width:100%;
+    min-height:56px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 22px;
+    border:0;
+    border-radius:0;
+    background:#ffa51f;
+    color:#111;
+    font-size:10px;
+    font-weight:900;
+    letter-spacing:1px;
+    cursor:pointer;
+    transition:background .2s,color .2s;
+}
+
+.bb-auth__submit span:last-child{
+    font-size:22px;
+    line-height:1;
+    font-weight:400;
+}
+
+.bb-auth__submit:hover{
+    background:#ffc400;
+    color:#000;
+}
+
+.bb-auth__divider{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    margin:28px 0;
+    color:#777;
+    font-size:9px;
+    font-weight:700;
+}
+
+.bb-auth__divider::before,
+.bb-auth__divider::after{
+    content:"";
+    flex:1;
+    height:1px;
+    background:#292929;
+}
+
+.bb-auth__google{
+    width:100%;
+    min-height:54px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:12px;
+    border:1px solid #333;
+    background:#151515;
+    color:#fff;
+    font-size:10px;
+    font-weight:900;
+    letter-spacing:.5px;
+    text-decoration:none;
+    transition:border-color .2s,background .2s;
+}
+
+.bb-auth__google svg{
+    width:20px;
+    height:20px;
+    flex:0 0 20px;
+}
+
+.bb-auth__google:hover{
+    border-color:#ffc400;
+    background:#191919;
+    color:#fff;
+}
+
+.bb-auth__switch{
+    margin:22px 0 0;
+    color:#888;
+    font-size:11px;
+    text-align:center;
+}
+
+.bb-auth__switch a{
+    margin-left:4px;
+    color:#ffc400;
+    font-weight:900;
+    text-decoration:none;
+}
+
+.bb-auth__switch a:hover{color:#fff}
+
+.bb-auth__status{
+    margin:0 0 20px!important;
+    color:#ffc400!important;
+    font-size:12px!important;
+}
+
+@media(max-width:767px){
+    .bb-auth{
+        width:calc(100% - 30px);
+        margin:35px auto;
+        padding:32px 22px;
+    }
+
+    .bb-auth__head{margin-bottom:30px}
+
+    .bb-auth__head h1{font-size:32px}
+
+    .bb-auth__field input{height:52px}
+
+    .bb-auth__options{
+        align-items:flex-start;
+        flex-direction:column;
+    }
+}
+
+@media(max-width:420px){
+    .bb-auth{
+        width:calc(100% - 20px);
+        margin:20px auto;
+        padding:28px 18px;
+    }
+
+    .bb-auth__head h1{font-size:29px}
+}

@@ -34,6 +34,67 @@ class Post extends Model
         'published_at' => 'datetime',
     ];
 
+    public function getFeaturedImageUrlAttribute(): ?string
+    {
+        return $this->resolveBlogMediaUrl($this->featured_image);
+    }
+
+    public function getContentWithMediaUrlsAttribute(): string
+    {
+        return preg_replace_callback(
+            '/(<img\\b[^>]*\\bsrc\\s*=\\s*["\'])([^"\']+)(["\'])/i',
+            fn (array $matches) => $matches[1].$this->resolveBlogMediaUrl($matches[2]).$matches[3],
+            (string) $this->content
+        ) ?? (string) $this->content;
+    }
+
+    private function resolveBlogMediaUrl(?string $url): ?string
+    {
+        if (!$url) {
+            return null;
+        }
+
+        $path = parse_url($url, PHP_URL_PATH) ?: $url;
+        $storagePath = '/'.ltrim($path, '/');
+
+        if (!str_starts_with($storagePath, '/storage/posts/')) {
+            return $url;
+        }
+
+        $host = parse_url($url, PHP_URL_HOST);
+        $isRelative = $host === null;
+
+        if (!$isRelative && !$this->isLocalHost($host)) {
+            return $url;
+        }
+
+        $baseUrl = rtrim((string) config('app.blog_media_url'), '/');
+
+        if ($baseUrl === '') {
+            return $storagePath;
+        }
+
+        $requestHost = app()->bound('request')
+            ? request()->getHost()
+            : (parse_url((string) config('app.url'), PHP_URL_HOST) ?: 'localhost');
+
+        return str_replace('{host}', $requestHost, $baseUrl).$storagePath;
+    }
+
+    private function isLocalHost(string $host): bool
+    {
+        if (in_array($host, ['localhost', '127.0.0.1', '0.0.0.0', '::1'], true)) {
+            return true;
+        }
+
+        return filter_var($host, FILTER_VALIDATE_IP) !== false
+            && filter_var(
+                $host,
+                FILTER_VALIDATE_IP,
+                FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE
+            ) === false;
+    }
+
     /**
      * ความสัมพันธ์: บทความนี้เขียนโดย User คนเดียว (belongsTo)
      */
