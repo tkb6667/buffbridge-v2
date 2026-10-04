@@ -1146,7 +1146,14 @@
 
                                 class="bb-hero-image"
 
-                                data-fallback="{{ asset('images/hero1.png') }}"
+                                data-fallback="{{ asset('images/hero1.webp') }}"
+
+                                @if ($loop->first)
+                                    fetchpriority="high"
+                                @else
+                                    loading="lazy"
+                                    decoding="async"
+                                @endif
 
                                 draggable="false"
 
@@ -1284,11 +1291,13 @@
 
                     <img
 
-                        src="{{ asset('images/hero1.png') }}"
+                        src="{{ asset('images/hero1.webp') }}"
 
                         alt="Buffbridge Custom Crew"
 
                         class="bb-hero-image"
+
+                        fetchpriority="high"
 
                     >
 
@@ -1300,11 +1309,15 @@
 
                     <img
 
-                        src="{{ asset('images/hero2.png') }}"
+                        src="{{ asset('images/hero2.webp') }}"
 
                         alt="Buffbridge Custom Crew"
 
                         class="bb-hero-image"
+
+                        loading="lazy"
+
+                        decoding="async"
 
                     >
 
@@ -1316,11 +1329,15 @@
 
                     <img
 
-                        src="{{ asset('images/hero3.png') }}"
+                        src="{{ asset('images/hero3.webp') }}"
 
                         alt="Buffbridge Custom Crew"
 
                         class="bb-hero-image"
+
+                        loading="lazy"
+
+                        decoding="async"
 
                     >
 
@@ -1332,11 +1349,15 @@
 
                     <img
 
-                        src="{{ asset('images/hero4.png') }}"
+                        src="{{ asset('images/hero4.webp') }}"
 
                         alt="Buffbridge Custom Crew"
 
                         class="bb-hero-image"
+
+                        loading="lazy"
+
+                        decoding="async"
 
                     >
 

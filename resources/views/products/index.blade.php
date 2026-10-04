@@ -31,7 +31,7 @@
                 color:#fff;
                 background:
                     linear-gradient(90deg,rgba(0,0,0,.96),rgba(0,0,0,.84) 38%,rgba(0,0,0,.3)),
-                    url('{{ asset("images/hero2.png") }}') center 42%/cover no-repeat
+                    url('{{ asset("images/hero2.webp") }}') center 42%/cover no-repeat
             }
 
             .bb-shop-hero:after{

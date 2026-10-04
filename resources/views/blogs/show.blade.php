@@ -923,6 +923,7 @@
                                 <img
                                     src="{{ $related->featured_image_url ?? 'https://placehold.co/800x600/f1f1f1/999?text=BUFFBRIDGE' }}"
                                     alt="{{ $related->title }}"
+                                    loading="lazy"
                                 >
                             </a>
 

@@ -3862,6 +3862,8 @@
 
                                         alt="{{ $relatedProduct->name }}"
 
+                                        loading="lazy"
+
                                     >
 
 

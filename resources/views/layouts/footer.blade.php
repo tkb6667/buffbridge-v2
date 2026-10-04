@@ -108,6 +108,10 @@
                         BUFFBRIDGE CUSTOM
                     </a>
 
+                    <a href="{{ url('/book-appointment') }}">
+    BOOK AN APPOINTMENT
+</a>
+
                     <a href="{{ route('contact') }}">
                         CONTACT US
                     </a>
