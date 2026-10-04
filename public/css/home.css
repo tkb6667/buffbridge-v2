@@ -82,6 +82,22 @@
     object-fit: cover;
     object-position: center;
 }
+.bb-hero-picture {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+[data-banner-slider] {
+    touch-action: pan-y;
+    user-select: none;
+}
+[data-banner-slider].bb-hero-dragging {
+    cursor: grabbing;
+}
+[data-banner-slider] .bb-hero-image {
+    -webkit-user-drag: none;
+    user-select: none;
+}
 .bb-hero::after {
     content: "";
     position: absolute;
@@ -107,6 +123,15 @@
     left: clamp(36px, 4.5vw, 86px);
     transform: translateY(-50%);
     pointer-events: none;
+}
+.bb-hero-content-slide {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .35s ease, visibility .35s ease;
+}
+.bb-hero-content-slide.active {
+    opacity: 1;
+    visibility: visible;
 }
 .bb-hero-content {
     width: min(410px, 40vw);
@@ -162,6 +187,34 @@
     color: #111 !important;
     transform: translateY(-2px);
 }
+.bb-hero-arrow {
+    position: absolute;
+    z-index: 8;
+    top: 50%;
+    width: 42px;
+    height: 50px;
+    padding: 0;
+    border: 1px solid rgba(255, 255, 255, .38);
+    background: rgba(0, 0, 0, .32);
+    color: #fff;
+    font-size: 34px;
+    line-height: 1;
+    cursor: pointer;
+    transform: translateY(-50%);
+    transition: border-color .2s ease, background .2s ease, color .2s ease;
+}
+.bb-hero-arrow:hover,
+.bb-hero-arrow:focus-visible {
+    border-color: var(--bb-yellow);
+    background: rgba(0, 0, 0, .65);
+    color: var(--bb-yellow);
+}
+.bb-hero-arrow-prev {
+    left: 14px;
+}
+.bb-hero-arrow-next {
+    right: 14px;
+}
 
 /* =========================================================
    HERO DOTS
@@ -174,9 +227,16 @@
     display: flex;
     align-items: center;
     gap: 7px;
+    max-width: calc(100% - 32px);
+    overflow-x: auto;
+    scrollbar-width: none;
     transform: translateX(-50%);
 }
+.bb-hero-dots::-webkit-scrollbar {
+    display: none;
+}
 .bb-hero-dot {
+    flex: 0 0 auto;
     width: 20px;
     height: 3px;
     margin: 0;
@@ -863,6 +923,9 @@
     }
     .bb-hero-title {
         font-size: clamp(38px, 5vw, 52px);
+    }
+    .bb-hero-arrow {
+        display: none;
     }
     .bb-category-inner {
         min-height: auto;

@@ -62,6 +62,12 @@ class CartController extends Controller
 
                 // ตรวจว่า variant หมดสต็อก (ถ้ามีฟิลด์ availability หรือ stock_quantity ใน variant)
                 if (isset($variant->availability) && $variant->availability === 'Out of Stock') {
+                    if ($request->expectsJson()) {
+                        return response()->json([
+                            'message' => 'This product variant is out of stock.',
+                        ], 422);
+                    }
+
                     return back()->with('error', 'This product variant is out of stock.');
                 }
             }
@@ -69,6 +75,12 @@ class CartController extends Controller
 
         // ตรวจว่า product หมดสต็อก
         if ($product->availability === 'Out of Stock') {
+            if ($request->expectsJson()) {
+                return response()->json([
+                    'message' => 'This product is out of stock.',
+                ], 422);
+            }
+
             return back()->with('error', 'This product is out of stock.');
         }
 
@@ -88,6 +100,17 @@ class CartController extends Controller
                 'variant_id' => $variantId,
                 'quantity' => $request->quantity ?? 1,
                 'price' => $price,
+            ]);
+        }
+
+        if ($request->expectsJson()) {
+            return response()->json([
+                'success' => true,
+                'message' => 'Product added to cart!',
+                'product_name' => $product->name,
+                'cart_count' => (int) CartItem::where('customer_id', $customerId)
+                    ->sum('quantity'),
+                'cart_url' => route('cart.index', [], false),
             ]);
         }
 

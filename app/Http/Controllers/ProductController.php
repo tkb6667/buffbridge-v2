@@ -12,22 +12,39 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         $categoryIds = [];
+        $categories = Category::query()->get(['id', 'parent_id']);
 
         foreach ([1, 28, 62, 84] as $parentId) {
             $categoryIds = array_merge(
                 $categoryIds,
-                Category::getAllNestedCategoryIds($parentId)->toArray()
+                Category::getAllNestedCategoryIds($parentId, $categories)->toArray()
             );
         }
 
         $categoryIds = array_unique($categoryIds);
 
-        $query = Product::with([
-            'category',
-            'category2',
-            'images',
-            'variants',
-        ])
+        $query = Product::query()
+            ->select([
+                'id',
+                'product_code',
+                'name',
+                'brand',
+                'availability',
+                'price',
+                'category_id',
+                'category_id2',
+                'created_at',
+            ])
+            ->with([
+                'images' => fn ($query) => $query
+                    ->select(['id', 'product_id', 'image_path'])
+                    ->orderBy('id')
+                    ->limit(1),
+                'variants' => fn ($query) => $query
+                    ->select(['id', 'product_id', 'price'])
+                    ->orderBy('id')
+                    ->limit(1),
+            ])
             ->whereIn('category_id', $categoryIds)
             ->where('active', 1);
 
@@ -83,6 +100,12 @@ class ProductController extends Controller
 
         if ($request->filled('availability')) {
             $query->where('availability', $request->availability);
+        }
+
+        if ($request->filled('brand')) {
+            $query->whereRaw('LOWER(TRIM(brand)) = ?', [
+                mb_strtolower(trim((string) $request->brand)),
+            ]);
         }
 
         /*
@@ -143,12 +166,9 @@ class ProductController extends Controller
                 break;
         }
 
-        $products = $query->get();
+        $products = $query->paginate(24)->withQueryString();
 
-        $categories_menu = Category::with('children')
-            ->where('active', 1)
-            ->whereNull('parent_id')
-            ->get();
+        $categories_menu = Category::menuTree();
 
         return view(
             'products.index',
@@ -250,10 +270,24 @@ class ProductController extends Controller
                 ->orWhere('category_id2', $product->category_id2);
         })
             ->where('id', '!=', $product->id)
+            ->with([
+                'images' => fn ($query) => $query
+                    ->select(['id', 'product_id', 'image_path'])
+                    ->orderBy('id')
+                    ->limit(1),
+                'variants' => fn ($query) => $query
+                    ->select(['id', 'product_id', 'price'])
+                    ->orderBy('id')
+                    ->limit(1),
+            ])
             ->limit(4)
             ->get();
 
-        $product->load('reviews');
+        $product->load([
+            'images:id,product_id,image_path',
+            'variants:id,product_id,type,price',
+            'reviews.customer:id,name',
+        ]);
 
         return view(
             'products.show',

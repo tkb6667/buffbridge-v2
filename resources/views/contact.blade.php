@@ -152,7 +152,7 @@
                     <div class="bb-social-buttons">
 
                         <a
-                            href="https://www.facebook.com/share/1ABFfSy5QZ/?mibextid=wwXIfr"
+                            href="https://www.facebook.com/share/1T8y5fqB3M/?mibextid=wwXIfr"
                             target="_blank"
                             rel="noopener noreferrer"
                             aria-label="Facebook"
@@ -171,6 +171,16 @@
                             LINE
                         </a>
 
+                        <a
+    href="https://t.me/buffv4"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Telegram"
+>
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M21.6 3.2 18.5 19c-.2 1.1-.9 1.4-1.8.9l-4.8-3.5-2.3 2.2c-.3.3-.5.5-1 .5l.3-4.9 8.9-8c.4-.3-.1-.5-.6-.2L6.2 13l-4.7-1.5c-1-.3-1-1 .2-1.5L20 2.9c.9-.3 1.8.2 1.6.3z"/>
+    </svg>
+</a>
                     </div>
 
                 </div>

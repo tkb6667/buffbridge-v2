@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
@@ -13,6 +14,13 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\OrderHistoryController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+
+Route::get('/book-appointment', [AppointmentController::class, 'create'])
+    ->name('appointments.create');
+Route::get('/book-appointment/available-slots', [AppointmentController::class, 'availableSlots'])
+    ->name('appointments.available-slots');
+Route::post('/book-appointment', [AppointmentController::class, 'store'])
+    ->name('appointments.store');
 
 /*
 |--------------------------------------------------------------------------

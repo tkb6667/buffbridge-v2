@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
 class Customer extends Authenticatable
 {
-    use HasFactory;
+    use HasFactory, Notifiable;
 
     protected $fillable = [
         'name', 'email', 'password', 'google_id',
@@ -15,5 +16,5 @@ class Customer extends Authenticatable
         'district', 'province', 'postal_code', 'membership_status'
     ];
     
-    protected $hidden = ['password'];
+    protected $hidden = ['password', 'remember_token'];
 }

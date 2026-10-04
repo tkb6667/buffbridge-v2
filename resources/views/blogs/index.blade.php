@@ -153,7 +153,7 @@
             }
 
             /* SEARCH */
-            .bb-search-form{
+            .bb-blog-search-form{
                 display:grid;
                 grid-template-columns:minmax(0,1fr) 48px;
                 height:46px;
@@ -161,11 +161,11 @@
                 border:1px solid #ddd
             }
 
-            .bb-search-input{
+            .bb-blog-search-input{
                 min-width:0;
                 width:100%;
-                height:100%;
-                padding:0 14px;
+                height:100%!important;
+                padding:0 14px!important;
                 border:0!important;
                 outline:0!important;
                 box-shadow:none!important;
@@ -174,12 +174,12 @@
                 font:12px Arial,Helvetica,sans-serif!important
             }
 
-            .bb-search-input::placeholder{
+            .bb-blog-search-input::placeholder{
                 color:#999;
                 opacity:1
             }
 
-            .bb-search-button{
+            .bb-blog-search-button{
                 width:48px;
                 height:46px;
                 display:flex;
@@ -193,12 +193,12 @@
                 transition:.2s
             }
 
-            .bb-search-button:hover{
+            .bb-blog-search-button:hover{
                 background:#111;
                 color:#fff
             }
 
-            .bb-search-button svg{
+            .bb-blog-search-button svg{
                 width:17px;
                 height:17px;
                 fill:none;
@@ -727,14 +727,17 @@
                     display:none!important
                 }
 
-                .bb-search-form{height:50px}
-
-                .bb-search-input{
-                    padding:0 16px;
-                    font-size:13px!important
+                .bb-blog-search-form{
+                    height:50px;
+                    grid-template-columns:minmax(0,1fr) 52px
                 }
 
-                .bb-search-button{
+                .bb-blog-search-input{
+                    padding:0 16px;
+                    font-size:16px!important
+                }
+
+                .bb-blog-search-button{
                     width:52px;
                     height:50px
                 }
@@ -888,12 +891,12 @@
                             <form
                                 role="search"
                                 method="GET"
-                                class="bb-search-form"
+                                class="bb-blog-search-form"
                                 action="{{ route('posts.index') }}"
                             >
                                 <input
                                     type="search"
-                                    class="bb-search-input"
+                                    class="bb-blog-search-input"
                                     name="search"
                                     value="{{ request('search') }}"
                                     placeholder="Search articles..."
@@ -902,7 +905,7 @@
 
                                 <button
                                     type="submit"
-                                    class="bb-search-button"
+                                    class="bb-blog-search-button"
                                     aria-label="Search"
                                 >
                                     <svg viewBox="0 0 24 24" aria-hidden="true">
