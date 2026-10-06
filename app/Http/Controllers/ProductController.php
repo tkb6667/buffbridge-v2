@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Support\SeoMeta;
 
 class ProductController extends Controller
 {
@@ -170,9 +171,14 @@ class ProductController extends Controller
 
         $categories_menu = Category::menuTree();
 
+        $selectedCategory = $request->filled('category')
+            ? Category::find($request->category)
+            : null;
+        $seo = SeoMeta::products($selectedCategory);
+
         return view(
             'products.index',
-            compact('products', 'categories_menu')
+            compact('products', 'categories_menu', 'seo')
         );
     }
 
@@ -287,11 +293,15 @@ class ProductController extends Controller
             'images:id,product_id,image_path',
             'variants:id,product_id,type,price',
             'reviews.customer:id,name',
+            'category:id,name',
+            'category2:id,name',
         ]);
+
+        $seo = SeoMeta::product($product);
 
         return view(
             'products.show',
-            compact('product', 'relatedProducts')
+            compact('product', 'relatedProducts', 'seo')
         );
     }
 }

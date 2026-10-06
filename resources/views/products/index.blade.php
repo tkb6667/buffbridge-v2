@@ -1,4 +1,4 @@
-<x-guest-layout>
+<x-guest-layout :seo="$seo">
     <x-slot name="style">
         <style>
             .bb-shop,.bb-shop *{box-sizing:border-box}
@@ -1141,8 +1141,10 @@
                         </div>
 
                         <h1>
-                            Products
-                            <span>Find Your Gear.</span>
+                            {{ $seo['h1Primary'] }}
+                            @if ($seo['h1Secondary'] !== '')
+                                <span>{{ $seo['h1Secondary'] }}</span>
+                            @endif
                         </h1>
 
                         <p>

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\Banner;
+use App\Support\SeoMeta;
 
 class HomeController extends Controller
 {
@@ -103,6 +104,8 @@ class HomeController extends Controller
             ->limit(4)
             ->get();
 
-        return view('welcome', compact('banners', 'products', 'products_restock', 'products_preorder', 'data'));
+        $seo = SeoMeta::home();
+
+        return view('welcome', compact('banners', 'products', 'products_restock', 'products_preorder', 'data', 'seo'));
     }
 }

@@ -1,6 +1,8 @@
-<x-guest-layout>
+<x-guest-layout :seo="$seo">
 
 
+
+    <h1 class="sr-only">ร้านบีบีกัน Buffbridge</h1>
 
     <link rel="stylesheet" href="{{ asset('css/skin.css') }}" type="text/css" media="all">
 
@@ -1183,7 +1185,7 @@
 
                         @if ($banner->title)
 
-                            <h1 class="bb-hero-title">
+                            <h2 class="bb-hero-title">
 
                                 {{ $titleParts[0] }}
 
@@ -1193,7 +1195,7 @@
 
                                 @endif
 
-                            </h1>
+                            </h2>
 
                         @endif
 
@@ -1377,13 +1379,13 @@
 
 
 
-                    <h1 class="bb-hero-title">
+                    <h2 class="bb-hero-title">
 
                         NEW
 
                         <span>ARRIVALS</span>
 
-                    </h1>
+                    </h2>
 
 
 

@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Models\PostCategory;
 use App\Models\Tag;
+use App\Support\SeoMeta;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
@@ -39,6 +41,7 @@ class PostController extends Controller
 
         // 2. Get data for the sidebar
         $sidebarData = $this->getSidebarData();
+        $seo = SeoMeta::blogIndex($request->filled('search'));
 
         // 3. Pass all data to the view
         return view('blogs.index', [
@@ -47,7 +50,46 @@ class PostController extends Controller
             'recentPosts' => $sidebarData['recentPosts'],
             'popularPosts' => $sidebarData['popularPosts'], // Pass popular posts to the view
             'pageTitle' => $pageTitle,
+            'seo' => $seo,
         ]);
+    }
+
+    public function liveSearch(Request $request)
+    {
+        $validated = $request->validate(['q' => ['nullable', 'string', 'max:100']]);
+        $keyword = trim((string) ($validated['q'] ?? ''));
+        $respond = fn ($articles = [], bool $hasMore = false) => response()->json([
+            'articles' => $articles,
+            'has_more' => $hasMore,
+        ])->header('X-Robots-Tag', 'noindex, nofollow');
+
+        if (mb_strlen($keyword) < 2) {
+            return $respond();
+        }
+
+        $posts = Post::query()
+            ->select(['id', 'title', 'slug', 'excerpt', 'content', 'featured_image', 'published_at'])
+            ->where('status', 'Published')
+            ->where('published_at', '<=', now())
+            ->where(function ($query) use ($keyword) {
+                $query->where('title', 'like', "%{$keyword}%")
+                    ->orWhere('excerpt', 'like', "%{$keyword}%")
+                    ->orWhere('content', 'like', "%{$keyword}%");
+            })
+            ->orderByRaw('CASE WHEN title LIKE ? THEN 0 ELSE 1 END', ["{$keyword}%"])
+            ->latest('published_at')
+            ->limit(7)
+            ->get();
+
+        $articles = $posts->take(6)->map(fn (Post $post) => [
+            'title' => $post->title,
+            'excerpt' => Str::limit(trim(strip_tags((string) ($post->excerpt ?: $post->content))), 90),
+            'date' => $post->published_at?->format('d M Y'),
+            'image' => $post->featured_image_url,
+            'url' => route('posts.show', $post->slug),
+        ])->values();
+
+        return $respond($articles, $posts->count() > 6);
     }
 
     /**
@@ -60,6 +102,7 @@ class PostController extends Controller
     {
         // 1. Increment the view count for the post. (Requires 'views' column on 'posts' table)
         $post->increment('views');
+        $post->loadMissing(['user:id,name', 'postCategories:id,name,slug', 'tags:id,name,slug']);
 
         // 2. Find related posts from the same category
         //    *FIXED: Explicitly reference 'posts.id' and 'post_categories.id' to avoid ambiguity.*
@@ -75,9 +118,12 @@ class PostController extends Controller
             ->take(4) // Get 4 related posts
             ->get();
 
+        $seo = SeoMeta::blogPost($post);
+
         return view('blogs.show', [
             'post' => $post,
-            'relatedPosts' => $relatedPosts
+            'relatedPosts' => $relatedPosts,
+            'seo' => $seo,
         ]);
     }
 
@@ -96,6 +142,7 @@ class PostController extends Controller
             ->paginate(10);
 
         $sidebarData = $this->getSidebarData();
+        $seo = SeoMeta::blogCategory($postCategory, $posts->total() > 0);
 
         return view('blogs.index', [
             'posts' => $posts,
@@ -103,6 +150,7 @@ class PostController extends Controller
             'recentPosts' => $sidebarData['recentPosts'],
             'popularPosts' => $sidebarData['popularPosts'], // Pass popular posts to the view
             'pageTitle' => 'Category: ' . $postCategory->name,
+            'seo' => $seo,
         ]);
     }
 
@@ -121,6 +169,7 @@ class PostController extends Controller
             ->paginate(10);
 
         $sidebarData = $this->getSidebarData();
+        $seo = SeoMeta::blogTag($tag, $posts->total() > 0);
 
         return view('blogs.index', [
             'posts' => $posts,
@@ -128,6 +177,7 @@ class PostController extends Controller
             'recentPosts' => $sidebarData['recentPosts'],
             'popularPosts' => $sidebarData['popularPosts'], // Pass popular posts to the view
             'pageTitle' => 'Tag: ' . $tag->name,
+            'seo' => $seo,
         ]);
     }
 

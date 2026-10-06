@@ -1,4 +1,4 @@
-<x-guest-layout>
+<x-guest-layout :seo="$seo">
     <x-slot name="style">
         <style>
             .bb-blog,.bb-blog *{box-sizing:border-box}
@@ -888,32 +888,64 @@
                         <div class="bb-widget bb-sidebar-search">
                             <h3 class="bb-widget-title">Search</h3>
 
-                            <form
-                                role="search"
-                                method="GET"
-                                class="bb-blog-search-form"
-                                action="{{ route('posts.index') }}"
+                            <div
+                                class="bb-blog-search-live"
+                                data-blog-live-search
+                                data-endpoint="{{ route('posts.live-search') }}"
+                                data-results-url="{{ route('posts.index') }}"
                             >
-                                <input
-                                    type="search"
-                                    class="bb-blog-search-input"
-                                    name="search"
-                                    value="{{ request('search') }}"
-                                    placeholder="Search articles..."
-                                    aria-label="Search articles"
+                                <form
+                                    role="search"
+                                    method="GET"
+                                    class="bb-blog-search-form"
+                                    action="{{ route('posts.index') }}"
                                 >
+                                    <input
+                                        type="search"
+                                        class="bb-blog-search-input"
+                                        name="search"
+                                        value="{{ request('search') }}"
+                                        placeholder="Search articles..."
+                                        aria-label="Search articles"
+                                        autocomplete="off"
+                                        data-blog-live-search-input
+                                    >
 
-                                <button
-                                    type="submit"
-                                    class="bb-blog-search-button"
-                                    aria-label="Search"
+                                    <button
+                                        type="submit"
+                                        class="bb-blog-search-button"
+                                        aria-label="Search"
+                                    >
+                                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                                            <circle cx="11" cy="11" r="7"></circle>
+                                            <path d="m20 20-4-4"></path>
+                                        </svg>
+                                    </button>
+                                </form>
+
+                                <div
+                                    class="bb-blog-search-suggestions"
+                                    data-blog-live-search-panel
+                                    aria-hidden="true"
                                 >
-                                    <svg viewBox="0 0 24 24" aria-hidden="true">
-                                        <circle cx="11" cy="11" r="7"></circle>
-                                        <path d="m20 20-4-4"></path>
-                                    </svg>
-                                </button>
-                            </form>
+                                    <div class="bb-blog-search-head">
+                                        <strong>Suggestions</strong>
+                                        <span data-blog-live-search-count></span>
+                                    </div>
+
+                                    <div class="bb-blog-search-list" data-blog-live-search-list></div>
+
+                                    <div class="bb-blog-search-footer" data-blog-live-search-footer hidden>
+                                        <a
+                                            class="bb-blog-search-all"
+                                            href="{{ route('posts.index') }}"
+                                            data-blog-live-search-all
+                                        >
+                                            View all results →
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
                         <div class="bb-widget bb-sidebar-category">
@@ -1247,4 +1279,5 @@
         </main>
 
     </div>
+
 </x-guest-layout>

@@ -1,0 +1,22 @@
+[data-blog-live-search]{position:relative;z-index:20}
+.bb-sidebar-search{overflow:visible}
+.bb-blog-search-suggestions{position:absolute;z-index:30;top:calc(100% + 7px);right:0;left:0;display:none;overflow:hidden;border:1px solid #ddd;background:#fff;box-shadow:0 16px 38px rgba(0,0,0,.18)}
+.bb-blog-search-suggestions.is-open{display:block}
+.bb-blog-search-head{min-height:34px;padding:0 12px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #eee;color:#999;font-size:8px;font-weight:900;letter-spacing:.7px;text-transform:uppercase}
+.bb-blog-search-head strong{color:#111}
+.bb-blog-search-list{max-height:390px;overflow-y:auto;overscroll-behavior:contain}
+.bb-blog-search-item{min-height:70px;padding:9px 11px;display:grid;grid-template-columns:58px minmax(0,1fr);gap:11px;align-items:center;border-bottom:1px solid #eee;background:#fff;color:#111!important}
+.bb-blog-search-item:hover,.bb-blog-search-item:focus-visible{background:#f7f7f7}
+.bb-blog-search-thumb{width:58px;height:50px;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#f1f1f1;color:#aaa;font-size:7px;font-weight:900}
+.bb-blog-search-thumb img{width:100%!important;height:100%!important;display:block!important;object-fit:cover!important}
+.bb-blog-search-info{min-width:0}
+.bb-blog-search-title{overflow:hidden;color:#111;font-size:11px;font-weight:900;line-height:1.35;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2}
+.bb-blog-search-meta{margin-top:5px;overflow:hidden;color:#929292;font-size:8px;line-height:1.35;text-overflow:ellipsis;white-space:nowrap}
+.bb-blog-search-message{min-height:92px;padding:18px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;color:#888;font-size:9px;text-align:center}
+.bb-blog-search-message strong{color:#111;font-size:10px}
+.bb-blog-search-spinner{width:18px;height:18px;border:2px solid #ddd;border-top-color:#ffd21c;border-radius:50%;animation:bb-blog-search-spin .65s linear infinite}
+@keyframes bb-blog-search-spin{to{transform:rotate(360deg)}}
+.bb-blog-search-footer{padding:8px;background:#fafafa}
+.bb-blog-search-all{min-height:36px;display:flex;align-items:center;justify-content:center;background:#ffd21c;color:#111!important;font-size:8px;font-weight:900;letter-spacing:.7px;text-transform:uppercase}
+.bb-blog-search-all:hover{background:#eabc00}
+@media(max-width:767px){.bb-blog-search-suggestions{max-height:min(430px,calc(100dvh - 100px))}.bb-blog-search-list{max-height:min(330px,calc(100dvh - 200px))}}

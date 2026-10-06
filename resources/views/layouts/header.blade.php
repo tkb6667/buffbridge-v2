@@ -894,7 +894,7 @@ $isAppointment = request()->is('book-appointment');
 
     <div class="bb-modal-backdrop"></div>
 
-    <div class="bb-modal-box">
+    <div class="bb-modal-box{{ (session('status') || $errors->getBag('login')->any()) ? ' has-feedback' : '' }}">
 
         <button
 
@@ -984,19 +984,29 @@ $isAppointment = request()->is('book-appointment');
 
             <label>PASSWORD</label>
 
-            <input
+            <div class="bb-password-field">
 
-                type="password"
+                <input
 
-                name="password"
+                    type="password"
 
-                placeholder="Password"
+                    name="password"
 
-                autocomplete="current-password"
+                    placeholder="Password"
 
-                required
+                    autocomplete="current-password"
 
-            >
+                    required
+
+                >
+
+                <button type="button" class="bb-password-toggle" aria-label="Show password" aria-pressed="false">
+
+                    <span class="icon-eye" aria-hidden="true"></span>
+
+                </button>
+
+            </div>
 
             <div class="bb-login-options">
 
@@ -1090,7 +1100,7 @@ $isAppointment = request()->is('book-appointment');
 
     <div class="bb-modal-backdrop"></div>
 
-    <div class="bb-modal-box">
+    <div class="bb-modal-box{{ $errors->getBag('register')->any() ? ' has-feedback' : '' }}">
 
         <button
 
@@ -1196,39 +1206,59 @@ $isAppointment = request()->is('book-appointment');
 
                     <label>PASSWORD</label>
 
-                    <input
+                    <div class="bb-password-field">
 
-                        type="password"
+                        <input
 
-                        name="password"
+                            type="password"
 
-                        placeholder="Password"
+                            name="password"
 
-                        minlength="8"
+                            placeholder="Password"
 
-                        autocomplete="new-password"
+                            minlength="8"
 
-                        required
+                            autocomplete="new-password"
 
-                    >
+                            required
+
+                        >
+
+                        <button type="button" class="bb-password-toggle" aria-label="Show password" aria-pressed="false">
+
+                            <span class="icon-eye" aria-hidden="true"></span>
+
+                        </button>
+
+                    </div>
 
                     <label>CONFIRM PASSWORD</label>
 
-                    <input
+                    <div class="bb-password-field">
 
-                        type="password"
+                        <input
 
-                        name="password_confirmation"
+                            type="password"
 
-                        placeholder="Confirm password"
+                            name="password_confirmation"
 
-                        minlength="8"
+                            placeholder="Confirm password"
 
-                        autocomplete="new-password"
+                            minlength="8"
 
-                        required
+                            autocomplete="new-password"
 
-                    >
+                            required
+
+                        >
+
+                        <button type="button" class="bb-password-toggle" aria-label="Show password" aria-pressed="false">
+
+                            <span class="icon-eye" aria-hidden="true"></span>
+
+                        </button>
+
+                    </div>
 
                 </div>
 
@@ -2887,13 +2917,13 @@ $isAppointment = request()->is('book-appointment');
 
     width:min(410px,100%);
 
-    max-height:calc(100vh - 40px);
+    max-height:calc(100vh - 32px);
 
-    max-height:calc(100dvh - 40px);
+    max-height:calc(100dvh - 32px);
 
     overflow-y:auto;
 
-    padding:38px 40px 0;
+    padding:32px 40px 0;
 
     border:1px solid #e5e5e5;
 
@@ -3005,7 +3035,7 @@ $isAppointment = request()->is('book-appointment');
 
 .bb-modal-description {
 
-    margin:8px 0 24px!important;
+    margin:7px 0 18px!important;
 
     color:#999;
 
@@ -3075,7 +3105,7 @@ $isAppointment = request()->is('book-appointment');
 
     display:block;
 
-    margin:15px 0 7px;
+    margin:12px 0 6px;
 
     color:#111;
 
@@ -3152,6 +3182,126 @@ $isAppointment = request()->is('book-appointment');
     -webkit-text-fill-color:#111!important;
 
     -webkit-box-shadow:0 0 0 1000px #fff inset!important;
+
+}
+
+.bb-password-field {
+
+    position:relative;
+
+}
+
+.bb-password-field input[type="password"],
+
+.bb-password-field input[type="text"] {
+
+    padding-right:48px!important;
+
+}
+
+.bb-password-field input::-ms-reveal,
+
+.bb-password-field input::-ms-clear {
+
+    display:none;
+
+}
+
+.bb-password-field input[type="password"]::-webkit-textfield-decoration-container,
+
+.bb-password-field input::-webkit-credentials-auto-fill-button {
+
+    visibility:hidden;
+
+    pointer-events:none;
+
+}
+
+.bb-modal .bb-password-toggle {
+
+    position:absolute;
+
+    top:50%;
+
+    right:4px;
+
+    width:40px;
+
+    height:40px;
+
+    min-width:0;
+
+    margin:0;
+
+    padding:0;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border:0!important;
+
+    border-radius:0!important;
+
+    outline:0;
+
+    background:transparent!important;
+
+    color:#666!important;
+
+    box-shadow:none!important;
+
+    font-size:16px;
+
+    line-height:1;
+
+    cursor:pointer;
+
+    transform:translateY(-50%);
+
+    appearance:none;
+
+    -webkit-appearance:none;
+
+}
+
+.bb-modal .bb-password-toggle:hover {
+
+    background:transparent!important;
+
+    color:#111!important;
+
+}
+
+.bb-modal .bb-password-toggle:focus-visible {
+
+    outline:2px solid #999;
+
+    outline-offset:-4px;
+
+}
+
+.bb-password-toggle .icon-eye::before {
+
+    margin:0;
+
+}
+
+.bb-password-toggle.is-visible::after {
+
+    content:"";
+
+    position:absolute;
+
+    width:19px;
+
+    height:1.5px;
+
+    background:currentColor;
+
+    transform:rotate(-45deg);
 
 }
 
@@ -3446,6 +3596,18 @@ $isAppointment = request()->is('book-appointment');
 .bb-switch-modal:hover {
 
     background:#ffb84a;
+
+}
+
+@media (min-width:601px) and (min-height:740px) {
+
+    .bb-modal-box:not(.has-feedback) {
+
+        max-height:none;
+
+        overflow-y:visible;
+
+    }
 
 }
 
@@ -4316,6 +4478,38 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.bb-modal-backdrop').forEach(backdrop => {
 
         backdrop.addEventListener('click', closeModals);
+
+    });
+
+    document.querySelectorAll('.bb-password-toggle').forEach(button => {
+
+        button.addEventListener('click', () => {
+
+            const input = button
+
+                .closest('.bb-password-field')
+
+                ?.querySelector('input');
+
+            if (!input) return;
+
+            const shouldShow = input.type === 'password';
+
+            input.type = shouldShow ? 'text' : 'password';
+
+            button.classList.toggle('is-visible', shouldShow);
+
+            button.setAttribute('aria-pressed', shouldShow ? 'true' : 'false');
+
+            button.setAttribute(
+
+                'aria-label',
+
+                shouldShow ? 'Hide password' : 'Show password'
+
+            );
+
+        });
 
     });
 

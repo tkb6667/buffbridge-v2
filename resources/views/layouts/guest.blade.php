@@ -6,15 +6,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <!-- Default OG Meta Tags -->
-    <meta property="og:title" content="{{ $metaTitle ?? config('app.name', 'Buffbridge') }}" />
-    <meta property="og:description" content="{{ $metaDescription ?? 'Buffbridge BB Gun Store' }}" />
-    <meta property="og:image" content="{{ $metaImage ?? asset('BUFF_LOGO.png') }}" />
-    <meta property="og:url" content="{{ url()->current() }}" />
-    <meta property="og:type" content="website" />
+    <title>{{ $seo['title'] }}</title>
+    <meta name="description" content="{{ $seo['description'] }}">
+    <meta name="robots" content="{{ $seo['robots'] }}">
+    <link rel="canonical" href="{{ $seo['canonical'] }}">
+
+    <meta property="og:title" content="{{ $seo['ogTitle'] }}" />
+    <meta property="og:description" content="{{ $seo['ogDescription'] }}" />
+    <meta property="og:image" content="{{ $seo['ogImage'] }}" />
+    <meta property="og:url" content="{{ $seo['ogUrl'] }}" />
+    <meta property="og:type" content="{{ $seo['ogType'] }}" />
     <meta property="og:site_name" content="Buffbridge" />
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <meta name="twitter:card" content="{{ $seo['twitterCard'] }}">
+    <meta name="twitter:title" content="{{ $seo['twitterTitle'] }}">
+    <meta name="twitter:description" content="{{ $seo['twitterDescription'] }}">
+    <meta name="twitter:image" content="{{ $seo['twitterImage'] }}">
+
+    @foreach ($seo['schemas'] as $schema)
+        <script type="application/ld+json">{!! json_encode($schema, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT) !!}</script>
+    @endforeach
+
+    @include('layouts.partials.tracking-head')
 
     <!-- WooCommerce -->
     <link rel="stylesheet"
@@ -211,6 +224,8 @@
         class="body_filled article_style_stretch scheme_original top_panel_show top_panel_above sidebar_hide">
 
 @endif
+
+@include('layouts.partials.tracking-body')
 
 <div id="page_preloader"></div>
 

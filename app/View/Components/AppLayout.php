@@ -7,6 +7,13 @@ use Illuminate\View\View;
 
 class AppLayout extends Component
 {
+    public array $seo;
+
+    public function __construct(array $seo = [])
+    {
+        $this->seo = \App\Support\SeoMeta::defaults($seo);
+    }
+
     /**
      * Get the view / contents that represents the component.
      */

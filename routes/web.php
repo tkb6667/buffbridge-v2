@@ -12,8 +12,12 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\CustomerAuthController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\OrderHistoryController;
+use App\Http\Controllers\TechnicalSeoController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+
+Route::get('/sitemap.xml', [TechnicalSeoController::class, 'sitemap'])->name('sitemap');
+Route::get('/robots.txt', [TechnicalSeoController::class, 'robots'])->name('robots');
 
 Route::get('/book-appointment', [AppointmentController::class, 'create'])
     ->name('appointments.create');
@@ -29,6 +33,9 @@ Route::post('/book-appointment', [AppointmentController::class, 'store'])
 */
 
 Route::get('/blog', [PostController::class, 'index'])->name('posts.index');
+
+Route::get('/blog/live-search', [PostController::class, 'liveSearch'])
+    ->name('posts.live-search');
 
 Route::get('/posts/{post:slug}', [PostController::class, 'show'])
     ->name('posts.show');

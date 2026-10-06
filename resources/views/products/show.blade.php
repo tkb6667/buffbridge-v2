@@ -1,4 +1,4 @@
-<x-guest-layout>
+<x-guest-layout :seo="$seo">
 
 
 
