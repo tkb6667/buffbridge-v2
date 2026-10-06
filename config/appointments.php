@@ -1,6 +1,8 @@
 <?php
 
 return [
+    'timezone' => 'Asia/Bangkok',
+
     'booking_weekdays' => [2, 3, 4, 5, 6], // Tuesday through Saturday (ISO-8601)
 
     'booking_times' => [

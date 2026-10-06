@@ -13,7 +13,9 @@ class AppointmentSchedule
     {
         $dates = collect();
 
-        $firstDate = today()->startOfDay();
+        $firstDate = Carbon::today(
+            config('appointments.timezone')
+        );
         $lastDate = $this->bookingWindowEnd();
 
         $overrides = AppointmentScheduleOverride::query()
@@ -91,7 +93,8 @@ class AppointmentSchedule
         try {
             $bookingDate = Carbon::createFromFormat(
                 'Y-m-d',
-                $date
+                $date,
+                config('appointments.timezone')
             )->startOfDay();
         } catch (\Throwable) {
             return collect();
@@ -127,7 +130,8 @@ class AppointmentSchedule
         try {
             $bookingDate = Carbon::createFromFormat(
                 'Y-m-d',
-                $date
+                $date,
+                config('appointments.timezone')
             )->startOfDay();
         } catch (\Throwable) {
             return false;
@@ -150,8 +154,11 @@ class AppointmentSchedule
             )
             && Carbon::createFromFormat(
                 'Y-m-d H:i',
-                $date.' '.$time
-            )->isFuture();
+                $date.' '.$time,
+                config('appointments.timezone')
+            )->isAfter(
+                Carbon::now(config('appointments.timezone'))
+            );
     }
 
     private function isOpenDate(
@@ -176,6 +183,10 @@ class AppointmentSchedule
     private function configuredTimesForDate(
         string $date
     ): Collection {
+        $now = Carbon::now(
+            config('appointments.timezone')
+        );
+
         return collect(
             config('appointments.booking_times', [])
         )
@@ -183,8 +194,9 @@ class AppointmentSchedule
                 fn (string $time) =>
                     Carbon::createFromFormat(
                         'Y-m-d H:i',
-                        $date.' '.$time
-                    )->isFuture()
+                        $date.' '.$time,
+                        config('appointments.timezone')
+                    )->isAfter($now)
             )
             ->values();
     }
@@ -194,7 +206,9 @@ class AppointmentSchedule
     ): bool {
         $bookingDate = $date->copy()->startOfDay();
 
-        return ! $bookingDate->isBefore(today())
+        return ! $bookingDate->isBefore(
+            Carbon::today(config('appointments.timezone'))
+        )
             && ! $bookingDate->isAfter(
                 $this->bookingWindowEnd()
             );
@@ -210,7 +224,7 @@ class AppointmentSchedule
             )
         );
 
-        return today()
+        return Carbon::today(config('appointments.timezone'))
             ->addMonthsNoOverflow($months)
             ->startOfDay();
     }

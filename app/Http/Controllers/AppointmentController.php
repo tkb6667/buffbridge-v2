@@ -31,8 +31,12 @@ class AppointmentController extends Controller
 
     public function availableSlots(Request $request, AppointmentSchedule $schedule): JsonResponse
     {
+        $appointmentToday = now(
+            config('appointments.timezone')
+        )->toDateString();
+
         $validated = $request->validate([
-            'date' => ['required', 'date_format:Y-m-d', 'after_or_equal:today'],
+            'date' => ['required', 'date_format:Y-m-d', 'after_or_equal:'.$appointmentToday],
         ]);
 
         $availableTimes = $schedule->availableTimes($validated['date']);
@@ -59,13 +63,17 @@ class AppointmentController extends Controller
 
     public function store(Request $request, AppointmentSchedule $schedule): RedirectResponse
     {
+        $appointmentToday = now(
+            config('appointments.timezone')
+        )->toDateString();
+
         $validated = $request->validate([
             'appointment_type_id' => [
                 'required',
                 'integer',
                 Rule::exists('appointment_types', 'id')->where('active', true),
             ],
-            'appointment_date' => ['required', 'date_format:Y-m-d', 'after_or_equal:today'],
+            'appointment_date' => ['required', 'date_format:Y-m-d', 'after_or_equal:'.$appointmentToday],
             'appointment_time' => ['required', 'date_format:H:i'],
             'customer_name' => ['required', 'string', 'max:255'],
             'phone' => ['required', 'string', 'max:50'],
