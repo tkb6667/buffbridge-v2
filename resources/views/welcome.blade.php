@@ -720,6 +720,33 @@
 
         }
 
+        .buffbridge-home .bb-action-button {
+            width: 34px !important;
+            height: 34px !important;
+            display: inline-flex !important;
+            align-items: center;
+            justify-content: center;
+            padding: 0 !important;
+            border: 0 !important;
+            background: transparent !important;
+            color: #111 !important;
+        }
+
+        .buffbridge-home .bb-action-button svg {
+            width: 17px;
+            height: 17px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 1.7;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .buffbridge-home .bb-action-disabled {
+            opacity: .28;
+            cursor: default;
+        }
+
 
 
         .buffbridge-home .bb-detail-button,
@@ -942,6 +969,7 @@
 
 
 
+            .buffbridge-home .bb-action-button,
             .buffbridge-home .bb-detail-button,
 
             .buffbridge-home .bb-more {
@@ -1076,6 +1104,7 @@
 
 
 
+            .buffbridge-home .bb-action-button,
             .buffbridge-home .bb-detail-button,
 
             .buffbridge-home .bb-more {
@@ -1763,27 +1792,22 @@
 
                                         </button>
 
+                                    @else
+
+                                        <span
+                                            class="bb-action-button bb-action-disabled"
+                                            title="Out of stock"
+                                        >
+                                            <svg viewBox="0 0 24 24">
+                                                <circle cx="9" cy="20" r="1.5"/>
+                                                <circle cx="18" cy="20" r="1.5"/>
+                                                <path d="M3 4h2l2.2 10.2a2 2 0 0 0 2 1.6h8.4a2 2 0 0 0 2-1.6L21 8H6"/>
+                                            </svg>
+                                        </span>
+
 
 
                                     @endif
-
-
-
-
-
-                                    <a
-
-                                        href="{{ route('products.show', $product->id) }}"
-
-                                        class="bb-detail-button"
-
-                                        aria-label="View {{ $product->name }}"
-
-                                    >
-
-                                        ♡
-
-                                    </a>
 
 
 
@@ -1799,7 +1823,7 @@
 
                                     >
 
-                                        ···
+                                        →
 
                                     </a>
 
@@ -2055,27 +2079,22 @@
 
                                             </button>
 
+                                        @else
+
+                                            <span
+                                                class="bb-action-button bb-action-disabled"
+                                                title="Out of stock"
+                                            >
+                                                <svg viewBox="0 0 24 24">
+                                                    <circle cx="9" cy="20" r="1.5"/>
+                                                    <circle cx="18" cy="20" r="1.5"/>
+                                                    <path d="M3 4h2l2.2 10.2a2 2 0 0 0 2 1.6h8.4a2 2 0 0 0 2-1.6L21 8H6"/>
+                                                </svg>
+                                            </span>
+
 
 
                                         @endif
-
-
-
-
-
-                                        <a
-
-                                            href="{{ route('products.show', $product->id) }}"
-
-                                            class="bb-detail-button"
-
-                                            aria-label="View {{ $product->name }}"
-
-                                        >
-
-                                            ♡
-
-                                        </a>
 
 
 
@@ -2091,7 +2110,7 @@
 
                                         >
 
-                                            ···
+                                            →
 
                                         </a>
 
@@ -2365,27 +2384,22 @@
 
                                                 </button>
 
+                                            @else
+
+                                                <span
+                                                    class="bb-action-button bb-action-disabled"
+                                                    title="Out of stock"
+                                                >
+                                                    <svg viewBox="0 0 24 24">
+                                                        <circle cx="9" cy="20" r="1.5"/>
+                                                        <circle cx="18" cy="20" r="1.5"/>
+                                                        <path d="M3 4h2l2.2 10.2a2 2 0 0 0 2 1.6h8.4a2 2 0 0 0 2-1.6L21 8H6"/>
+                                                    </svg>
+                                                </span>
+
 
 
                                             @endif
-
-
-
-
-
-                                            <a
-
-                                                href="{{ route('products.show', $product->id) }}"
-
-                                                class="bb-detail-button"
-
-                                                aria-label="View {{ $product->name }}"
-
-                                            >
-
-                                                ♡
-
-                                            </a>
 
 
 
@@ -2401,7 +2415,7 @@
 
                                             >
 
-                                                ···
+                                                →
 
                                             </a>
 

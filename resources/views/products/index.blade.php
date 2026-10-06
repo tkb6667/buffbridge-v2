@@ -1695,28 +1695,10 @@
 
                                             <a
                                                 href="{{ route('products.show',$product->id) }}"
-                                                class="bb-action-button"
-                                                title="View product"
-                                            >
-
-                                                <svg viewBox="0 0 24 24">
-                                                    <path d="M12 21s-7-4.35-7-10a4 4 0 0 1 7-2.65A4 4 0 0 1 19 11c0 5.65-7 10-7 10Z"/>
-                                                </svg>
-
-                                            </a>
-
-                                            <a
-                                                href="{{ route('products.show',$product->id) }}"
                                                 class="bb-action-button bb-action-more"
                                                 title="Product details"
                                             >
-
-                                                <svg viewBox="0 0 24 24">
-                                                    <circle cx="5" cy="12" r="1"/>
-                                                    <circle cx="12" cy="12" r="1"/>
-                                                    <circle cx="19" cy="12" r="1"/>
-                                                </svg>
-
+                                                →
                                             </a>
 
                                         </div>
