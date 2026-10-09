@@ -23,7 +23,7 @@
                         </div>
 
                         <div class="bb-footer-brand-sub">
-                            CUSTOM CREW
+                            CUSTOM
                         </div>
 
                         <div class="bb-footer-brand-jp">
@@ -221,7 +221,7 @@
 
                         <p>
                             <a href="tel:+66902998211">
-                                +66 90 299 8211
+                                +66 65 782 9599
                             </a>
                         </p>
                     </div>
@@ -291,7 +291,7 @@
 
             <div class="bb-footer-copyright">
                 © {{ date('Y') }}
-                <strong>BUFFBRIDGE CUSTOM CREW.</strong>
+                <strong>BUFFBRIDGE CUSTOM .</strong>
                 ALL RIGHTS RESERVED.
             </div>
 

@@ -2584,6 +2584,14 @@
 
         }
 
+        /* Prevent iOS Safari auto-zoom on review inputs */
+@media (max-width: 600px) {
+    .bbpd-review-form textarea,
+    .bbpd-review-form select {
+        font-size: 16px !important;
+    }
+}
+
     </style>
 
 

@@ -4,7 +4,7 @@
 
     <section class="bb-contact-hero">
         <div class="bb-contact-shell bb-contact-hero-inner">
-            <div class="bb-eyebrow">BUFFBRIDGE CUSTOM CREW</div>
+            <div class="bb-eyebrow">BUFFBRIDGE CUSTOM</div>
 
             <h1>CONTACT <span>US</span></h1>
 
@@ -89,7 +89,7 @@
                                 href="tel:+66902998211"
                                 class="bb-contact-item-value"
                             >
-                                +66 90 299 8211
+                                +66 65 782 9599
                             </a>
                         </div>
                     </div>

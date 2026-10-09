@@ -1,21 +1,3 @@
-@php
-    $appointmentWeekOptions = [];
-
-    foreach (collect($availableDates)->values()->chunk(7) as $weekIndex => $weekDates) {
-        if ($weekDates->isEmpty()) {
-            continue;
-        }
-
-        $firstTimestamp = strtotime($weekDates->first()['date']);
-        $lastTimestamp = strtotime($weekDates->last()['date']);
-
-        $appointmentWeekOptions[(string) $weekIndex] =
-            strtoupper(date('d M', $firstTimestamp))
-            . ' - '
-            . strtoupper(date('d M Y', $lastTimestamp));
-    }
-@endphp
-
 <x-guest-layout>
     <x-slot name="style">
         <style>
@@ -211,7 +193,7 @@
             .bb-booking-card {
                 position: relative;
                 min-height: 330px;
-                padding: 26px 28px 23px;
+                padding: 22px 25px 20px;
                 background: #fff;
                 border: 1px solid var(--line);
             }
@@ -236,7 +218,7 @@
             }
 
             .bb-step-heading {
-                margin-bottom: 20px;
+                margin-bottom: 14px;
             }
 
             .bb-step-kicker {
@@ -369,119 +351,7 @@
                 color: #111 !important;
             }
 
-            /* WEEK DROPDOWN */
-            .bb-week-selector {
-                margin-bottom: 14px;
-            }
-
-            .bb-week-selector .bb-field-label {
-                margin-bottom: 7px;
-            }
-
-            .bb-week-dropdown {
-                width: 100%;
-                max-width: 390px;
-            }
-
-            .bb-date-section {
-                margin-bottom: 22px;
-            }
-
-            /* DATE CARDS */
-            .bb-date-options {
-                display: grid;
-                grid-template-columns: repeat(7, minmax(0, 1fr));
-                gap: 7px;
-            }
-
-            .bb-date-button {
-                position: relative;
-                min-width: 0;
-                min-height: 112px;
-                padding: 12px 5px 10px;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                background: #fff !important;
-                border: 1px solid #d7d7d7 !important;
-                border-radius: 0 !important;
-                color: #111 !important;
-                cursor: pointer;
-                overflow: hidden;
-            }
-
-            .bb-date-button:hover:not(:disabled) {
-                border-color: #888 !important;
-            }
-
-            .bb-date-button.active {
-                border-color: #111 !important;
-                box-shadow: inset 0 -4px 0 var(--yellow) !important;
-            }
-
-            .bb-date-button.active::before {
-                content: "";
-                position: absolute;
-                top: 0;
-                left: 0;
-                right: 0;
-                height: 3px;
-                background: var(--yellow);
-            }
-
-            .bb-date-day {
-                margin-bottom: 5px;
-                color: #999;
-                font-size: 7px;
-                font-weight: 900;
-                letter-spacing: 1px;
-            }
-
-            .bb-date-number {
-                color: #111;
-                font-size: 25px;
-                line-height: 1;
-                font-weight: 900;
-            }
-
-            .bb-date-month {
-                margin-top: 3px;
-                color: #555;
-                font-size: 7px;
-                font-weight: 900;
-                letter-spacing: .8px;
-            }
-
-            .bb-date-status {
-                margin-top: 9px;
-                color: #8b6c00;
-                font-size: 6.5px;
-                font-weight: 900;
-                letter-spacing: .7px;
-            }
-
-            .bb-date-button:disabled {
-                background: #f1f1f1 !important;
-                border-color: #e0e0e0 !important;
-                cursor: not-allowed;
-                opacity: 1;
-            }
-
-            .bb-date-button:disabled .bb-date-day,
-            .bb-date-button:disabled .bb-date-number,
-            .bb-date-button:disabled .bb-date-month,
-            .bb-date-button:disabled .bb-date-status {
-                color: #aaa !important;
-            }
-
-            .bb-date-button[data-status="full"] .bb-date-status {
-                color: #999 !important;
-            }
-
-            .bb-date-hidden {
-                display: none !important;
-            }
+            .bb-date-section { margin-bottom: 18px; }
 
             /* TIME */
             .bb-time-section {
@@ -513,24 +383,69 @@
             }
 
             .bb-time-button {
-                min-height: 48px;
+                position: relative;
+                min-height: 44px;
                 padding: 0 8px;
                 background: #fff !important;
                 border: 1px solid #d8d8d8 !important;
                 border-radius: 0 !important;
                 color: #111 !important;
+                box-shadow: none !important;
                 font-size: 10px;
                 font-weight: 900;
                 cursor: pointer;
             }
 
-            .bb-time-button:hover {
-                border-color: #888 !important;
+            .bb-time-button:hover:not(.active) {
+                background: #f7f7f7 !important;
+                border-color: #d8d8d8 !important;
             }
 
-            .bb-time-button.active {
-                background: var(--yellow) !important;
-                border-color: #111 !important;
+            .bb-time-button.active,
+            .bb-time-button.active:hover,
+            .bb-time-button.active:focus {
+                background: #fff !important;
+                border: 1.5px solid #111 !important;
+                color: #111 !important;
+                box-shadow: none !important;
+                outline: 0;
+            }
+
+            .bb-time-button.active::after {
+                content: '';
+                position: absolute;
+                left: 50%;
+                bottom: 5px;
+                width: 14px;
+                height: 2px;
+                background: #111;
+                transform: translateX(-50%);
+            }
+
+            .bb-selection-bar {
+                margin-top: 12px;
+                padding: 10px 12px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 12px;
+                background: #f7f7f7;
+                border: 1px solid #e1e1e1;
+                color: #111;
+            }
+
+            .bb-selection-bar-label {
+                flex: 0 0 auto;
+                font-size: 8px;
+                font-weight: 900;
+                letter-spacing: .8px;
+            }
+
+            .bb-selection-bar-value {
+                min-width: 0;
+                font-size: 10px;
+                font-weight: 800;
+                text-align: right;
             }
 
             .bb-time-empty {
@@ -826,10 +741,6 @@
                     width: calc(100% - 30px);
                 }
 
-                .bb-date-options {
-                    grid-template-columns: repeat(4, 1fr);
-                }
-
                 .bb-time-options {
                     grid-template-columns: repeat(3, 1fr);
                 }
@@ -882,17 +793,7 @@
                     padding: 8px 11px;
                 }
 
-                .bb-date-options {
-                    grid-template-columns: repeat(2, 1fr);
-                }
 
-                .bb-date-button {
-                    min-height: 100px;
-                }
-
-                .bb-date-number {
-                    font-size: 23px;
-                }
 
                 .bb-time-options {
                     grid-template-columns: repeat(2, 1fr);
@@ -935,6 +836,51 @@
                     gap: 9px;
                 }
             }
+
+            /* Compact read-only shop calendar */
+            .bb-shop-calendar { width: min(100%, 430px); padding: 16px; margin: 0 0 24px; background: #fff; border: 1px solid #e5e5e5; }
+            .bb-shop-calendar-head { display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:13px; }
+            .bb-shop-calendar-title { color:#111; font-size:13px; font-weight:900; text-align:center; }
+            .bb-shop-calendar-nav { display:grid; place-items:center; width:34px; height:34px; padding:0; border:1px solid #e7e7e7; background:white; color:#111; cursor:pointer; }
+            .bb-shop-calendar-nav:disabled { color:#ccc; cursor:default; }
+            .bb-shop-calendar-days, .bb-shop-calendar-grid { display:grid; grid-template-columns:repeat(7,minmax(0,1fr)); gap:3px; }
+            .bb-shop-calendar-days { margin-bottom:6px; }
+            .bb-shop-calendar-days span { text-align:center; font-size:9px; font-weight:800; color:#888; }
+            .bb-shop-calendar-cell { position:relative; display:flex; align-items:center; justify-content:center; min-height:38px; font-size:12px; font-weight:700; color:#111!important; border-radius:3px; background:#fff!important; box-shadow:none!important; }
+            .bb-shop-calendar-cell.is-closed { background:#f0f0f0!important; color:#aaa!important; }
+            .bb-shop-calendar-cell.is-full { background:#f0f0f0!important; color:#aaa!important; }
+            .bb-shop-calendar-cell.is-full::after { content:''; position:absolute; width:4px; height:4px; bottom:3px; border-radius:50%; background:#888; }
+            .bb-shop-calendar-cell.is-outside { color:#ccc; }
+            .bb-shop-calendar-legend { display:flex; flex-wrap:wrap; gap:10px; margin-top:8px; font-size:10px; color:#777; }
+            .bb-shop-calendar-legend span { display:inline-flex; align-items:center; gap:5px; }
+            .bb-shop-calendar-legend i { width:9px; height:9px; display:inline-block; background:#fff; border:1px solid #ddd; border-radius:2px; }
+            .bb-shop-calendar-legend .closed { background:#f0f0f0; }
+            .bb-shop-calendar-legend .full { position:relative; background:#f0f0f0; }
+            .bb-shop-calendar-legend .full::after { content:''; position:absolute; width:3px; height:3px; right:2px; bottom:1px; border-radius:50%; background:#888; }
+            @media (max-width:600px) { .bb-shop-calendar { padding:12px; } .bb-shop-calendar-cell { min-height:33px; } }
+            /* Minimal two-column opening calendar: display only */
+            .bb-shop-opening { margin-bottom: 8px; }
+            .bb-shop-opening-heading { margin:0 0 10px!important; color:#111!important; font-size:17px!important; font-weight:900; letter-spacing:.2px; }
+            .bb-shop-opening-layout { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); align-items:start; gap:18px; }
+            .bb-shop-calendar { width:100%; margin:0; padding:10px; border:1px solid #e0e0e0; border-radius:7px; }
+            .bb-shop-calendar-head { margin-bottom:7px; }
+            .bb-shop-calendar-nav, .bb-shop-calendar-nav:hover:not(:disabled) { width:34px; height:34px; border:0!important; background:transparent!important; color:#111!important; box-shadow:none!important; font-size:27px; font-weight:400; line-height:1; }
+            .bb-shop-calendar-nav:hover:not(:disabled) { opacity:.55; }
+            .bb-shop-calendar-nav:disabled { background:transparent!important; border:0!important; color:#bbb!important; opacity:.5; }
+            .bb-shop-calendar-cell { min-height:36px; border:0!important; padding:0; font-family:inherit; cursor:default; }
+            button.bb-shop-calendar-cell.is-open { background:#fff!important; color:#111!important; border:0!important; box-shadow:none!important; cursor:pointer; }
+            button.bb-shop-calendar-cell.is-open:hover:not(.is-selected) { background:#f7f7f7!important; border:0!important; box-shadow:none!important; }
+            button.bb-shop-calendar-cell.is-open.is-selected, button.bb-shop-calendar-cell.is-open.is-selected:hover, button.bb-shop-calendar-cell.is-open.is-selected:focus { background:#fff!important; border:1.5px solid #111!important; color:#111!important; box-shadow:none!important; font-weight:900; }
+            button.bb-shop-calendar-cell.is-open.is-selected::before { content:''; position:absolute; left:50%; bottom:4px; width:10px; height:2px; background:#111; transform:translateX(-50%); }
+            .bb-shop-calendar-cell:focus-visible { outline:0; }
+            .bb-shop-info { padding:9px 8px; }
+            .bb-shop-info h3 { margin:0 0 15px!important; color:#111!important; font-size:17px!important; font-weight:900; }
+            .bb-shop-info-item { display:flex; align-items:center; gap:11px; margin-bottom:12px; }
+            .bb-shop-info-badge { display:flex; align-items:center; justify-content:center; flex:0 0 64px; width:64px; height:25px; border:1px solid #ddd; border-radius:3px; background:#fff; color:#111; font-size:9px; font-weight:900; letter-spacing:.5px; }
+            .bb-shop-info-badge.is-closed, .bb-shop-info-badge.is-full { background:#f0f0f0; color:#666; }
+            .bb-shop-info-item p { margin:0!important; font-size:11px!important; color:#777!important; line-height:1.45; }
+            .bb-shop-booking-title { margin:0 0 10px; padding-top:14px; border-top:1px solid #e6e6e6; }
+            @media(max-width:700px) { .bb-shop-opening-layout { grid-template-columns:1fr; gap:10px; } .bb-shop-info { padding:9px 2px 0; } .bb-shop-info h3 { margin-bottom:14px!important; } .bb-shop-info-item { margin-bottom:13px; } }
         </style>
     </x-slot>
 
@@ -944,7 +890,7 @@
             <div class="bb-booking-hero-inner">
                 <div>
                     <div class="bb-booking-eyebrow">
-                        BUFFBRIDGE CUSTOM CREW
+                        BUFFBRIDGE CUSTOM
                     </div>
 
                     <h1>
@@ -1132,63 +1078,33 @@
 
                             <div class="bb-date-section">
 
-                                <div class="bb-week-selector">
-                                    <div class="bb-field-label">SELECT WEEK</div>
 
-                                    <x-bb-dropdown
-                                        name="appointment_week"
-                                        :options="$appointmentWeekOptions"
-                                        value="0"
-                                        :placeholder="$appointmentWeekOptions['0'] ?? 'SELECT WEEK'"
-                                        class="bb-week-dropdown"
-                                    />
+                                {{-- Select the booking date directly from the opening calendar. --}}
+                                <div class="bb-shop-opening">
+                                  <h3 class="bb-shop-opening-heading">SELECT BOOKING DATE <span class="bb-required">*</span></h3>
+                                  <div class="bb-shop-opening-layout">
+                                <div class="bb-shop-calendar" id="bbShopCalendar" aria-label="Select booking date">
+                                    <div class="bb-shop-calendar-head">
+                                        <button type="button" class="bb-shop-calendar-nav" id="bbShopPrev" aria-label="Previous month">&#8249;</button>
+                                        <span class="bb-shop-calendar-title" id="bbShopMonth" aria-live="polite"></span>
+                                        <button type="button" class="bb-shop-calendar-nav" id="bbShopNext" aria-label="Next month">&#8250;</button>
+                                    </div>
+                                    <div class="bb-shop-calendar-days" aria-hidden="true">
+                                        <span>MON</span><span>TUE</span><span>WED</span><span>THU</span><span>FRI</span><span>SAT</span><span>SUN</span>
+                                    </div>
+                                    <div class="bb-shop-calendar-grid" id="bbShopDays" aria-label="Select an available appointment date"></div>
+                                    <div class="bb-shop-calendar-legend">
+                                        <span><i></i>OPEN</span><span><i class="closed"></i>CLOSED</span><span><i class="full"></i>FULL</span>
+                                    </div>
                                 </div>
 
-                                <div class="bb-field-label">
-                                    AVAILABLE DATE
-                                    <span class="bb-required">*</span>
-                                </div>
-
-                                <div
-                                    class="bb-date-options"
-                                    id="appointmentDateOptions"
-                                >
-                                    @foreach($availableDates as $dateOption)
-                                        @php
-                                            $dateTimestamp = strtotime($dateOption['date']);
-                                        @endphp
-
-                                        <button
-                                            type="button"
-                                            class="bb-date-button {{
-                                                old('appointment_date') === $dateOption['date'] &&
-                                                $dateOption['status'] === 'available'
-                                                    ? 'active'
-                                                    : ''
-                                            }}"
-                                            data-date="{{ $dateOption['date'] }}"
-                                            data-status="{{ $dateOption['status'] }}"
-                                            data-index="{{ $loop->index }}"
-                                            data-week="{{ intdiv($loop->index, 7) }}"
-                                            @disabled($dateOption['status'] !== 'available')
-                                        >
-                                            <span class="bb-date-day">
-                                                {{ strtoupper(date('D', $dateTimestamp)) }}
-                                            </span>
-
-                                            <span class="bb-date-number">
-                                                {{ date('d', $dateTimestamp) }}
-                                            </span>
-
-                                            <span class="bb-date-month">
-                                                {{ strtoupper(date('M', $dateTimestamp)) }}
-                                            </span>
-
-                                            <span class="bb-date-status">
-                                                {{ strtoupper($dateOption['status']) }}
-                                            </span>
-                                        </button>
-                                    @endforeach
+                                  <div class="bb-shop-info">
+                                    <h3>SHOP INFORMATION</h3>
+                                    <div class="bb-shop-info-item"><span class="bb-shop-info-badge">OPEN</span><p>สามารถเลือกวันที่เพื่อจองได้</p></div>
+                                    <div class="bb-shop-info-item"><span class="bb-shop-info-badge is-closed">CLOSED</span><p>ไม่สามารถจองในวันนี้ได้</p></div>
+                                    <div class="bb-shop-info-item"><span class="bb-shop-info-badge is-full">FULL</span><p>ไม่มีเวลาว่างให้จองแล้ว</p></div>
+                                  </div>
+                                  </div>
                                 </div>
                             </div>
 
@@ -1231,6 +1147,13 @@
                                     id="appointmentSlotMessage"
                                     role="status"
                                 ></p>
+
+                                <div class="bb-selection-bar" aria-live="polite">
+                                    <span class="bb-selection-bar-label">YOUR SELECTION</span>
+                                    <span class="bb-selection-bar-value" id="appointmentSelectionValue">
+                                        SELECT A DATE
+                                    </span>
+                                </div>
                             </div>
 
                             <p class="bb-step-error" id="step2Error">
@@ -1462,6 +1385,7 @@
                 const slotMessage = document.getElementById('appointmentSlotMessage');
                 const timeStatus = document.getElementById('appointmentTimeStatus');
                 const timeOptions = document.getElementById('appointmentTimeOptions');
+                const selectionValue = document.getElementById('appointmentSelectionValue');
 
                 const dialog = document.getElementById('appointmentConfirmation');
 
@@ -1476,14 +1400,6 @@
 
                 const bookingSucceeded = @json(session('success') !== null);
 
-                const dateButtons = Array.from(
-                    document.querySelectorAll('.bb-date-button')
-                );
-
-                const pageSize = 7;
-                const totalWeeks = Math.ceil(dateButtons.length / pageSize);
-
-                let currentWeek = 0;
                 let confirmed = false;
                 let slotRequestId = 0;
 
@@ -1513,6 +1429,26 @@
                         sessionStorage.removeItem(dateKey);
                         sessionStorage.removeItem(slotKey);
                     } catch (error) {}
+                }
+
+                function updateSelectionBar() {
+                    if (!date.value) {
+                        selectionValue.textContent = 'SELECT A DATE';
+                        return;
+                    }
+
+                    const selectedDate = parseLocalDate(date.value);
+                    const dateText = [
+                        String(selectedDate.getDate()).padStart(2, '0'),
+                        selectedDate.toLocaleDateString('en-US', {month: 'short'}).toUpperCase(),
+                        selectedDate.getFullYear()
+                    ].join(' ');
+
+                    const timeText = slot.value
+                        ? slot.selectedOptions[0]?.textContent?.trim() || slot.value
+                        : 'SELECT A TIME';
+
+                    selectionValue.textContent = `${dateText}  |  ${timeText}`;
                 }
 
                 /* STEP */
@@ -1577,84 +1513,19 @@
                     });
                 });
 
-                /* WEEK */
-                function renderWeek(weekIndex = currentWeek) {
-                    let index = Number(weekIndex);
-
-                    if (Number.isNaN(index) || index < 0) {
-                        index = 0;
-                    }
-
-                    if (totalWeeks > 0 && index >= totalWeeks) {
-                        index = totalWeeks - 1;
-                    }
-
-                    currentWeek = index;
-
-                    dateButtons.forEach(button => {
-                        button.classList.toggle(
-                            'bb-date-hidden',
-                            Number(button.dataset.week) !== currentWeek
-                        );
-                    });
-                }
-
-                function openWeekForDate(value) {
-                    if (!value) {
-                        renderWeek(0);
-                        return;
-                    }
-
-                    const button = dateButtons.find(
-                        item => item.dataset.date === value
+                /* DATE: calendar selection uses the original hidden field and slot API. */
+                document.addEventListener('bb-calendar:date', event => {
+                    const value = event.detail?.date;
+                    const option = Array.from(date.options).find(
+                        item => item.value === value && !item.disabled
                     );
-
-                    renderWeek(button ? Number(button.dataset.week) : 0);
-                }
-
-                document.addEventListener('bb-dropdown:change', event => {
-                    const detail = event.detail || {};
-
-                    if (detail.name !== 'appointment_week') {
-                        return;
-                    }
-
-                    const selectedWeek = Number(detail.value);
-
-                    if (!Number.isNaN(selectedWeek)) {
-                        renderWeek(selectedWeek);
-                    }
-                });
-
-                /* DATE */
-                dateButtons.forEach(button => {
-                    button.addEventListener('click', () => {
-                        if (
-                            button.disabled ||
-                            button.dataset.status !== 'available'
-                        ) {
-                            return;
-                        }
-
-                        dateButtons.forEach(item => {
-                            item.classList.remove('active');
-                        });
-
-                        button.classList.add('active');
-
-                        date.value = button.dataset.date;
-
-                        slot.dataset.oldValue = '';
-                        saveStorage(dateKey, date.value);
-                        saveStorage(slotKey, '');
-
-                        document
-                            .getElementById('step2Error')
-                            .classList
-                            .remove('show');
-
-                        loadSlots();
-                    });
+                    if (!option) return;
+                    date.value = value;
+                    slot.dataset.oldValue = '';
+                    saveStorage(dateKey, value);
+                    saveStorage(slotKey, '');
+                    document.getElementById('step2Error').classList.remove('show');
+                    loadSlots();
                 });
 
                 /* SLOT */
@@ -1663,6 +1534,7 @@
                     const requestedDate = date.value;
                     slot.disabled = true;
                     slot.value = '';
+                    updateSelectionBar();
 
                     slot.innerHTML =
                         '<option value="">Loading...</option>';
@@ -1769,6 +1641,7 @@
                                 slot.dataset.oldValue = item.id;
 
                                 saveStorage(slotKey, item.id);
+                                updateSelectionBar();
 
                                 slotMessage.textContent = '';
 
@@ -1780,6 +1653,8 @@
 
                             timeOptions.appendChild(button);
                         });
+
+                        updateSelectionBar();
 
                         if (restoreSlot && !slot.value) {
                             saveStorage(slotKey, '');
@@ -2032,52 +1907,26 @@
                 }
 
                 async function restoreDateAndSlot() {
-                    const storedDate =
-                        date.value ||
-                        getStorage(dateKey);
-
-                    if (!storedDate) {
-                        openWeekForDate('');
-                        return;
-                    }
-
-                    const button = dateButtons.find(
-                        item => item.dataset.date === storedDate
+                    const storedDate = date.value || getStorage(dateKey);
+                    const option = Array.from(date.options).find(
+                        item => item.value === storedDate && !item.disabled
                     );
-
-                    if (
-                        !button ||
-                        button.disabled ||
-                        button.dataset.status !== 'available'
-                    ) {
+                    if (!option) {
                         date.value = '';
                         saveStorage(dateKey, '');
                         saveStorage(slotKey, '');
-                        openWeekForDate('');
+                        updateSelectionBar();
+                        document.dispatchEvent(new CustomEvent('bb-calendar:restore', {detail: {date: ''}}));
                         return;
                     }
-
                     date.value = storedDate;
-
-                    dateButtons.forEach(item => {
-                        item.classList.remove('active');
-                    });
-
-                    button.classList.add('active');
-
                     saveStorage(dateKey, storedDate);
-                    openWeekForDate(storedDate);
-
-                    const restoreSlot =
-                        slot.dataset.oldValue ||
-                        getStorage(slotKey);
-
-                    await loadSlots(restoreSlot);
+                    document.dispatchEvent(new CustomEvent('bb-calendar:restore', {detail: {date: storedDate}}));
+                    await loadSlots(slot.dataset.oldValue || getStorage(slotKey));
                 }
 
                 if (bookingSucceeded) {
                     clearBookingStorage();
-                    renderWeek();
                     showStep(1, false);
                 } else {
                     restoreService();
@@ -2094,6 +1943,97 @@
                     );
                 }
 
+            })();
+        </script>
+
+        <script>
+            (() => {
+                // Reuse Backend date statuses and existing booking form.
+                const dates = @json($availableDates);
+                const statuses = new Map(dates.map(item => [item.date, item.status]));
+                const months = [...new Set(dates.map(item => item.date.slice(0, 7)))].sort();
+                const monthLabel = document.getElementById('bbShopMonth');
+                const days = document.getElementById('bbShopDays');
+                const prev = document.getElementById('bbShopPrev');
+                const next = document.getElementById('bbShopNext');
+                let index = 0;
+                let selectedDate = '';
+
+                document.addEventListener('bb-calendar:restore', event => {
+                    selectedDate = event.detail?.date || '';
+                    if (selectedDate) {
+                        const monthIndex = months.indexOf(selectedDate.slice(0, 7));
+                        if (monthIndex >= 0) index = monthIndex;
+                    }
+                    render();
+                });
+
+                function syncSelectedDate() {
+                    days.querySelectorAll('button.bb-shop-calendar-cell.is-open').forEach(cell => {
+                        const isSelected = cell.dataset.date === selectedDate;
+                        cell.classList.toggle('is-selected', isSelected);
+                        cell.setAttribute('aria-pressed', String(isSelected));
+                    });
+                }
+
+                function render() {
+                    const key = months[index];
+                    days.replaceChildren();
+                    if (!key) {
+                        monthLabel.textContent = 'NO DATES AVAILABLE';
+                        prev.disabled = next.disabled = true;
+                        return;
+                    }
+                    const [year, month] = key.split('-').map(Number);
+                    monthLabel.textContent = new Date(year, month - 1, 1).toLocaleDateString('en-US', {month:'long', year:'numeric'}).toUpperCase();
+                    const firstWeekday = (new Date(year, month - 1, 1).getDay() + 6) % 7;
+                    for (let i = 0; i < firstWeekday; i++) {
+                        const blank = document.createElement('span');
+                        blank.className = 'bb-shop-calendar-cell';
+                        blank.setAttribute('aria-hidden', 'true');
+                        days.append(blank);
+                    }
+                    const count = new Date(year, month, 0).getDate();
+                    for (let day = 1; day <= count; day++) {
+                        const keyDate = `${year}-${String(month).padStart(2,'0')}-${String(day).padStart(2,'0')}`;
+                        const status = statuses.get(keyDate);
+                        const selectable = status === 'available';
+                        const cell = document.createElement(selectable ? 'button' : 'span');
+                        cell.className = 'bb-shop-calendar-cell';
+                        cell.dataset.date = keyDate;
+                        if (selectable) {
+                            cell.type = 'button';
+                            cell.classList.add('is-open');
+                            cell.setAttribute('aria-pressed', String(selectedDate === keyDate));
+                            cell.addEventListener('click', () => {
+                                selectedDate = keyDate;
+                                syncSelectedDate();
+                                document.dispatchEvent(new CustomEvent('bb-calendar:date', {
+                                    detail: {date: keyDate}
+                                }));
+                            });
+                        }
+                        if (status === 'closed') cell.classList.add('is-closed');
+                        else if (status === 'full') cell.classList.add('is-full');
+                        else if (status !== 'available') cell.classList.add('is-outside');
+                        cell.textContent = day;
+                        cell.title = `${keyDate}: ${status === 'available' ? 'OPEN' : status === 'closed' ? 'CLOSED' : status === 'full' ? 'FULL' : 'NOT AVAILABLE'}`;
+                        cell.setAttribute('aria-label', cell.title);
+                        days.append(cell);
+                    }
+                    syncSelectedDate();
+                    prev.disabled = index === 0;
+                    next.disabled = index === months.length - 1;
+                }
+                prev.addEventListener('click', () => { if (index > 0) { index--; render(); } });
+                next.addEventListener('click', () => { if (index < months.length - 1) { index++; render(); } });
+                const currentDate = document.getElementById('appointment_date')?.value || '';
+                let storedDate = '';
+                try { storedDate = sessionStorage.getItem('buffbridgeAppointmentDate') || ''; } catch (error) {}
+                selectedDate = currentDate || storedDate;
+                const initialMonth = months.indexOf(selectedDate.slice(0, 7));
+                if (initialMonth >= 0) index = initialMonth;
+                render();
             })();
         </script>
     </x-slot>

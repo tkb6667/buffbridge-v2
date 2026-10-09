@@ -53,7 +53,7 @@ $isAppointment = request()->is('book-appointment');
 
                 <div class="bb-brand-name">BUFFBRIDGE</div>
 
-                <div class="bb-brand-sub">CUSTOM CREW</div>
+                <div class="bb-brand-sub">CUSTOM</div>
 
                 <div class="bb-brand-jp">エアガンの収集家です。</div>
 

@@ -865,7 +865,7 @@
                         </h1>
 
                         <p class="bb-blog-subtitle">
-                            News, guides, updates and stories from Buffbridge Custom Crew.
+                            News, guides, updates and stories from Buffbridge Custom.
                         </p>
                     </div>
 

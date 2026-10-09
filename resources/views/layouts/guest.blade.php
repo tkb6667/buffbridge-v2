@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
@@ -299,7 +300,12 @@
             text: @json(session('success')),
             className: 'success',
             style: {
-                background: 'linear-gradient(to right, #00b09b, #96c93d)'
+                background: @json(session('success') === 'Review submitted successfully!' ? '#111111' : 'linear-gradient(to right, #00b09b, #96c93d)'),
+                ...( @json(session('success') === 'Review submitted successfully!') ? {
+                    color: '#ffffff',
+                    borderRadius: '0',
+                    borderLeft: '4px solid #f5a000'
+                } : {} )
             }
         }).showToast();
     @endif
