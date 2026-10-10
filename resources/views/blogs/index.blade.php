@@ -426,7 +426,15 @@
                 transition:transform .35s ease
             }
 
-            .bb-post-card:hover .bb-post-image img{
+            .bb-post-image img.is-crop-ready{
+                position:absolute;
+                max-width:none;
+                max-height:none;
+                object-fit:fill;
+                transform:translate(-50%,-50%)
+            }
+
+            .bb-post-card:hover .bb-post-image img:not([data-featured-thumbnail]){
                 transform:scale(1.035)
             }
 
@@ -807,7 +815,7 @@
                     gap:18px
                 }
 
-                .bb-post-image{aspect-ratio:16/9}
+                .bb-post-image{aspect-ratio:16/10}
                 .bb-post-body{padding:18px}
 
                 .bb-blog .bb-post-title{
@@ -1085,6 +1093,12 @@
                                                     src="{{ $post->featured_image_url }}"
                                                     alt="{{ $post->title }}"
                                                     loading="lazy"
+                                                    @if ($post->featured_image_crop_x !== null && $post->featured_image_crop_y !== null && $post->featured_image_crop_zoom !== null)
+                                                        data-featured-thumbnail
+                                                        data-crop-x="{{ $post->featured_image_crop_x }}"
+                                                        data-crop-y="{{ $post->featured_image_crop_y }}"
+                                                        data-crop-zoom="{{ $post->featured_image_crop_zoom }}"
+                                                    @endif
                                                 >
                                             @else
                                                 <div class="bb-post-placeholder">
@@ -1278,6 +1292,7 @@
             </div>
         </main>
 
+        <script src="{{ asset('js/blog-thumbnail-crop.js') }}"></script>
     </div>
 
 </x-guest-layout>

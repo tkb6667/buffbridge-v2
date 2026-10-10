@@ -8,13 +8,9 @@
 
     @php
 
-        $adminUrl = rtrim(env('APP_ADMIN_URL', ''), '/');
+        $productImages = $product->images->map(function ($image) {
 
-
-
-        $productImages = $product->images->map(function ($image) use ($adminUrl) {
-
-            return $adminUrl . '/storage/' . ltrim($image->image_path, '/');
+            return $image->url;
 
         });
 
@@ -3808,13 +3804,7 @@
 
                             $relatedImage = $relatedProduct->images->isNotEmpty()
 
-                                ? $adminUrl . '/storage/' . ltrim(
-
-                                    $relatedProduct->images->first()->image_path,
-
-                                    '/'
-
-                                )
+                                ? $relatedProduct->images->first()->url
 
                                 : null;
 

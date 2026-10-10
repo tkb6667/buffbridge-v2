@@ -483,17 +483,15 @@ class SeoMeta
 
     private static function productImage(Product $product): ?string
     {
-        $path = $product->images->first()?->image_path;
+        $imageUrl = $product->images->first()?->url;
 
-        if (! $path) {
+        if (! $imageUrl) {
             return null;
         }
 
-        $adminUrl = rtrim((string) config('app.admin_url'), '/');
-
-        return $adminUrl !== ''
-            ? $adminUrl.'/storage/'.ltrim($path, '/')
-            : asset('storage/'.ltrim($path, '/'));
+        return filter_var($imageUrl, FILTER_VALIDATE_URL)
+            ? $imageUrl
+            : url($imageUrl);
     }
 
     private static function schemaAvailability(?string $availability): ?string

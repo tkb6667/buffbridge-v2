@@ -56,7 +56,7 @@ return [
 
     'admin_url' => env('APP_ADMIN_URL'),
 
-    'blog_media_url' => env('BLOG_MEDIA_URL', env('APP_ADMIN_URL')),
+    'blog_media_url' => env('BLOG_MEDIA_URL'),
 
     'banner_media_url' => env('BANNER_MEDIA_URL'),
 

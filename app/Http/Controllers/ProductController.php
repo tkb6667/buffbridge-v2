@@ -227,23 +227,13 @@ class ProductController extends Controller
             ->limit(6)
             ->get();
 
-        $adminUrl = rtrim((string) env('APP_ADMIN_URL'), '/');
-
         return response()->json([
-            'products' => $products->map(function ($product) use ($adminUrl) {
+            'products' => $products->map(function ($product) {
                 $image = $product->images->first();
 
                 $price = $product->variants->isNotEmpty()
                     ? $product->variants->first()->price
                     : $product->price;
-
-                $imageUrl = null;
-
-                if ($image && $image->image_path) {
-                    $imageUrl = $adminUrl
-                        ? $adminUrl . '/storage/' . ltrim($image->image_path, '/')
-                        : asset('storage/' . ltrim($image->image_path, '/'));
-                }
 
                 return [
                     'id' => $product->id,
@@ -253,7 +243,7 @@ class ProductController extends Controller
                     'category' => $product->category?->name,
                     'price' => number_format((float) $price, 2),
                     'availability' => $product->availability,
-                    'image' => $imageUrl,
+                    'image' => $image?->url,
                     'url' => route('products.show', $product->id),
                 ];
             })->values(),

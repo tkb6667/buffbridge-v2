@@ -425,13 +425,19 @@
             .bb-selection-bar {
                 margin-top: 12px;
                 padding: 10px 12px;
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
                 gap: 12px;
                 background: #f7f7f7;
                 border: 1px solid #e1e1e1;
                 color: #111;
+            }
+
+            .bb-selection-item {
+                min-width: 0;
+                display: flex;
+                flex-direction: column;
+                gap: 4px;
             }
 
             .bb-selection-bar-label {
@@ -445,7 +451,7 @@
                 min-width: 0;
                 font-size: 10px;
                 font-weight: 800;
-                text-align: right;
+                text-align: left;
             }
 
             .bb-time-empty {
@@ -837,50 +843,45 @@
                 }
             }
 
-            /* Compact read-only shop calendar */
-            .bb-shop-calendar { width: min(100%, 430px); padding: 16px; margin: 0 0 24px; background: #fff; border: 1px solid #e5e5e5; }
-            .bb-shop-calendar-head { display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:13px; }
-            .bb-shop-calendar-title { color:#111; font-size:13px; font-weight:900; text-align:center; }
-            .bb-shop-calendar-nav { display:grid; place-items:center; width:34px; height:34px; padding:0; border:1px solid #e7e7e7; background:white; color:#111; cursor:pointer; }
-            .bb-shop-calendar-nav:disabled { color:#ccc; cursor:default; }
-            .bb-shop-calendar-days, .bb-shop-calendar-grid { display:grid; grid-template-columns:repeat(7,minmax(0,1fr)); gap:3px; }
+            /* Shared appointment calendar */
+            .bb-availability-panel { margin:20px 0 4px; padding:18px; background:#fff; border:1px solid #e2e2e2; border-radius:8px; }
+            .bb-availability-heading { display:flex; align-items:flex-start; justify-content:space-between; gap:16px; margin-bottom:14px; }
+            .bb-availability-heading h3 { margin:0!important; color:#111!important; font-size:16px!important; font-weight:900!important; letter-spacing:.2px; }
+            .bb-availability-heading p { margin:5px 0 0!important; color:#777!important; font-size:10px!important; line-height:1.45; }
+            .bb-calendar-context { flex:0 0 auto; padding:5px 8px; background:#fff8d7; border:1px solid #f0d262; color:#5f4b00; font-size:8px; font-weight:900; letter-spacing:.5px; }
+            .bb-shop-calendar { width:100%; margin:0; padding:14px; background:#fff; border:1px solid #e8e8e8; border-radius:6px; }
+            .bb-shop-calendar-head { display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:12px; }
+            .bb-shop-calendar-title { color:#111; font-size:13px; font-weight:900; text-align:center; letter-spacing:.3px; }
+            .bb-shop-calendar-nav, .bb-shop-calendar-nav:hover:not(:disabled) { display:grid; place-items:center; width:36px; height:36px; padding:0; border:1px solid #e2e2e2!important; border-radius:4px; background:#fff!important; color:#111!important; box-shadow:none!important; font-size:24px; line-height:1; cursor:pointer; }
+            .bb-shop-calendar-nav:hover:not(:disabled) { border-color:#111!important; }
+            .bb-shop-calendar-nav:disabled { color:#bbb!important; cursor:default; opacity:.5; }
+            .bb-shop-calendar-days, .bb-shop-calendar-grid { display:grid; grid-template-columns:repeat(7,minmax(0,1fr)); gap:5px; }
             .bb-shop-calendar-days { margin-bottom:6px; }
-            .bb-shop-calendar-days span { text-align:center; font-size:9px; font-weight:800; color:#888; }
-            .bb-shop-calendar-cell { position:relative; display:flex; align-items:center; justify-content:center; min-height:38px; font-size:12px; font-weight:700; color:#111!important; border-radius:3px; background:#fff!important; box-shadow:none!important; }
-            .bb-shop-calendar-cell.is-closed { background:#f0f0f0!important; color:#aaa!important; }
-            .bb-shop-calendar-cell.is-full { background:#f0f0f0!important; color:#aaa!important; }
-            .bb-shop-calendar-cell.is-full::after { content:''; position:absolute; width:4px; height:4px; bottom:3px; border-radius:50%; background:#888; }
-            .bb-shop-calendar-cell.is-outside { color:#ccc; }
-            .bb-shop-calendar-legend { display:flex; flex-wrap:wrap; gap:10px; margin-top:8px; font-size:10px; color:#777; }
+            .bb-shop-calendar-days span { text-align:center; font-size:8px; font-weight:900; color:#888; }
+            .bb-shop-calendar-cell { position:relative; display:flex; align-items:center; justify-content:center; min-width:0; min-height:46px; padding:0 0 8px; border:1px solid #e8e8e8!important; border-radius:5px; background:#fff!important; color:#222!important; font-family:inherit; font-size:12px; font-weight:800; box-shadow:none!important; cursor:default; }
+            .bb-shop-calendar-cell::after { content:''; position:absolute; left:50%; bottom:5px; width:5px; height:5px; border-radius:50%; transform:translateX(-50%); }
+            .bb-shop-calendar-cell.is-open { background:#fff!important; color:#222!important; }
+            .bb-shop-calendar-cell.is-open::after { background:#16A34A; }
+            .bb-shop-calendar-cell.is-closed { background:#F2F2F2!important; color:#555!important; }
+            .bb-shop-calendar-cell.is-closed::after { background:#DC2626; }
+            .bb-shop-calendar-cell.is-full { background:#fff!important; color:#222!important; }
+            .bb-shop-calendar-cell.is-full::after { background:#F59E0B; }
+            .bb-shop-calendar-cell.is-outside { border-color:#f0f0f0!important; background:#fafafa!important; color:#b8b8b8!important; }
+            .bb-shop-calendar-cell.is-outside::after { display:none; }
+            button.bb-shop-calendar-cell.is-open { cursor:pointer; }
+            button.bb-shop-calendar-cell.is-open:hover { background:#fafafa!important; border-color:#c8c8c8!important; }
+            button.bb-shop-calendar-cell.is-selected, button.bb-shop-calendar-cell.is-selected:hover, button.bb-shop-calendar-cell.is-selected:focus { border:1px solid #111!important; background:#fff!important; color:#111!important; font-weight:900; }
+            .bb-shop-calendar-cell:focus-visible { outline:2px solid var(--yellow); outline-offset:2px; }
+            .bb-shop-calendar-legend { display:flex; flex-wrap:wrap; gap:12px; margin-top:12px; color:#666; font-size:9px; font-weight:800; }
             .bb-shop-calendar-legend span { display:inline-flex; align-items:center; gap:5px; }
-            .bb-shop-calendar-legend i { width:9px; height:9px; display:inline-block; background:#fff; border:1px solid #ddd; border-radius:2px; }
-            .bb-shop-calendar-legend .closed { background:#f0f0f0; }
-            .bb-shop-calendar-legend .full { position:relative; background:#f0f0f0; }
-            .bb-shop-calendar-legend .full::after { content:''; position:absolute; width:3px; height:3px; right:2px; bottom:1px; border-radius:50%; background:#888; }
-            @media (max-width:600px) { .bb-shop-calendar { padding:12px; } .bb-shop-calendar-cell { min-height:33px; } }
-            /* Minimal two-column opening calendar: display only */
-            .bb-shop-opening { margin-bottom: 8px; }
-            .bb-shop-opening-heading { margin:0 0 10px!important; color:#111!important; font-size:17px!important; font-weight:900; letter-spacing:.2px; }
-            .bb-shop-opening-layout { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); align-items:start; gap:18px; }
-            .bb-shop-calendar { width:100%; margin:0; padding:10px; border:1px solid #e0e0e0; border-radius:7px; }
-            .bb-shop-calendar-head { margin-bottom:7px; }
-            .bb-shop-calendar-nav, .bb-shop-calendar-nav:hover:not(:disabled) { width:34px; height:34px; border:0!important; background:transparent!important; color:#111!important; box-shadow:none!important; font-size:27px; font-weight:400; line-height:1; }
-            .bb-shop-calendar-nav:hover:not(:disabled) { opacity:.55; }
-            .bb-shop-calendar-nav:disabled { background:transparent!important; border:0!important; color:#bbb!important; opacity:.5; }
-            .bb-shop-calendar-cell { min-height:36px; border:0!important; padding:0; font-family:inherit; cursor:default; }
-            button.bb-shop-calendar-cell.is-open { background:#fff!important; color:#111!important; border:0!important; box-shadow:none!important; cursor:pointer; }
-            button.bb-shop-calendar-cell.is-open:hover:not(.is-selected) { background:#f7f7f7!important; border:0!important; box-shadow:none!important; }
-            button.bb-shop-calendar-cell.is-open.is-selected, button.bb-shop-calendar-cell.is-open.is-selected:hover, button.bb-shop-calendar-cell.is-open.is-selected:focus { background:#fff!important; border:1.5px solid #111!important; color:#111!important; box-shadow:none!important; font-weight:900; }
-            button.bb-shop-calendar-cell.is-open.is-selected::before { content:''; position:absolute; left:50%; bottom:4px; width:10px; height:2px; background:#111; transform:translateX(-50%); }
-            .bb-shop-calendar-cell:focus-visible { outline:0; }
-            .bb-shop-info { padding:9px 8px; }
-            .bb-shop-info h3 { margin:0 0 15px!important; color:#111!important; font-size:17px!important; font-weight:900; }
-            .bb-shop-info-item { display:flex; align-items:center; gap:11px; margin-bottom:12px; }
-            .bb-shop-info-badge { display:flex; align-items:center; justify-content:center; flex:0 0 64px; width:64px; height:25px; border:1px solid #ddd; border-radius:3px; background:#fff; color:#111; font-size:9px; font-weight:900; letter-spacing:.5px; }
-            .bb-shop-info-badge.is-closed, .bb-shop-info-badge.is-full { background:#f0f0f0; color:#666; }
-            .bb-shop-info-item p { margin:0!important; font-size:11px!important; color:#777!important; line-height:1.45; }
-            .bb-shop-booking-title { margin:0 0 10px; padding-top:14px; border-top:1px solid #e6e6e6; }
-            @media(max-width:700px) { .bb-shop-opening-layout { grid-template-columns:1fr; gap:10px; } .bb-shop-info { padding:9px 2px 0; } .bb-shop-info h3 { margin-bottom:14px!important; } .bb-shop-info-item { margin-bottom:13px; } }
+            .bb-shop-calendar-legend i { width:9px; height:9px; display:inline-block; border-radius:50%; }
+            .bb-shop-calendar-legend .open { background:#16A34A; }
+            .bb-shop-calendar-legend .closed { background:#DC2626; }
+            .bb-shop-calendar-legend .full { background:#F59E0B; }
+            .bb-calendar-message { min-height:14px; margin:9px 0 0!important; color:#777!important; font-size:9px!important; }
+            .bb-calendar-message.is-error { color:#a33!important; }
+            .bb-calendar-feedback { grid-column:1/-1; padding:24px 10px; color:#888; font-size:10px; text-align:center; }
+            @media(max-width:600px) { .bb-availability-panel { padding:12px; } .bb-availability-heading { display:block; } .bb-calendar-context { display:inline-block; margin-top:9px; } .bb-shop-calendar { padding:10px; } .bb-shop-calendar-days, .bb-shop-calendar-grid { gap:3px; } .bb-shop-calendar-cell { min-height:39px; font-size:11px; } }
         </style>
     </x-slot>
 
@@ -963,6 +964,12 @@
                                 <h2>WHAT WOULD YOU LIKE TO BOOK?</h2>
                                 <p>Choose the appointment type that best matches your visit.</p>
                             </div>
+
+                            <x-appointment-calendar
+                                mode="readonly"
+                                title="SHOP AVAILABILITY"
+                                description="Browse the shop schedule. Choose a service below, then continue to select an open day and time."
+                            />
 
                             <select
                                 id="appointment_type_id"
@@ -1077,35 +1084,11 @@
                             </select>
 
                             <div class="bb-date-section">
-
-
-                                {{-- Select the booking date directly from the opening calendar. --}}
-                                <div class="bb-shop-opening">
-                                  <h3 class="bb-shop-opening-heading">SELECT BOOKING DATE <span class="bb-required">*</span></h3>
-                                  <div class="bb-shop-opening-layout">
-                                <div class="bb-shop-calendar" id="bbShopCalendar" aria-label="Select booking date">
-                                    <div class="bb-shop-calendar-head">
-                                        <button type="button" class="bb-shop-calendar-nav" id="bbShopPrev" aria-label="Previous month">&#8249;</button>
-                                        <span class="bb-shop-calendar-title" id="bbShopMonth" aria-live="polite"></span>
-                                        <button type="button" class="bb-shop-calendar-nav" id="bbShopNext" aria-label="Next month">&#8250;</button>
-                                    </div>
-                                    <div class="bb-shop-calendar-days" aria-hidden="true">
-                                        <span>MON</span><span>TUE</span><span>WED</span><span>THU</span><span>FRI</span><span>SAT</span><span>SUN</span>
-                                    </div>
-                                    <div class="bb-shop-calendar-grid" id="bbShopDays" aria-label="Select an available appointment date"></div>
-                                    <div class="bb-shop-calendar-legend">
-                                        <span><i></i>OPEN</span><span><i class="closed"></i>CLOSED</span><span><i class="full"></i>FULL</span>
-                                    </div>
-                                </div>
-
-                                  <div class="bb-shop-info">
-                                    <h3>SHOP INFORMATION</h3>
-                                    <div class="bb-shop-info-item"><span class="bb-shop-info-badge">OPEN</span><p>สามารถเลือกวันที่เพื่อจองได้</p></div>
-                                    <div class="bb-shop-info-item"><span class="bb-shop-info-badge is-closed">CLOSED</span><p>ไม่สามารถจองในวันนี้ได้</p></div>
-                                    <div class="bb-shop-info-item"><span class="bb-shop-info-badge is-full">FULL</span><p>ไม่มีเวลาว่างให้จองแล้ว</p></div>
-                                  </div>
-                                  </div>
-                                </div>
+                                <x-appointment-calendar
+                                    mode="selectable"
+                                    title="SELECT BOOKING DATE"
+                                    description="Open future dates can be selected. Closed, full and past dates are unavailable."
+                                />
                             </div>
 
                             <select
@@ -1149,9 +1132,13 @@
                                 ></p>
 
                                 <div class="bb-selection-bar" aria-live="polite">
-                                    <span class="bb-selection-bar-label">YOUR SELECTION</span>
-                                    <span class="bb-selection-bar-value" id="appointmentSelectionValue">
-                                        SELECT A DATE
+                                    <span class="bb-selection-item">
+                                        <span class="bb-selection-bar-label">SELECTED DATE</span>
+                                        <strong class="bb-selection-bar-value" id="appointmentSelectedDate">SELECT A DATE</strong>
+                                    </span>
+                                    <span class="bb-selection-item">
+                                        <span class="bb-selection-bar-label">SELECTED TIME</span>
+                                        <strong class="bb-selection-bar-value" id="appointmentSelectedTime">SELECT A TIME</strong>
                                     </span>
                                 </div>
                             </div>
@@ -1385,7 +1372,8 @@
                 const slotMessage = document.getElementById('appointmentSlotMessage');
                 const timeStatus = document.getElementById('appointmentTimeStatus');
                 const timeOptions = document.getElementById('appointmentTimeOptions');
-                const selectionValue = document.getElementById('appointmentSelectionValue');
+                const selectedDateValue = document.getElementById('appointmentSelectedDate');
+                const selectedTimeValue = document.getElementById('appointmentSelectedTime');
 
                 const dialog = document.getElementById('appointmentConfirmation');
 
@@ -1433,7 +1421,8 @@
 
                 function updateSelectionBar() {
                     if (!date.value) {
-                        selectionValue.textContent = 'SELECT A DATE';
+                        selectedDateValue.textContent = 'SELECT A DATE';
+                        selectedTimeValue.textContent = 'SELECT A TIME';
                         return;
                     }
 
@@ -1444,11 +1433,10 @@
                         selectedDate.getFullYear()
                     ].join(' ');
 
-                    const timeText = slot.value
+                    selectedDateValue.textContent = dateText;
+                    selectedTimeValue.textContent = slot.value
                         ? slot.selectedOptions[0]?.textContent?.trim() || slot.value
                         : 'SELECT A TIME';
-
-                    selectionValue.textContent = `${dateText}  |  ${timeText}`;
                 }
 
                 /* STEP */
@@ -1506,6 +1494,16 @@
 
                         saveStorage(serviceKey, appointmentType.value);
 
+                        document.dispatchEvent(new CustomEvent('bb-calendar:service', {
+                            detail: {appointmentTypeId: appointmentType.value}
+                        }));
+
+                        if (date.value) {
+                            slot.dataset.oldValue = '';
+                            saveStorage(slotKey, '');
+                            loadSlots();
+                        }
+
                         document
                             .getElementById('step1Error')
                             .classList
@@ -1558,7 +1556,7 @@
 
                     try {
                         const response = await fetch(
-                            `${endpoint}?date=${encodeURIComponent(date.value)}`,
+                            `${endpoint}?date=${encodeURIComponent(date.value)}&appointment_type_id=${encodeURIComponent(appointmentType.value)}`,
                             {
                                 headers: {
                                     'Accept': 'application/json'
@@ -1948,92 +1946,175 @@
 
         <script>
             (() => {
-                // Reuse Backend date statuses and existing booking form.
                 const dates = @json($availableDates);
+                const today = @json(now(config('appointments.timezone'))->toDateString());
                 const statuses = new Map(dates.map(item => [item.date, item.status]));
                 const months = [...new Set(dates.map(item => item.date.slice(0, 7)))].sort();
-                const monthLabel = document.getElementById('bbShopMonth');
-                const days = document.getElementById('bbShopDays');
-                const prev = document.getElementById('bbShopPrev');
-                const next = document.getElementById('bbShopNext');
-                let index = 0;
-                let selectedDate = '';
-
-                document.addEventListener('bb-calendar:restore', event => {
-                    selectedDate = event.detail?.date || '';
-                    if (selectedDate) {
-                        const monthIndex = months.indexOf(selectedDate.slice(0, 7));
-                        if (monthIndex >= 0) index = monthIndex;
-                    }
-                    render();
-                });
-
-                function syncSelectedDate() {
-                    days.querySelectorAll('button.bb-shop-calendar-cell.is-open').forEach(cell => {
-                        const isSelected = cell.dataset.date === selectedDate;
-                        cell.classList.toggle('is-selected', isSelected);
-                        cell.setAttribute('aria-pressed', String(isSelected));
-                    });
-                }
-
-                function render() {
-                    const key = months[index];
-                    days.replaceChildren();
-                    if (!key) {
-                        monthLabel.textContent = 'NO DATES AVAILABLE';
-                        prev.disabled = next.disabled = true;
-                        return;
-                    }
-                    const [year, month] = key.split('-').map(Number);
-                    monthLabel.textContent = new Date(year, month - 1, 1).toLocaleDateString('en-US', {month:'long', year:'numeric'}).toUpperCase();
-                    const firstWeekday = (new Date(year, month - 1, 1).getDay() + 6) % 7;
-                    for (let i = 0; i < firstWeekday; i++) {
-                        const blank = document.createElement('span');
-                        blank.className = 'bb-shop-calendar-cell';
-                        blank.setAttribute('aria-hidden', 'true');
-                        days.append(blank);
-                    }
-                    const count = new Date(year, month, 0).getDate();
-                    for (let day = 1; day <= count; day++) {
-                        const keyDate = `${year}-${String(month).padStart(2,'0')}-${String(day).padStart(2,'0')}`;
-                        const status = statuses.get(keyDate);
-                        const selectable = status === 'available';
-                        const cell = document.createElement(selectable ? 'button' : 'span');
-                        cell.className = 'bb-shop-calendar-cell';
-                        cell.dataset.date = keyDate;
-                        if (selectable) {
-                            cell.type = 'button';
-                            cell.classList.add('is-open');
-                            cell.setAttribute('aria-pressed', String(selectedDate === keyDate));
-                            cell.addEventListener('click', () => {
-                                selectedDate = keyDate;
-                                syncSelectedDate();
-                                document.dispatchEvent(new CustomEvent('bb-calendar:date', {
-                                    detail: {date: keyDate}
-                                }));
-                            });
-                        }
-                        if (status === 'closed') cell.classList.add('is-closed');
-                        else if (status === 'full') cell.classList.add('is-full');
-                        else if (status !== 'available') cell.classList.add('is-outside');
-                        cell.textContent = day;
-                        cell.title = `${keyDate}: ${status === 'available' ? 'OPEN' : status === 'closed' ? 'CLOSED' : status === 'full' ? 'FULL' : 'NOT AVAILABLE'}`;
-                        cell.setAttribute('aria-label', cell.title);
-                        days.append(cell);
-                    }
-                    syncSelectedDate();
-                    prev.disabled = index === 0;
-                    next.disabled = index === months.length - 1;
-                }
-                prev.addEventListener('click', () => { if (index > 0) { index--; render(); } });
-                next.addEventListener('click', () => { if (index < months.length - 1) { index++; render(); } });
                 const currentDate = document.getElementById('appointment_date')?.value || '';
                 let storedDate = '';
                 try { storedDate = sessionStorage.getItem('buffbridgeAppointmentDate') || ''; } catch (error) {}
-                selectedDate = currentDate || storedDate;
-                const initialMonth = months.indexOf(selectedDate.slice(0, 7));
-                if (initialMonth >= 0) index = initialMonth;
-                render();
+                const restoredDate = currentDate || storedDate;
+
+                class BookingCalendar {
+                    constructor(root) {
+                        this.root = root;
+                        this.selectable = root.dataset.calendarMode === 'selectable';
+                        this.monthLabel = root.querySelector('[data-calendar-month]');
+                        this.days = root.querySelector('[data-calendar-days]');
+                        this.prev = root.querySelector('[data-calendar-prev]');
+                        this.next = root.querySelector('[data-calendar-next]');
+                        this.message = root.querySelector('[data-calendar-message]');
+                        this.context = root.querySelector('[data-calendar-context]');
+                        this.selectedDate = this.selectable ? restoredDate : '';
+                        this.index = Math.max(0, months.indexOf(this.selectedDate.slice(0, 7)));
+
+                        this.prev.addEventListener('click', () => this.changeMonth(-1));
+                        this.next.addEventListener('click', () => this.changeMonth(1));
+                        this.updateContext();
+                        this.render();
+                    }
+
+                    changeMonth(direction) {
+                        const nextIndex = this.index + direction;
+                        if (nextIndex < 0 || nextIndex >= months.length) return;
+                        this.index = nextIndex;
+                        this.render();
+                    }
+
+                    updateContext() {
+                        if (this.selectable) {
+                            this.context.textContent = 'SELECT AN OPEN DAY';
+                            return;
+                        }
+
+                        const service = document.getElementById('appointment_type_id');
+                        this.context.textContent = service?.value
+                            ? 'SHOP SCHEDULE'
+                            : 'SHOP-WIDE SCHEDULE';
+                    }
+
+                    restore(value) {
+                        if (!this.selectable) return;
+                        this.selectedDate = value || '';
+                        const monthIndex = months.indexOf(this.selectedDate.slice(0, 7));
+                        if (monthIndex >= 0) this.index = monthIndex;
+                        this.render();
+                    }
+
+                    syncSelection() {
+                        this.days.querySelectorAll('button.bb-shop-calendar-cell').forEach(cell => {
+                            const selected = cell.dataset.date === this.selectedDate;
+                            cell.classList.toggle('is-selected', selected);
+                            cell.setAttribute('aria-pressed', String(selected));
+                        });
+                    }
+
+                    render() {
+                        try {
+                            const monthKey = months[this.index];
+                            this.days.replaceChildren();
+                            this.message.classList.remove('is-error');
+
+                            if (!monthKey) {
+                                this.monthLabel.textContent = 'NO DATES AVAILABLE';
+                                this.days.innerHTML = '<div class="bb-calendar-feedback">No appointment schedule is available.</div>';
+                                this.message.textContent = 'Please check again later.';
+                                this.prev.disabled = this.next.disabled = true;
+                                return;
+                            }
+
+                            const [year, month] = monthKey.split('-').map(Number);
+                            this.monthLabel.textContent = new Date(year, month - 1, 1)
+                                .toLocaleDateString('en-US', {month: 'long', year: 'numeric'})
+                                .toUpperCase();
+
+                            const firstWeekday = (new Date(year, month - 1, 1).getDay() + 6) % 7;
+                            const dayCount = new Date(year, month, 0).getDate();
+                            const cellCount = Math.ceil((firstWeekday + dayCount) / 7) * 7;
+
+                            for (let position = 0; position < cellCount; position++) {
+                                const calendarDate = new Date(year, month - 1, position - firstWeekday + 1);
+                                const cellYear = calendarDate.getFullYear();
+                                const cellMonth = calendarDate.getMonth() + 1;
+                                const day = calendarDate.getDate();
+                                const dateValue = `${cellYear}-${String(cellMonth).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+                                const isCurrentMonth = cellYear === year && cellMonth === month;
+
+                                if (!isCurrentMonth) {
+                                    const outsideCell = document.createElement('span');
+                                    outsideCell.className = 'bb-shop-calendar-cell is-outside';
+                                    outsideCell.dataset.outsideDate = dateValue;
+                                    outsideCell.textContent = day;
+                                    outsideCell.title = `${dateValue}: OUTSIDE CURRENT MONTH`;
+                                    outsideCell.setAttribute('aria-label', outsideCell.title);
+                                    outsideCell.setAttribute('role', 'gridcell');
+                                    this.days.append(outsideCell);
+                                    continue;
+                                }
+
+                                const status = statuses.get(dateValue);
+                                const canSelect = this.selectable && status === 'available' && dateValue >= today;
+                                const cell = document.createElement(canSelect ? 'button' : 'span');
+                                const label = status === 'available'
+                                    ? 'OPEN'
+                                    : status === 'closed'
+                                        ? 'CLOSED'
+                                        : status === 'full'
+                                            ? 'FULL'
+                                            : dateValue < today ? 'PAST' : 'NOT AVAILABLE';
+
+                                cell.className = 'bb-shop-calendar-cell';
+                                cell.dataset.date = dateValue;
+                                cell.textContent = day;
+                                cell.title = `${dateValue}: ${label}`;
+                                cell.setAttribute('aria-label', cell.title);
+                                cell.setAttribute('role', 'gridcell');
+                                if (status === 'available') cell.classList.add('is-open');
+                                else if (status === 'closed') cell.classList.add('is-closed');
+                                else if (status === 'full') cell.classList.add('is-full');
+                                else cell.classList.add('is-outside');
+
+                                if (canSelect) {
+                                    cell.type = 'button';
+                                    cell.setAttribute('aria-pressed', String(this.selectedDate === dateValue));
+                                    cell.addEventListener('click', () => {
+                                        this.selectedDate = dateValue;
+                                        this.syncSelection();
+                                        this.message.textContent = `${dateValue} selected. Choose an available time below.`;
+                                        document.dispatchEvent(new CustomEvent('bb-calendar:date', {
+                                            detail: {date: dateValue}
+                                        }));
+                                    });
+                                }
+
+                                this.days.append(cell);
+                            }
+
+                            this.syncSelection();
+                            this.prev.disabled = this.index === 0;
+                            this.next.disabled = this.index === months.length - 1;
+                            if (!this.selectedDate || !this.selectable) this.message.textContent = '';
+                        } catch (error) {
+                            this.days.innerHTML = '<div class="bb-calendar-feedback">Unable to display the calendar.</div>';
+                            this.message.textContent = 'Calendar data could not be loaded. Please refresh the page.';
+                            this.message.classList.add('is-error');
+                        }
+                    }
+                }
+
+                const calendars = Array.from(document.querySelectorAll('[data-booking-calendar]'))
+                    .map(root => new BookingCalendar(root));
+
+                document.addEventListener('bb-calendar:restore', event => {
+                    calendars.forEach(calendar => calendar.restore(event.detail?.date || ''));
+                });
+
+                document.addEventListener('bb-calendar:service', () => {
+                    calendars.forEach(calendar => {
+                        calendar.updateContext();
+                        calendar.render();
+                    });
+                });
             })();
         </script>
     </x-slot>

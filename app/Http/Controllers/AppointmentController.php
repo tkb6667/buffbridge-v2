@@ -37,6 +37,11 @@ class AppointmentController extends Controller
 
         $validated = $request->validate([
             'date' => ['required', 'date_format:Y-m-d', 'after_or_equal:'.$appointmentToday],
+            'appointment_type_id' => [
+                'nullable',
+                'integer',
+                Rule::exists('appointment_types', 'id')->where('active', true),
+            ],
         ]);
 
         $availableTimes = $schedule->availableTimes($validated['date']);

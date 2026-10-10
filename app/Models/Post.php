@@ -20,6 +20,9 @@ class Post extends Model
         'content',
         'excerpt',
         'featured_image',
+        'featured_image_crop_x',
+        'featured_image_crop_y',
+        'featured_image_crop_zoom',
         'status',
         'published_at',
         'user_id',
@@ -32,6 +35,9 @@ class Post extends Model
      */
     protected $casts = [
         'published_at' => 'datetime',
+        'featured_image_crop_x' => 'decimal:2',
+        'featured_image_crop_y' => 'decimal:2',
+        'featured_image_crop_zoom' => 'decimal:2',
     ];
 
     public function getFeaturedImageUrlAttribute(): ?string

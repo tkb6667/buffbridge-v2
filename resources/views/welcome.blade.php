@@ -1672,7 +1672,7 @@
 
                                         <img
 
-                                            src="{{ env('APP_ADMIN_URL') . '/storage/' . $product->images->first()->image_path }}"
+                                            src="{{ $product->images->first()->url }}"
 
                                             alt="{{ $product->name }}"
 
@@ -1963,7 +1963,7 @@
 
                                             <img
 
-                                                src="{{ env('APP_ADMIN_URL') . '/storage/' . $product->images->first()->image_path }}"
+                                                src="{{ $product->images->first()->url }}"
 
                                                 alt="{{ $product->name }}"
 
@@ -2268,7 +2268,7 @@
 
                                                 <img
 
-                                                    src="{{ env('APP_ADMIN_URL') . '/storage/' . $product->images->first()->image_path }}"
+                                                    src="{{ $product->images->first()->url }}"
 
                                                     alt="{{ $product->name }}"
 

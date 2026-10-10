@@ -1555,18 +1555,7 @@
                                     $firstImage =
                                         $product->images->first();
 
-                                    $imageUrl =
-                                        $firstImage
-                                            ? rtrim(
-                                                env('APP_ADMIN_URL'),
-                                                '/'
-                                            )
-                                            .'/storage/'
-                                            .ltrim(
-                                                $firstImage->image_path,
-                                                '/'
-                                            )
-                                            : null;
+                                    $imageUrl = $firstImage?->url;
 
                                     $productBrand = trim(
                                         $product->brand ?: 'BUFFBRIDGE'

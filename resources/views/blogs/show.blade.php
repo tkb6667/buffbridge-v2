@@ -160,17 +160,24 @@
         /* FEATURED IMAGE */
 
         .bb-blog-featured {
-            width: 100%;
+            width: min(720px, 100%);
+            max-height: 450px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: auto;
             margin-bottom: 34px;
+            margin-left: auto;
             overflow: hidden;
             background: #f3f3f3;
         }
 
         .bb-blog-featured img {
             display: block;
-            width: 100%;
-            max-height: 540px;
-            object-fit: cover;
+            width: auto;
+            max-width: 100%;
+            height: auto;
+            max-height: 450px;
         }
 
         /* CONTENT */
@@ -231,10 +238,9 @@
 
         .bb-blog-content img {
             display: block;
-            max-width: 100% !important;
+            max-width: min(720px, 100%) !important;
             height: auto !important;
             margin: 25px auto !important;
-            object-fit: contain;
         }
 
         .bb-blog-content iframe,
@@ -455,10 +461,6 @@
                 padding: 34px 0 45px;
             }
 
-            .bb-blog-featured img {
-                max-height: 460px;
-            }
-
             .bb-related-grid {
                 grid-template-columns: repeat(2, minmax(0, 1fr));
             }
@@ -505,9 +507,10 @@
             }
 
             .bb-blog-featured img {
-                max-height: none;
-                aspect-ratio: 16 / 10;
-                object-fit: cover;
+                width: auto;
+                max-width: 100%;
+                height: auto;
+                max-height: 450px;
             }
 
             .bb-blog-content {
