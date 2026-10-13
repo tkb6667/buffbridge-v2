@@ -13,6 +13,10 @@ class CustomerAuthController extends Controller
 {
     public function login(Request $request): RedirectResponse
     {
+        $request->merge([
+            'email' => Str::lower(trim((string) $request->input('email'))),
+        ]);
+
         $validator = Validator::make($request->all(), [
             'email' => ['required', 'email'],
             'password' => ['required', 'string'],
@@ -52,6 +56,10 @@ class CustomerAuthController extends Controller
         RateLimiter::clear($throttleKey);
         $request->session()->regenerate();
 
-        return redirect()->intended(url()->previous());
+        if (! $request->user('customer')->hasVerifiedEmail()) {
+            return redirect()->route('verification.notice');
+        }
+
+        return redirect()->intended(route('home', absolute: false));
     }
 }

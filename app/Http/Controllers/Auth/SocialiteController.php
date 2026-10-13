@@ -50,7 +50,7 @@ class SocialiteController extends Controller
                 ->with('showLoginModal', true);
         }
 
-        $email = $googleUser->getEmail();
+        $email = Str::lower(trim((string) $googleUser->getEmail()));
         $googleId = $googleUser->getId();
 
         if (! $email || ! $googleId) {
@@ -61,7 +61,17 @@ class SocialiteController extends Controller
                 ->with('showLoginModal', true);
         }
 
-        $customer = Customer::where('email', $email)->first();
+        if (! $this->hasVerifiedGoogleEmail($googleUser)) {
+            return redirect()->route('home')
+                ->withErrors([
+                    'google' => 'Google could not confirm ownership of this email address. Please use email and password instead.',
+                ], 'login')
+                ->with('showLoginModal', true);
+        }
+
+        $customer = Customer::where('google_id', $googleId)->first();
+
+        $customer ??= Customer::where('email', $email)->first();
 
         if ($customer) {
             if ($customer->google_id && $customer->google_id !== $googleId) {
@@ -75,12 +85,17 @@ class SocialiteController extends Controller
             if (! $customer->google_id) {
                 $customer->forceFill(['google_id' => $googleId])->save();
             }
+
+            if (! $customer->hasVerifiedEmail()) {
+                $customer->markEmailAsVerified();
+            }
         } else {
             $customer = Customer::create([
                 'name' => $googleUser->getName() ?: Str::before($email, '@'),
                 'email' => $email,
                 'google_id' => $googleId,
                 'password' => Hash::make(Str::random(64)),
+                'email_verified_at' => now(),
             ]);
         }
 
@@ -95,5 +110,13 @@ class SocialiteController extends Controller
         return filled(config('services.google.client_id'))
             && filled(config('services.google.client_secret'))
             && filled(config('services.google.redirect'));
+    }
+
+    private function hasVerifiedGoogleEmail(object $googleUser): bool
+    {
+        $raw = method_exists($googleUser, 'getRaw') ? $googleUser->getRaw() : [];
+        $verified = data_get($raw, 'email_verified');
+
+        return $verified === true || $verified === 1 || $verified === 'true' || $verified === '1';
     }
 }

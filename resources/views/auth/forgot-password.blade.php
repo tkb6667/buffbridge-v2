@@ -72,7 +72,7 @@
                 href="{{ route('home') }}"
                 class="bb-forgot-back"
             >
-                BACK TO H
+                BACK TO HOME
             </a>
 
         </div>

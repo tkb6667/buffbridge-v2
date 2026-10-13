@@ -1,18 +1,16 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AppointmentController;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
-use App\Http\Controllers\ReviewController;
-use App\Http\Controllers\Auth\SocialiteController;
 use App\Http\Controllers\CheckoutController;
-use App\Http\Controllers\CustomerAuthController;
-use App\Http\Controllers\PostController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderHistoryController;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\TechnicalSeoController;
+use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
@@ -74,7 +72,7 @@ Route::get('/products/{product}', [ProductController::class, 'show'])
     ->name('products.show');
 
 Route::post('/products/{product}/reviews', [ReviewController::class, 'store'])
-    ->middleware('auth:customer')
+    ->middleware(['auth:customer', 'verified'])
     ->name('review.submit');
 
 /*
@@ -84,15 +82,6 @@ Route::post('/products/{product}/reviews', [ReviewController::class, 'store'])
 */
 
 Route::middleware('auth:customer')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])
-        ->name('profile.edit');
-
-    Route::patch('/profile', [ProfileController::class, 'update'])
-        ->name('profile.update');
-
-    Route::delete('/profile', [ProfileController::class, 'destroy'])
-        ->name('profile.destroy');
-
     Route::get('/cart', [CartController::class, 'index'])
         ->name('cart.index');
 
@@ -105,14 +94,25 @@ Route::middleware('auth:customer')->group(function () {
     Route::post('/cart/update', [CartController::class, 'update'])
         ->name('cart.update');
 
-    Route::get('/checkout', [CheckoutController::class, 'index'])
-        ->name('checkout.index');
+    Route::middleware('verified')->group(function () {
+        Route::get('/profile', [ProfileController::class, 'edit'])
+            ->name('profile.edit');
 
-    Route::post('/checkout/process', [CheckoutController::class, 'process'])
-        ->name('checkout.process');
+        Route::patch('/profile', [ProfileController::class, 'update'])
+            ->name('profile.update');
 
-    Route::get('/order-history', [OrderHistoryController::class, 'history'])
-        ->name('order.history');
+        Route::delete('/profile', [ProfileController::class, 'destroy'])
+            ->name('profile.destroy');
+
+        Route::get('/checkout', [CheckoutController::class, 'index'])
+            ->name('checkout.index');
+
+        Route::post('/checkout/process', [CheckoutController::class, 'process'])
+            ->name('checkout.process');
+
+        Route::get('/order-history', [OrderHistoryController::class, 'history'])
+            ->name('order.history');
+    });
 });
 
 /*
@@ -120,17 +120,6 @@ Route::middleware('auth:customer')->group(function () {
 | Authentication
 |--------------------------------------------------------------------------
 */
-
-Route::post('/logout2', [ProfileController::class, 'logout'])
-    ->name('logout2');
-
-Route::get('/auth/google', [SocialiteController::class, 'redirectToGoogle'])
-    ->name('google.login');
-
-Route::get('/auth/google/callback', [SocialiteController::class, 'handleGoogleCallback']);
-
-Route::post('/customer/login', [CustomerAuthController::class, 'login'])
-    ->name('customer.login.submit');
 
 /*
 |--------------------------------------------------------------------------
@@ -142,4 +131,4 @@ Route::view('/term-of-use', 'term')->name('term');
 
 Route::view('/privacy-policy', 'privacy')->name('privacy');
 
-require __DIR__ . '/auth.php';
+require __DIR__.'/auth.php';

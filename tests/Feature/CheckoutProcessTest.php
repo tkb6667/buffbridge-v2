@@ -4,8 +4,6 @@ namespace Tests\Feature;
 
 use App\Models\CartItem;
 use App\Models\Customer;
-use App\Models\Order;
-use App\Models\OrderItem;
 use App\Models\Product;
 use App\Models\ProductVariant;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -20,14 +18,18 @@ class CheckoutProcessTest extends TestCase
     {
         parent::setUp();
 
-        config()->set('database.default', 'sqlite');
-        config()->set('database.connections.sqlite.database', ':memory:');
+        Schema::disableForeignKeyConstraints();
+        foreach (['stock_logs', 'order_items', 'orders', 'cart_items', 'product_variants', 'products', 'customers', 'setting'] as $table) {
+            Schema::dropIfExists($table);
+        }
+        Schema::enableForeignKeyConstraints();
 
         // สร้างตารางที่จำเป็นแบบมินิมอลสำหรับทดสอบ
         Schema::create('customers', function ($table) {
             $table->id();
             $table->string('name')->nullable();
             $table->string('email')->unique();
+            $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->nullable();
             $table->timestamps();
         });
@@ -116,6 +118,7 @@ class CheckoutProcessTest extends TestCase
         $customer = Customer::create([
             'name' => 'Test Customer',
             'email' => 'test@example.com',
+            'email_verified_at' => now(),
             'password' => null,
         ]);
 

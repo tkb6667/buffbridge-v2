@@ -17,25 +17,25 @@
 
 
     <section class="bb-contact-main">
-        <div class="bb-contact-shell bb-contact-grid">
+        <div class="bb-contact-shell">
 
-            {{-- CONTACT INFORMATION --}}
-            <div class="bb-contact-info">
+            <div class="bb-contact-overview">
+                <div class="bb-contact-heading">
+                    <div class="bb-section-label">GET IN TOUCH</div>
 
-                <div class="bb-section-label">GET IN TOUCH</div>
+                    <h2>
+                        WE'RE HERE<br>
+                        TO HELP.
+                    </h2>
 
-                <h2>
-                    WE'RE HERE<br>
-                    TO HELP.
-                </h2>
+                    <p class="bb-contact-intro">
+                        Questions about products, availability, orders or
+                        Buffbridge Custom? Contact us through the channels below.
+                    </p>
+                </div>
+            </div>
 
-                <p class="bb-contact-intro">
-                    Questions about products, availability, orders or
-                    Buffbridge Custom? Contact us through the channels below.
-                </p>
-
-
-                <div class="bb-contact-list">
+            <div class="bb-contact-list">
 
                     {{-- LOCATION --}}
                     <a
@@ -73,7 +73,10 @@
 
 
                     {{-- PHONE --}}
-                    <div class="bb-contact-item">
+                    <a
+                        href="tel:+66902998211"
+                        class="bb-contact-item"
+                    >
                         <div class="bb-contact-icon">
                             <svg viewBox="0 0 24 24" aria-hidden="true">
                                 <path d="M5 4h4l2 5-2.5 1.7a16 16 0 0 0 4.8 4.8L15 13l5 2v4c0 1.1-.9 2-2 2C9.7 21 3 14.3 3 6c0-1.1.9-2 2-2Z"/>
@@ -85,18 +88,18 @@
                                 PHONE
                             </div>
 
-                            <a
-                                href="tel:+66902998211"
-                                class="bb-contact-item-value"
-                            >
+                            <div class="bb-contact-item-value">
                                 +66 65 782 9599
-                            </a>
+                            </div>
                         </div>
-                    </div>
+                    </a>
 
 
                     {{-- EMAIL --}}
-                    <div class="bb-contact-item">
+                    <a
+                        href="mailto:info@buffbridge.com"
+                        class="bb-contact-item"
+                    >
                         <div class="bb-contact-icon">
                             <svg viewBox="0 0 24 24" aria-hidden="true">
                                 <rect x="3" y="5" width="18" height="14" rx="1"/>
@@ -109,14 +112,11 @@
                                 EMAIL
                             </div>
 
-                            <a
-                                href="mailto:info@buffbridge.com"
-                                class="bb-contact-item-value"
-                            >
+                            <div class="bb-contact-item-value">
                                 info@buffbridge.com
-                            </a>
+                            </div>
                         </div>
-                    </div>
+                    </a>
 
 
                     {{-- OPEN HOURS --}}
@@ -140,174 +140,7 @@
                         </div>
                     </div>
 
-                </div>
-
-
-                <div class="bb-contact-social">
-
-                    <div class="bb-contact-social-title">
-                        FOLLOW BUFFBRIDGE
-                    </div>
-
-                    <div class="bb-social-buttons">
-
-                        <a
-                            href="https://www.facebook.com/share/1T8y5fqB3M/?mibextid=wwXIfr"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            aria-label="Facebook"
-                        >
-                            <svg viewBox="0 0 24 24" aria-hidden="true">
-                                <path d="M14 8.5V6.8c0-.8.5-1 1-1h2.5V2.1L14.1 2C10.7 2 9 4 9 6.5v2H6v4h3V22h5v-9.5h3.3l.6-4H14z"/>
-                            </svg>
-                        </a>
-
-                        <a
-                            href="https://lin.ee/FLk15Ps"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            class="bb-social-line"
-                        >
-                            LINE
-                        </a>
-
-                        <a
-    href="https://t.me/buffv4"
-    target="_blank"
-    rel="noopener noreferrer"
-    aria-label="Telegram"
->
-    <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M21.6 3.2 18.5 19c-.2 1.1-.9 1.4-1.8.9l-4.8-3.5-2.3 2.2c-.3.3-.5.5-1 .5l.3-4.9 8.9-8c.4-.3-.1-.5-.6-.2L6.2 13l-4.7-1.5c-1-.3-1-1 .2-1.5L20 2.9c.9-.3 1.8.2 1.6.3z"/>
-    </svg>
-</a>
-                    </div>
-
-                </div>
-
             </div>
-
-
-            {{-- CONTACT FORM --}}
-            <div class="bb-contact-card">
-
-                <div class="bb-contact-card-head">
-                    <div class="bb-section-label">
-                        SEND A MESSAGE
-                    </div>
-
-                    <h3>HOW CAN WE HELP?</h3>
-
-                    <p>
-                        Fill in the form and our team will get back to you.
-                    </p>
-                </div>
-
-
-                <form
-                    class="bb-contact-form"
-                    id="bbContactForm"
-                    onsubmit="return false;"
-                >
-
-                    <div class="bb-form-row">
-
-                        <div class="bb-form-field">
-                            <label for="contactName">
-                                NAME
-                            </label>
-
-                            <input
-                                type="text"
-                                id="contactName"
-                                placeholder="Your name"
-                                autocomplete="name"
-                            >
-                        </div>
-
-
-                        <div class="bb-form-field">
-                            <label for="contactPhone">
-                                PHONE
-                            </label>
-
-                            <input
-                                type="tel"
-                                id="contactPhone"
-                                placeholder="Phone number"
-                                autocomplete="tel"
-                            >
-                        </div>
-
-                    </div>
-
-
-                    <div class="bb-form-field">
-                        <label for="contactEmail">
-                            EMAIL
-                        </label>
-
-                        <input
-                            type="email"
-                            id="contactEmail"
-                            placeholder="Email address"
-                            autocomplete="email"
-                        >
-                    </div>
-
-
-                    <div class="bb-form-field">
-                        <label for="contactSubject">
-                            SUBJECT
-                        </label>
-
-                        <select id="contactSubject">
-                            <option value="">Select subject</option>
-                            <option>Product Inquiry</option>
-                            <option>Order Inquiry</option>
-                            <option>Buffbridge Custom</option>
-                            <option>Stock / Availability</option>
-                            <option>Other</option>
-                        </select>
-                    </div>
-
-
-                    <div class="bb-form-field">
-                        <label for="contactMessage">
-                            MESSAGE
-                        </label>
-
-                        <textarea
-                            id="contactMessage"
-                            rows="6"
-                            placeholder="Tell us how we can help..."
-                        ></textarea>
-                    </div>
-
-
-                    <button
-                        type="button"
-                        class="bb-contact-submit"
-                        id="bbContactSubmit"
-                    >
-                        <span>SEND MESSAGE</span>
-
-                        <svg viewBox="0 0 24 24" aria-hidden="true">
-                            <path d="M5 12h14"/>
-                            <path d="m14 7 5 5-5 5"/>
-                        </svg>
-                    </button>
-
-
-                    <p class="bb-form-note">
-                        For urgent inquiries, please contact us directly by
-                        phone, Facebook or LINE.
-                    </p>
-
-                </form>
-
-            </div>
-
         </div>
     </section>
 
@@ -460,63 +293,58 @@
 }
 
 .bb-contact-main{
-    padding:90px 0;
+    padding:68px 0 72px;
 }
 
-.bb-contact-grid{
-    display:grid;
-    grid-template-columns:minmax(0,.85fr) minmax(460px,1.15fr);
-    gap:clamp(60px,8vw,130px);
-    align-items:start;
+.bb-contact-overview{
+    margin-bottom:34px;
 }
 
-.bb-contact-info h2{
-    margin:13px 0 20px!important;
+.bb-contact-heading h2{
+    margin:10px 0 15px!important;
     color:#111!important;
-    font-size:clamp(38px,4vw,62px)!important;
+    font-size:clamp(32px,3.6vw,50px)!important;
     line-height:.96!important;
     font-weight:900!important;
     font-style:italic!important;
-    letter-spacing:-2px;
+    letter-spacing:-1.8px;
 }
 
 .bb-contact-intro{
-    width:min(510px,100%);
-    margin:0 0 42px!important;
+    width:min(540px,100%);
+    margin:0!important;
     color:#777!important;
     font-size:12px!important;
-    line-height:1.8!important;
+    line-height:1.7!important;
 }
 
 .bb-contact-list{
     display:grid;
     grid-template-columns:1fr 1fr;
-    border-top:1px solid #e3e3e3;
+    gap:12px;
 }
 
 .bb-contact-item{
-    min-height:145px;
-    padding:29px 24px 26px 0;
+    position:relative;
+    min-height:140px;
+    padding:24px;
     display:flex;
-    gap:17px;
-    border-bottom:1px solid #e3e3e3;
+    align-items:flex-start;
+    gap:16px;
+    overflow:hidden;
+    border:1px solid #e4e4e4;
+    background:#fff;
     color:#111!important;
     text-decoration:none!important;
-}
-
-.bb-contact-item:nth-child(odd){
-    border-right:1px solid #e3e3e3;
-}
-
-.bb-contact-item:nth-child(even){
-    padding-left:24px;
+    transition:border-color .2s ease,background .2s ease;
 }
 
 a.bb-contact-item{
-    transition:.2s;
+    cursor:pointer;
 }
 
 a.bb-contact-item:hover{
+    border-color:#111;
     background:#fafafa;
 }
 
@@ -564,8 +392,9 @@ a.bb-contact-item:hover{
     text-decoration:none!important;
 }
 
-a.bb-contact-item-value:hover{
-    color:#d3a900!important;
+a.bb-contact-item:hover .bb-contact-item-value,
+a.bb-contact-item:hover .bb-contact-item-title{
+    color:#b88900!important;
 }
 
 .bb-contact-open-map{
@@ -577,155 +406,6 @@ a.bb-contact-item-value:hover{
     letter-spacing:.7px;
 }
 
-.bb-contact-social{
-    margin-top:34px;
-}
-
-.bb-contact-social-title{
-    margin-bottom:13px;
-    color:#777;
-    font-size:8px;
-    font-weight:900;
-    letter-spacing:1.5px;
-}
-
-.bb-social-buttons{
-    display:flex;
-    gap:7px;
-}
-
-.bb-social-buttons a{
-    min-width:38px;
-    height:38px;
-    padding:0 12px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    border:1px solid #ddd;
-    background:#fff;
-    color:#111!important;
-    font-size:8px;
-    font-weight:900;
-    letter-spacing:.8px;
-    text-decoration:none!important;
-    transition:.2s;
-}
-
-.bb-social-buttons a:hover{
-    border-color:#111;
-    background:#111;
-    color:var(--yellow)!important;
-}
-
-.bb-social-buttons svg{
-    width:17px;
-    height:17px;
-    fill:currentColor;
-}
-
-.bb-contact-card{
-    padding:55px;
-    background:#0c0c0c;
-    box-shadow:0 30px 70px rgba(0,0,0,.12);
-}
-
-.bb-contact-card-head h3{
-    margin:10px 0!important;
-    color:#fff!important;
-    font-size:clamp(27px,2.4vw,39px)!important;
-    line-height:1!important;
-    font-weight:900!important;
-    font-style:italic!important;
-    letter-spacing:-1px;
-}
-
-.bb-contact-card-head p{
-    margin:0 0 32px!important;
-    color:#777!important;
-    font-size:11px!important;
-}
-
-.bb-form-row{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:15px;
-}
-
-.bb-form-field{
-    margin-bottom:18px;
-}
-
-.bb-form-field label{
-    display:block;
-    margin-bottom:8px;
-    color:#999;
-    font-size:8px;
-    font-weight:900;
-    letter-spacing:1.3px;
-}
-
-.bb-form-field input,
-.bb-form-field select,
-.bb-form-field textarea{
-    width:100%!important;
-    margin:0!important;
-    padding:0 16px!important;
-    border:1px solid #292929!important;
-    border-radius:0!important;
-    outline:none!important;
-    background:#151515!important;
-    color:#fff!important;
-    font-family:Arial,Helvetica,sans-serif!important;
-    font-size:12px!important;
-    box-shadow:none!important;
-}
-
-.bb-form-field input,
-.bb-form-field select{
-    height:50px!important;
-}
-
-.bb-form-field textarea{
-    min-height:145px!important;
-    padding-top:15px!important;
-    padding-bottom:15px!important;
-    resize:vertical;
-}
-
-.bb-form-field input::placeholder,
-.bb-form-field textarea::placeholder{
-    color:#666;
-}
-
-.bb-form-field input:focus,
-.bb-form-field select:focus,
-.bb-form-field textarea:focus{
-    border-color:var(--yellow)!important;
-}
-
-.bb-contact-submit{
-    width:100%;
-    min-height:54px;
-    margin-top:4px;
-    padding:0 20px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    border:0;
-    background:var(--yellow);
-    color:#111;
-    font-size:9px;
-    font-weight:900;
-    letter-spacing:1px;
-    cursor:pointer;
-    transition:.2s;
-}
-
-.bb-contact-submit:hover{
-    background:#fff;
-}
-
-.bb-contact-submit svg,
 .bb-map-button svg{
     width:19px;
     height:19px;
@@ -734,13 +414,6 @@ a.bb-contact-item-value:hover{
     stroke-width:1.8;
     stroke-linecap:round;
     stroke-linejoin:round;
-}
-
-.bb-form-note{
-    margin:13px 0 0!important;
-    color:#555!important;
-    font-size:8px!important;
-    line-height:1.6!important;
 }
 
 .bb-contact-map{
@@ -840,44 +513,14 @@ a.bb-contact-item-value:hover{
 }
 
 @media(max-width:1100px){
-    .bb-contact-grid{
-        grid-template-columns:1fr 1fr;
-        gap:45px;
-    }
-
-    .bb-contact-card{
-        padding:40px;
-    }
-
-    .bb-contact-list{
-        grid-template-columns:1fr;
-    }
-
-    .bb-contact-item:nth-child(odd){
-        border-right:0;
-    }
-
-    .bb-contact-item:nth-child(even){
-        padding-left:0;
+    .bb-contact-item{
+        padding:22px;
     }
 }
 
 @media(max-width:820px){
-    .bb-contact-grid{
-        grid-template-columns:1fr;
-        gap:55px;
-    }
-
-    .bb-contact-list{
-        grid-template-columns:1fr 1fr;
-    }
-
-    .bb-contact-item:nth-child(odd){
-        border-right:1px solid #e3e3e3;
-    }
-
-    .bb-contact-item:nth-child(even){
-        padding-left:24px;
+    .bb-contact-overview{
+        margin-bottom:30px;
     }
 
     .bb-map-frame{
@@ -905,35 +548,27 @@ a.bb-contact-item-value:hover{
     }
 
     .bb-contact-main{
-        padding:55px 0 65px;
+        padding:48px 0 55px;
     }
 
     .bb-contact-list{
         grid-template-columns:1fr;
+        gap:12px;
     }
 
-    .bb-contact-item,
-    .bb-contact-item:nth-child(even){
+    .bb-contact-item{
         min-height:0;
-        padding:22px 0;
-        border-right:0;
+        padding:20px;
     }
 
-    .bb-contact-card{
-        margin-left:-20px;
-        margin-right:-20px;
-        padding:40px 20px;
+    .bb-contact-icon{
+        flex-basis:40px;
+        width:40px;
+        height:40px;
     }
 
-    .bb-form-row{
-        grid-template-columns:1fr;
-        gap:0;
-    }
-
-    .bb-form-field input,
-    .bb-form-field select,
-    .bb-form-field textarea{
-        font-size:16px!important;
+    .bb-contact-item-value{
+        overflow-wrap:anywhere;
     }
 
     .bb-contact-map{

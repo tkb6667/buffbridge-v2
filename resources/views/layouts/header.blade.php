@@ -308,6 +308,10 @@ $isAppointment = request()->is('book-appointment');
 
                         </div>
 
+                        @unless (auth('customer')->user()->hasVerifiedEmail())
+                            <a href="{{ route('verification.notice') }}" class="bb-account-item">VERIFY EMAIL</a>
+                        @endunless
+
                         <a
 
                             href="{{ route('profile.edit') }}"
@@ -841,6 +845,10 @@ $isAppointment = request()->is('book-appointment');
                         {{ auth('customer')->user()->email }}
 
                     </div>
+
+                    @unless (auth('customer')->user()->hasVerifiedEmail())
+                        <a href="{{ route('verification.notice') }}">VERIFY EMAIL</a>
+                    @endunless
 
                     <a href="{{ route('profile.edit') }}">
 

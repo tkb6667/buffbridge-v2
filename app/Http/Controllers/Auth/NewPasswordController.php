@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rules;
+use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
 
 class NewPasswordController extends Controller
@@ -25,10 +26,14 @@ class NewPasswordController extends Controller
     /**
      * Handle an incoming new password request.
      *
-     * @throws \Illuminate\Validation\ValidationException
+     * @throws ValidationException
      */
     public function store(Request $request): RedirectResponse
     {
+        $request->merge([
+            'email' => Str::lower(trim((string) $request->input('email'))),
+        ]);
+
         $request->validate([
             'token' => ['required'],
             'email' => ['required', 'email'],
@@ -55,9 +60,11 @@ class NewPasswordController extends Controller
         // redirect them back to where they came from with their error message.
         return $status == Password::PASSWORD_RESET
                     ? redirect()->route('home')
-                        ->with('status', __($status))
+                        ->with('status', 'Your password has been reset. You can now log in.')
                         ->with('showLoginModal', true)
                     : back()->withInput($request->only('email'))
-                        ->withErrors(['email' => __($status)]);
+                        ->withErrors([
+                            'email' => 'This password reset link is invalid or has expired. Please request a new one.',
+                        ]);
     }
 }
