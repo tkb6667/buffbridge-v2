@@ -1,5 +1,57 @@
 const BB_DROPDOWN_SELECTOR = '[data-bb-dropdown]';
 
+function hydrateOptions(dropdown) {
+    if (dropdown.dataset.bbDropdownOptionsHydrated === 'true') return;
+
+    const data = dropdown.querySelector('[data-bb-dropdown-options-data]');
+
+    if (!data) {
+        dropdown.dataset.bbDropdownOptionsHydrated = 'true';
+        return;
+    }
+
+    const optionsContainer = dropdown.querySelector('[data-bb-dropdown-options]');
+    const empty = dropdown.querySelector('[data-bb-dropdown-empty]');
+    const selectedValue = dropdown.querySelector('[data-bb-dropdown-input]')?.value ?? '';
+    const fragment = document.createDocumentFragment();
+    let options = [];
+
+    try {
+        options = JSON.parse(data.textContent || '[]');
+    } catch {
+        options = [];
+    }
+
+    options.forEach(({ value = '', label = '' }) => {
+        const option = document.createElement('button');
+        const text = document.createElement('span');
+        const check = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+        const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        const isSelected = String(value) === String(selectedValue);
+
+        option.type = 'button';
+        option.className = `bb-dropdown__option${isSelected ? ' is-selected' : ''}`;
+        option.dataset.bbDropdownOption = '';
+        option.dataset.value = String(value);
+        option.dataset.label = String(label);
+        option.setAttribute('role', 'option');
+        option.setAttribute('aria-selected', isSelected ? 'true' : 'false');
+
+        text.textContent = String(label);
+        check.setAttribute('class', 'bb-dropdown__check');
+        check.setAttribute('viewBox', '0 0 24 24');
+        check.setAttribute('aria-hidden', 'true');
+        path.setAttribute('d', 'm5 12 4 4L19 6');
+        check.append(path);
+        option.append(text, check);
+        fragment.append(option);
+    });
+
+    optionsContainer?.insertBefore(fragment, empty);
+    data.remove();
+    dropdown.dataset.bbDropdownOptionsHydrated = 'true';
+}
+
 function closeDropdown(dropdown) {
     if (!dropdown) return;
 
@@ -10,7 +62,7 @@ function closeDropdown(dropdown) {
 
     trigger?.setAttribute('aria-expanded', 'false');
 
-    if (search) {
+    if (search && search.value !== '') {
         search.value = '';
         filterOptions(dropdown, '');
     }
@@ -30,6 +82,7 @@ function openDropdown(dropdown) {
     if (!dropdown || dropdown.classList.contains('is-disabled')) return;
 
     closeAllDropdowns(dropdown);
+    hydrateOptions(dropdown);
 
     dropdown.classList.add('is-open');
 
@@ -52,6 +105,8 @@ function toggleDropdown(dropdown) {
 }
 
 function filterOptions(dropdown, query) {
+    hydrateOptions(dropdown);
+
     const options = [
         ...dropdown.querySelectorAll('[data-bb-dropdown-option]')
     ];

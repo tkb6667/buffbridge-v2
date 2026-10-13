@@ -4,8 +4,6 @@
 
     <h1 class="sr-only">ร้านบีบีกัน Buffbridge</h1>
 
-    <link rel="stylesheet" href="{{ asset('css/skin.css') }}" type="text/css" media="all">
-
     <link rel="stylesheet" href="{{ asset('css/home.css') }}" type="text/css" media="all">
 
 
@@ -1181,10 +1179,13 @@
 
                                 @if ($loop->first)
                                     fetchpriority="high"
+                                    loading="eager"
                                 @else
                                     loading="lazy"
-                                    decoding="async"
                                 @endif
+
+                                decoding="async"
+                                sizes="100vw"
 
                                 draggable="false"
 
@@ -1324,11 +1325,23 @@
 
                         src="{{ asset('images/hero1.webp') }}"
 
+                        srcset="{{ asset('images/hero1-768w.webp') }} 768w, {{ asset('images/hero1-1440w.webp') }} 1440w, {{ asset('images/hero1.webp') }} 2048w"
+
+                        sizes="100vw"
+
+                        width="2048"
+
+                        height="768"
+
                         alt="Buffbridge Custom Crew"
 
                         class="bb-hero-image"
 
                         fetchpriority="high"
+
+                        loading="eager"
+
+                        decoding="async"
 
                     >
 
@@ -1341,6 +1354,14 @@
                     <img
 
                         src="{{ asset('images/hero2.webp') }}"
+
+                        srcset="{{ asset('images/hero2-768w.webp') }} 768w, {{ asset('images/hero2-1440w.webp') }} 1440w, {{ asset('images/hero2.webp') }} 2048w"
+
+                        sizes="100vw"
+
+                        width="2048"
+
+                        height="768"
 
                         alt="Buffbridge Custom Crew"
 
@@ -1362,6 +1383,14 @@
 
                         src="{{ asset('images/hero3.webp') }}"
 
+                        srcset="{{ asset('images/hero3-768w.webp') }} 768w, {{ asset('images/hero3-1440w.webp') }} 1440w, {{ asset('images/hero3.webp') }} 2048w"
+
+                        sizes="100vw"
+
+                        width="2048"
+
+                        height="768"
+
                         alt="Buffbridge Custom Crew"
 
                         class="bb-hero-image"
@@ -1381,6 +1410,14 @@
                     <img
 
                         src="{{ asset('images/hero4.webp') }}"
+
+                        srcset="{{ asset('images/hero4-768w.webp') }} 768w, {{ asset('images/hero4-1440w.webp') }} 1440w, {{ asset('images/hero4.webp') }} 2048w"
+
+                        sizes="100vw"
+
+                        width="2048"
+
+                        height="768"
 
                         alt="Buffbridge Custom Crew"
 
@@ -1674,6 +1711,11 @@
 
                                             src="{{ $product->images->first()->url }}"
 
+                                            @if($product->images->first()->srcset)
+                                                srcset="{{ $product->images->first()->srcset }}"
+                                                sizes="(max-width: 767px) 50vw, 280px"
+                                            @endif
+
                                             alt="{{ $product->name }}"
 
                                             loading="lazy"
@@ -1964,6 +2006,11 @@
                                             <img
 
                                                 src="{{ $product->images->first()->url }}"
+
+                                                @if($product->images->first()->srcset)
+                                                    srcset="{{ $product->images->first()->srcset }}"
+                                                    sizes="(max-width: 767px) 50vw, 280px"
+                                                @endif
 
                                                 alt="{{ $product->name }}"
 
@@ -2269,6 +2316,11 @@
                                                 <img
 
                                                     src="{{ $product->images->first()->url }}"
+
+                                                    @if($product->images->first()->srcset)
+                                                        srcset="{{ $product->images->first()->srcset }}"
+                                                        sizes="(max-width: 767px) 50vw, 280px"
+                                                    @endif
 
                                                     alt="{{ $product->name }}"
 

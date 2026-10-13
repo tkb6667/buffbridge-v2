@@ -11,7 +11,13 @@ class CartController extends Controller
 {
     public function index()
     {
-        $cartItems = CartItem::with('product.images') // โหลดข้อมูลสินค้าและรูปภาพ
+        $cartItems = CartItem::with([
+            'product.images' => fn ($query) => $query
+                ->select(['id', 'product_id', 'image_path'])
+                ->orderBy('id')
+                ->limit(1),
+            'variant',
+        ])
             ->where('customer_id', Auth::guard('customer')->id())
             ->get();
     

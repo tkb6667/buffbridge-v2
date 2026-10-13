@@ -1,4 +1,11 @@
 
+@php
+    $routeName = request()->route()?->getName();
+    $usesWooCommerceStyles = request()->routeIs('home', 'products.*', 'cart.*', 'checkout.*');
+    $usesShortcodes = request()->routeIs('privacy', 'term', 'profile.edit');
+    $usesToast = session()->has('status') || session()->has('success') || session()->has('error');
+@endphp
+
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
@@ -30,32 +37,27 @@
 
     @include('layouts.partials.tracking-head')
 
-    <!-- WooCommerce -->
-    <link rel="stylesheet"
-        href="{{ asset('js/vendor/woocommerce/css/woocommerce-layout.css') }}"
-        type="text/css"
-        media="all">
+    @isset($head)
+        {{ $head }}
+    @endisset
 
-    <link rel="stylesheet"
-        href="{{ asset('js/vendor/woocommerce/css/woocommerce-smallscreen.css') }}"
-        type="text/css"
-        media="only screen and (max-width: 768px)">
+    @if ($usesWooCommerceStyles)
+        <!-- WooCommerce -->
+        <link rel="stylesheet"
+            href="{{ asset('js/vendor/woocommerce/css/woocommerce-layout.css') }}"
+            type="text/css"
+            media="all">
 
-    <link rel="stylesheet"
-        href="{{ asset('js/vendor/woocommerce/css/woocommerce.css') }}"
-        type="text/css"
-        media="all">
+        <link rel="stylesheet"
+            href="{{ asset('js/vendor/woocommerce/css/woocommerce-smallscreen.css') }}"
+            type="text/css"
+            media="only screen and (max-width: 768px)">
 
-    <!-- Revolution Slider -->
-    <link rel="stylesheet"
-        href="{{ asset('js/vendor/revslider/css/settings.css') }}"
-        type="text/css"
-        media="all">
-
-    <link rel="stylesheet"
-        href="{{ asset('css/tpl-revslider.css') }}"
-        type="text/css"
-        media="all">
+        <link rel="stylesheet"
+            href="{{ asset('js/vendor/woocommerce/css/woocommerce.css') }}"
+            type="text/css"
+            media="all">
+    @endif
 
     <!-- Fonts -->
     <link rel="stylesheet"
@@ -72,20 +74,19 @@
         type="text/css"
         media="all">
 
-    <link rel="stylesheet"
-        href="{{ asset('css/animation.css') }}"
-        type="text/css"
-        media="all">
+    @if ($usesShortcodes)
+        <link rel="stylesheet"
+            href="{{ asset('css/shortcodes.css') }}"
+            type="text/css"
+            media="all">
+    @endif
 
-    <link rel="stylesheet"
-        href="{{ asset('css/shortcodes.css') }}"
-        type="text/css"
-        media="all">
-
-    <link rel="stylesheet"
-        href="{{ asset('css/plugin.woocommerce.css') }}"
-        type="text/css"
-        media="all">
+    @if ($usesWooCommerceStyles)
+        <link rel="stylesheet"
+            href="{{ asset('css/plugin.woocommerce.css') }}"
+            type="text/css"
+            media="all">
+    @endif
 
     <link rel="stylesheet"
         href="{{ asset('css/skin.css') }}"
@@ -108,13 +109,10 @@
         type="text/css"
         media="all">
 
-    <link rel="stylesheet"
-        href="{{ asset('js/vendor/swiper/swiper.min.css') }}"
-        type="text/css"
-        media="all">
-
-    <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    @if ($usesToast)
+        <link rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    @endif
 
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -190,31 +188,27 @@
     @endisset
 </head>
 
-@php
-    $r_name = \Request::route()->getName();
-@endphp
-
-@if ($r_name == 'products.index')
+@if ($routeName == 'products.index')
 
     <body
         class="woocommerce woocommerce-page body_filled article_style_stretch scheme_original top_panel_show top_panel_above sidebar_show sidebar_left">
 
-@elseif (in_array($r_name, ['posts.index', 'posts.category', 'posts.tag']))
+@elseif (in_array($routeName, ['posts.index', 'posts.category', 'posts.tag']))
 
     <body
         class="body_filled article_style_stretch scheme_original top_panel_show top_panel_above sidebar_show sidebar_left">
 
-@elseif ($r_name == 'products.show')
+@elseif ($routeName == 'products.show')
 
     <body
         class="single-product woocommerce woocommerce-page body_transparent article_style_stretch scheme_original top_panel_show top_panel_above sidebar_hide">
 
-@elseif ($r_name == 'posts.show')
+@elseif ($routeName == 'posts.show')
 
     <body
         class="single-post body_transparent article_style_stretch scheme_original top_panel_show top_panel_above sidebar_hide">
 
-@elseif ($r_name == 'cart.index')
+@elseif ($routeName == 'cart.index')
 
     <body
         class="woocommerce-cart woocommerce-page body_transparent article_style_stretch scheme_original top_panel_show top_panel_above sidebar_hide">
@@ -254,19 +248,6 @@
 <script src="{{ asset('js/trx_utils.js') }}"></script>
 <script src="{{ asset('js/_packed.js') }}"></script>
 
-<!-- Essential Grid / Revolution Slider -->
-<script src="{{ asset('js/vendor/essential-grid/js/lightbox.js') }}"></script>
-<script src="{{ asset('js/vendor/essential-grid/js/jquery.themepunch.tools.min.js') }}"></script>
-<script src="{{ asset('js/vendor/revslider/js/jquery.themepunch.revolution.min.js') }}"></script>
-
-<script src="{{ asset('js/vendor/revslider/js/extensions/revolution.extension.slideanims.min.js') }}"></script>
-<script src="{{ asset('js/vendor/revslider/js/extensions/revolution.extension.actions.min.js') }}"></script>
-<script src="{{ asset('js/vendor/revslider/js/extensions/revolution.extension.layeranimation.min.js') }}"></script>
-<script src="{{ asset('js/vendor/revslider/js/extensions/revolution.extension.navigation.min.js') }}"></script>
-
-<script src="{{ asset('js/tpl-revslider-general.js') }}"></script>
-<script src="{{ asset('js/tpl-revslider-3.js') }}"></script>
-
 <!-- Theme Plugins -->
 <script src="{{ asset('js/vendor/photostack/modernizr.min.js') }}"></script>
 <script src="{{ asset('js/vendor/superfish.js') }}"></script>
@@ -275,14 +256,17 @@
 <script src="{{ asset('js/core.init.js') }}"></script>
 <script src="{{ asset('js/init.js') }}"></script>
 
-<script src="{{ asset('js/shortcodes.js') }}"></script>
+@if ($usesShortcodes)
+    <script src="{{ asset('js/shortcodes.js') }}"></script>
+@endif
 <script src="{{ asset('js/messages.js') }}"></script>
 
 <script src="{{ asset('js/vendor/magnific/jquery.magnific-popup.min.js') }}"></script>
-<script src="{{ asset('js/vendor/swiper/swiper.min.js') }}"></script>
 
-<!-- Toast -->
-<script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+@if ($usesToast)
+    <!-- Toast -->
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+@endif
 
 <script>
     @if (session('status'))

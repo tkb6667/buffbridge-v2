@@ -720,7 +720,7 @@ body.bb-remove-modal-open {
                         $firstImage = $item->product->images->first();
 
                         $imageUrl = $firstImage
-                            ? rtrim(env('APP_ADMIN_URL'), '/') . '/storage/' . ltrim($firstImage->image_path, '/')
+                            ? rtrim((string) config('app.admin_url'), '/') . '/storage/' . ltrim($firstImage->image_path, '/')
                             : null;
                     @endphp
 

@@ -1,4 +1,9 @@
 <x-guest-layout :seo="$seo">
+    <x-slot name="head">
+        <link rel="preload" as="image" href="{{ asset('images/hero2-768w.webp') }}" media="(max-width: 800px)" fetchpriority="high">
+        <link rel="preload" as="image" href="{{ asset('images/hero2-1440w.webp') }}" media="(min-width: 801px) and (max-width: 1600px)" fetchpriority="high">
+        <link rel="preload" as="image" href="{{ asset('images/hero2.webp') }}" media="(min-width: 1601px)" fetchpriority="high">
+    </x-slot>
     <x-slot name="style">
         <style>
             .bb-shop,.bb-shop *{box-sizing:border-box}
@@ -32,6 +37,22 @@
                 background:
                     linear-gradient(90deg,rgba(0,0,0,.96),rgba(0,0,0,.84) 38%,rgba(0,0,0,.3)),
                     url('{{ asset("images/hero2.webp") }}') center 42%/cover no-repeat
+            }
+
+            @media (max-width:1600px){
+                .bb-shop-hero{
+                    background-image:
+                        linear-gradient(90deg,rgba(0,0,0,.96),rgba(0,0,0,.84) 38%,rgba(0,0,0,.3)),
+                        url('{{ asset("images/hero2-1440w.webp") }}')
+                }
+            }
+
+            @media (max-width:800px){
+                .bb-shop-hero{
+                    background-image:
+                        linear-gradient(90deg,rgba(0,0,0,.96),rgba(0,0,0,.84) 38%,rgba(0,0,0,.3)),
+                        url('{{ asset("images/hero2-768w.webp") }}')
+                }
             }
 
             .bb-shop-hero:after{
@@ -533,14 +554,9 @@
                 width:13px;
                 height:13px;
                 display:block;
-                color:#ddd
-            }
-
-            .bb-product-star svg{
-                display:block;
-                width:100%;
-                height:100%;
-                fill:currentColor
+                color:#ddd;
+                background:currentColor;
+                clip-path:polygon(50% 4%,61% 36%,95% 36%,68% 56%,79% 90%,50% 70%,21% 90%,32% 56%,5% 36%,39% 36%)
             }
 
             .bb-product-price{
@@ -1274,6 +1290,7 @@
                                     :value="request('brand','all')"
                                     placeholder="ALL BRANDS"
                                     :searchable="true"
+                                    :defer-options="true"
                                     search-placeholder="SEARCH BRAND..."
                                     class="bb-brand-dropdown"
                                 />
@@ -1585,6 +1602,10 @@
 
                                             <img
                                                 src="{{ $imageUrl }}"
+                                                @if($firstImage?->srcset)
+                                                    srcset="{{ $firstImage->srcset }}"
+                                                    sizes="(max-width: 767px) 50vw, 280px"
+                                                @endif
                                                 alt="{{ $product->name }}"
                                                 loading="lazy"
                                                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"
@@ -1628,16 +1649,7 @@
 
                                             @for($star=0;$star<5;$star++)
 
-                                                <span class="bb-product-star">
-
-                                                    <svg
-                                                        viewBox="0 0 24 24"
-                                                        aria-hidden="true"
-                                                    >
-                                                        <path d="M12 2.7l2.85 5.78 6.38.93-4.62 4.5 1.09 6.35L12 17.27l-5.7 2.99 1.09-6.35-4.62-4.5 6.38-.93L12 2.7z"/>
-                                                    </svg>
-
-                                                </span>
+                                                <span class="bb-product-star" aria-hidden="true"></span>
 
                                             @endfor
 

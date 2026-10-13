@@ -8,7 +8,9 @@
 
     @php
 
-        $productImages = $product->images->map(function ($image) {
+        $productImageModels = $product->images->values();
+
+        $productImages = $productImageModels->map(function ($image) {
 
             return $image->url;
 
@@ -17,6 +19,8 @@
 
 
         $mainImage = $productImages->first();
+
+        $mainImageSrcset = $productImageModels->first()?->srcset;
 
 
 
@@ -2724,6 +2728,17 @@
 
                                     src="{{ $mainImage }}"
 
+                                    @if($mainImageSrcset)
+                                        srcset="{{ $mainImageSrcset }}"
+                                        sizes="(max-width: 767px) calc(100vw - 34px), 500px"
+                                    @endif
+
+                                    fetchpriority="high"
+
+                                    loading="eager"
+
+                                    decoding="async"
+
                                     alt="{{ $product->name }}"
 
                                     draggable="false"
@@ -2800,6 +2815,8 @@
 
                                         data-image="{{ $imageUrl }}"
 
+                                        data-srcset="{{ $productImageModels->get($index)?->srcset }}"
+
                                         aria-label="Select product image {{ $index + 1 }}"
 
                                     >
@@ -2810,7 +2827,16 @@
 
                                             src="{{ $imageUrl }}"
 
+                                            @if($productImageModels->get($index)?->srcset)
+                                                srcset="{{ $productImageModels->get($index)->srcset }}"
+                                                sizes="80px"
+                                            @endif
+
                                             alt="{{ $product->name }} {{ $index + 1 }}"
+
+                                            loading="lazy"
+
+                                            decoding="async"
 
                                             draggable="false"
 
@@ -3802,11 +3828,9 @@
 
                         @php
 
-                            $relatedImage = $relatedProduct->images->isNotEmpty()
+                            $relatedImageModel = $relatedProduct->images->first();
 
-                                ? $relatedProduct->images->first()->url
-
-                                : null;
+                            $relatedImage = $relatedImageModel?->url;
 
 
 
@@ -3857,6 +3881,11 @@
                                     <img
 
                                         src="{{ $relatedImage }}"
+
+                                        @if($relatedImageModel?->srcset)
+                                            srcset="{{ $relatedImageModel->srcset }}"
+                                            sizes="(max-width: 767px) 50vw, 300px"
+                                        @endif
 
                                         alt="{{ $relatedProduct->name }}"
 
@@ -4148,6 +4177,8 @@
 
                         const image = thumb.dataset.image;
 
+                        const srcset = thumb.dataset.srcset;
+
 
 
                         if (!image || !mainImage) {
@@ -4159,6 +4190,16 @@
 
 
                         mainImage.src = image;
+
+                        if (srcset) {
+
+                            mainImage.srcset = srcset;
+
+                        } else {
+
+                            mainImage.removeAttribute('srcset');
+
+                        }
 
 
 

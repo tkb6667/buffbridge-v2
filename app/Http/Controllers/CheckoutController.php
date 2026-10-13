@@ -93,7 +93,7 @@ class CheckoutController extends Controller
         $setting = Setting::first();
         $raw = $setting?->cc_emails;
         if (!$raw) {
-            $raw = (string) config('mail.order_notify_emails', env('ORDER_NOTIFY_EMAILS', ''));
+            $raw = (string) config('mail.order_notify_emails', '');
         }
         $emails = array_values(array_filter(array_map('trim', preg_split('/[,;]+/', (string) $raw))));
         if (count($emails) > 0) {

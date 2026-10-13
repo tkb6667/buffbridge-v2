@@ -5,6 +5,7 @@
     'placeholder' => 'SELECT',
     'searchable' => false,
     'searchPlaceholder' => 'Search...',
+    'deferOptions' => false,
 ])
 
 @php
@@ -83,31 +84,35 @@
             role="listbox"
             data-bb-dropdown-options
         >
-            @foreach($normalizedOptions as $option)
-                @php
-                    $isSelected = (string) $option['value'] === (string) $value;
-                @endphp
+            @if($deferOptions)
+                <script type="application/json" data-bb-dropdown-options-data>{!! json_encode($normalizedOptions->all(), JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT) !!}</script>
+            @else
+                @foreach($normalizedOptions as $option)
+                    @php
+                        $isSelected = (string) $option['value'] === (string) $value;
+                    @endphp
 
-                <button
-                    type="button"
-                    class="bb-dropdown__option {{ $isSelected ? 'is-selected' : '' }}"
-                    data-bb-dropdown-option
-                    data-value="{{ $option['value'] }}"
-                    data-label="{{ $option['label'] }}"
-                    role="option"
-                    aria-selected="{{ $isSelected ? 'true' : 'false' }}"
-                >
-                    <span>{{ $option['label'] }}</span>
-
-                    <svg
-                        class="bb-dropdown__check"
-                        viewBox="0 0 24 24"
-                        aria-hidden="true"
+                    <button
+                        type="button"
+                        class="bb-dropdown__option {{ $isSelected ? 'is-selected' : '' }}"
+                        data-bb-dropdown-option
+                        data-value="{{ $option['value'] }}"
+                        data-label="{{ $option['label'] }}"
+                        role="option"
+                        aria-selected="{{ $isSelected ? 'true' : 'false' }}"
                     >
-                        <path d="m5 12 4 4L19 6"/>
-                    </svg>
-                </button>
-            @endforeach
+                        <span>{{ $option['label'] }}</span>
+
+                        <svg
+                            class="bb-dropdown__check"
+                            viewBox="0 0 24 24"
+                            aria-hidden="true"
+                        >
+                            <path d="m5 12 4 4L19 6"/>
+                        </svg>
+                    </button>
+                @endforeach
+            @endif
 
             <div
                 class="bb-dropdown__empty"
