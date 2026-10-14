@@ -6,6 +6,7 @@ use App\Models\Appointment;
 use App\Models\AppointmentSlot;
 use App\Models\AppointmentType;
 use App\Services\AppointmentSchedule;
+use App\Support\SeoMeta;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
@@ -25,8 +26,9 @@ class AppointmentController extends Controller
             ->get(['id', 'name']);
 
         $availableDates = $schedule->availableDates();
+        $seo = SeoMeta::appointment();
 
-        return view('appointments.create', compact('appointmentTypes', 'availableDates'));
+        return view('appointments.create', compact('appointmentTypes', 'availableDates', 'seo'));
     }
 
     public function availableSlots(Request $request, AppointmentSchedule $schedule): JsonResponse

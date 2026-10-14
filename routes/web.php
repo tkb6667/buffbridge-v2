@@ -22,6 +22,7 @@ Route::get('/book-appointment', [AppointmentController::class, 'create'])
 Route::get('/book-appointment/available-slots', [AppointmentController::class, 'availableSlots'])
     ->name('appointments.available-slots');
 Route::post('/book-appointment', [AppointmentController::class, 'store'])
+    ->middleware('auth:customer')
     ->name('appointments.store');
 
 /*

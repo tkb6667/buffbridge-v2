@@ -190,15 +190,9 @@ class SeoMeta
     public static function blogIndex(bool $isSearch = false): array
     {
         $title = 'บทความ BB Gun & Airsoft เทคนิคและคู่มือ | Buffbridge';
-        $description = 'รวมบทความและคู่มือ BB Gun และ Airsoft ทั้งการเลือกสินค้า การใช้งาน การดูแลอุปกรณ์ และข้อมูลสำหรับผู้เล่นจาก Buffbridge';
-        $canonicalParameters = [];
-        $page = max(1, (int) request('page', 1));
-
-        if (! $isSearch && $page > 1) {
-            $canonicalParameters['page'] = $page;
-        }
-
-        $canonical = route('posts.index', $canonicalParameters);
+        $description = 'รวมบทความ BB Gun และ Airsoft เทคนิคการใช้งาน รีวิวอุปกรณ์ การดูแลรักษา และคู่มือสำหรับผู้เล่น จาก Buffbridge Custom';
+        $canonical = 'https://buffbridge.com/blog';
+        $image = 'https://buffbridge.com/BUFF_LOGO.png';
 
         return self::withGlobalSchemas([
             'title' => $title,
@@ -207,7 +201,61 @@ class SeoMeta
             'robots' => $isSearch ? 'noindex,follow' : 'index,follow',
             'ogTitle' => $title,
             'ogDescription' => $description,
+            'ogImage' => $image,
             'ogUrl' => $canonical,
+            'ogType' => 'website',
+            'twitterCard' => 'summary_large_image',
+            'twitterTitle' => $title,
+            'twitterDescription' => $description,
+            'twitterImage' => $image,
+        ]);
+    }
+
+    public static function appointment(): array
+    {
+        $title = 'จองคิวซ่อม BB Gun และแต่งอุปกรณ์ | Buffbridge';
+        $description = 'จองคิวบริการ Buffbridge Custom ออนไลน์ เลือกวันและเวลาสำหรับซ่อม BB Gun ตกแต่งอุปกรณ์ นัดรับสินค้า หรือปรึกษาเกี่ยวกับสินค้าได้สะดวก';
+        $canonical = 'https://buffbridge.com/book-appointment';
+        $image = 'https://buffbridge.com/BUFF_LOGO.png';
+
+        return self::withGlobalSchemas([
+            'title' => $title,
+            'description' => $description,
+            'canonical' => $canonical,
+            'robots' => 'index,follow',
+            'ogTitle' => $title,
+            'ogDescription' => $description,
+            'ogImage' => $image,
+            'ogUrl' => $canonical,
+            'ogType' => 'website',
+            'twitterCard' => 'summary_large_image',
+            'twitterTitle' => $title,
+            'twitterDescription' => $description,
+            'twitterImage' => $image,
+        ]);
+    }
+
+    public static function contact(): array
+    {
+        $title = 'ติดต่อ Buffbridge ร้าน BB Gun & Airsoft ลาดพร้าว';
+        $description = 'ติดต่อ Buffbridge Custom ร้าน BB Gun และ Airsoft ย่านลาดพร้าว กรุงเทพฯ สอบถามสินค้า บริการ และการสั่งซื้อ พร้อมข้อมูลที่ตั้ง เบอร์โทร และเวลาทำการ';
+        $canonical = 'https://buffbridge.com/contact';
+        $image = 'https://buffbridge.com/BUFF_LOGO.png';
+
+        return self::withGlobalSchemas([
+            'title' => $title,
+            'description' => $description,
+            'canonical' => $canonical,
+            'robots' => 'index,follow',
+            'ogTitle' => $title,
+            'ogDescription' => $description,
+            'ogImage' => $image,
+            'ogUrl' => $canonical,
+            'ogType' => 'website',
+            'twitterCard' => 'summary_large_image',
+            'twitterTitle' => $title,
+            'twitterDescription' => $description,
+            'twitterImage' => $image,
         ]);
     }
 

@@ -1,4 +1,4 @@
-<x-guest-layout>
+<x-guest-layout :seo="$seo">
     <x-slot name="style">
         <style>
             .bb-booking,
@@ -1359,6 +1359,43 @@
             </div>
         </dialog>
 
+        @guest('customer')
+            <dialog
+                id="appointmentLoginRequired"
+                class="bb-confirm-dialog"
+            >
+                <div class="bb-confirm-head">
+                    <div class="bb-confirm-kicker">
+                        LOGIN REQUIRED
+                    </div>
+
+                    <h2>LOGIN REQUIRED</h2>
+
+                    <p>
+                        Please log in before confirming your booking.
+                    </p>
+                </div>
+
+                <div class="bb-confirm-actions">
+                    <button
+                        type="button"
+                        id="cancelAppointmentLogin"
+                        class="bb-confirm-button bb-confirm-cancel"
+                    >
+                        CANCEL
+                    </button>
+
+                    <button
+                        type="button"
+                        id="goToAppointmentLogin"
+                        class="bb-confirm-button bb-confirm-submit"
+                    >
+                        LOG IN
+                    </button>
+                </div>
+            </dialog>
+        @endguest
+
     </main>
 
     <x-slot name="script">
@@ -1376,6 +1413,9 @@
                 const selectedTimeValue = document.getElementById('appointmentSelectedTime');
 
                 const dialog = document.getElementById('appointmentConfirmation');
+                const loginRequiredDialog = document.getElementById('appointmentLoginRequired');
+                const isAuthenticated = @json(auth('customer')->check());
+                const loginUrl = @json(route('login', absolute: false));
 
                 const endpoint = @json(
                     route('appointments.available-slots', absolute: false)
@@ -1861,6 +1901,12 @@
                 document
                     .getElementById('confirmAppointment')
                     .addEventListener('click', () => {
+                        if (!isAuthenticated) {
+                            dialog.close();
+                            loginRequiredDialog?.showModal();
+                            return;
+                        }
+
                         confirmed = true;
 
                         clearBookingStorage();
@@ -1872,6 +1918,18 @@
                     .getElementById('cancelAppointment')
                     .addEventListener('click', () => {
                         dialog.close();
+                    });
+
+                document
+                    .getElementById('cancelAppointmentLogin')
+                    ?.addEventListener('click', () => {
+                        loginRequiredDialog.close();
+                    });
+
+                document
+                    .getElementById('goToAppointmentLogin')
+                    ?.addEventListener('click', () => {
+                        window.location.assign(loginUrl);
                     });
 
                 /* RESTORE */

@@ -1,4 +1,4 @@
-<x-guest-layout>
+<x-guest-layout :seo="\App\Support\SeoMeta::contact()">
 
 <section class="bb-contact">
 

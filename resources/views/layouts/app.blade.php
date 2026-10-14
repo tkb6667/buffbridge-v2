@@ -26,28 +26,14 @@
         @include('layouts.partials.tracking-head')
 
         <!-- Fonts -->
-        <link rel="stylesheet" href="{{ asset('js/vendor/woocommerce/css/woocommerce-layout.css') }}" type="text/css" media="all" />
-        <link rel="stylesheet" href="{{ asset('js/vendor/woocommerce/css/woocommerce-smallscreen.css') }}" type="text/css" media="only screen and (max-width: 768px)" />
-        <link rel="stylesheet" href="{{ asset('js/vendor/woocommerce/css/woocommerce.css') }}" type="text/css" media="all" />
-
-        <link rel="stylesheet" href="{{ asset('js/vendor/revslider/css/settings.css') }}" type="text/css" media="all" />
-        <link rel="stylesheet" href="{{ asset('css/tpl-revslider.css') }}" type="text/css" media="all" />
-
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Hind:300,400,700%7CLato:300,300i,400,400i,700,700i,900,900i&amp;subset=latin-ext">
         <link rel="stylesheet" href="{{ asset('css/fontello/css/fontello.css') }}" type="text/css" media="all" />
 
         <link rel="stylesheet" href="{{ asset('css/style.css') }}" type="text/css" media="all" />
-        <link rel="stylesheet" href="{{ asset('css/animation.css') }}" type="text/css" media="all" />
-        <link rel="stylesheet" href="{{ asset('css/shortcodes.css') }}" type="text/css" media="all" />
-
-        <link rel="stylesheet" href="{{ asset('css/plugin.woocommerce.css') }}" type="text/css" media="all" />
-
         <link rel="stylesheet" href="{{ asset('css/skin.css') }}" type="text/css" media="all" />
         <link rel="stylesheet" href="{{ asset('css/responsive.css') }}" type="text/css" media="all" />
 
         <link rel="stylesheet" href="{{ asset('css/messages.css') }}" type="text/css" media="all" />
-        <link rel="stylesheet" href="{{ asset('js/vendor/magnific/magnific-popup.min.css') }}" type="text/css" media="all" />
-        <link rel="stylesheet" href="{{ asset('js/vendor/swiper/swiper.min.css') }}" type="text/css" media="all" />
 
         <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('favicon_io/apple-touch-icon.png') }}" />
         <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicon_io/favicon-32x32.png') }}" />
@@ -84,28 +70,13 @@
         <script type="text/javascript" src="{{ asset('js/trx_utils.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/_packed.js') }}"></script>
 
-        <script type="text/javascript" src="{{ asset('js/vendor/essential-grid/js/lightbox.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('js/vendor/essential-grid/js/jquery.themepunch.tools.min.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('js/vendor/revslider/js/jquery.themepunch.revolution.min.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('js/vendor/revslider/js/extensions/revolution.extension.slideanims.min.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('js/vendor/revslider/js/extensions/revolution.extension.actions.min.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('js/vendor/revslider/js/extensions/revolution.extension.layeranimation.min.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('js/vendor/revslider/js/extensions/revolution.extension.navigation.min.js') }}"></script>
-
-        <script type="text/javascript" src="{{ asset('js/tpl-revslider-general.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('js/tpl-revslider-3.js') }}"></script>
-
-        <script type="text/javascript" src="{{ asset('js/vendor/photostack/modernizr.min.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('js/vendor/superfish.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('plugins/superfish.js') }}"></script>
 
         <script type="text/javascript" src="{{ asset('js/utils.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/core.init.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/init.js') }}"></script>
 
-        <script type="text/javascript" src="{{ asset('js/shortcodes.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/messages.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('js/vendor/magnific/jquery.magnific-popup.min.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('js/vendor/swiper/swiper.min.js') }}"></script>
         @isset($script)
         {{ $script }}
         @endisset

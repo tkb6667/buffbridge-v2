@@ -44,17 +44,17 @@
     @if ($usesWooCommerceStyles)
         <!-- WooCommerce -->
         <link rel="stylesheet"
-            href="{{ asset('js/vendor/woocommerce/css/woocommerce-layout.css') }}"
+            href="{{ asset('plugins/woocommerce/css/woocommerce-layout.css') }}"
             type="text/css"
             media="all">
 
         <link rel="stylesheet"
-            href="{{ asset('js/vendor/woocommerce/css/woocommerce-smallscreen.css') }}"
+            href="{{ asset('plugins/woocommerce/css/woocommerce-smallscreen.css') }}"
             type="text/css"
             media="only screen and (max-width: 768px)">
 
         <link rel="stylesheet"
-            href="{{ asset('js/vendor/woocommerce/css/woocommerce.css') }}"
+            href="{{ asset('plugins/woocommerce/css/woocommerce.css') }}"
             type="text/css"
             media="all">
     @endif
@@ -105,7 +105,7 @@
 
     <!-- Plugins -->
     <link rel="stylesheet"
-        href="{{ asset('js/vendor/magnific/magnific-popup.min.css') }}"
+        href="{{ asset('plugins/magnific/magnific-popup.min.css') }}"
         type="text/css"
         media="all">
 
@@ -249,8 +249,7 @@
 <script src="{{ asset('js/_packed.js') }}"></script>
 
 <!-- Theme Plugins -->
-<script src="{{ asset('js/vendor/photostack/modernizr.min.js') }}"></script>
-<script src="{{ asset('js/vendor/superfish.js') }}"></script>
+<script src="{{ asset('plugins/superfish.js') }}"></script>
 
 <script src="{{ asset('js/utils.js') }}"></script>
 <script src="{{ asset('js/core.init.js') }}"></script>
@@ -261,7 +260,7 @@
 @endif
 <script src="{{ asset('js/messages.js') }}"></script>
 
-<script src="{{ asset('js/vendor/magnific/jquery.magnific-popup.min.js') }}"></script>
+<script src="{{ asset('plugins/magnific/jquery.magnific-popup.min.js') }}"></script>
 
 @if ($usesToast)
     <!-- Toast -->
