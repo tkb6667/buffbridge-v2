@@ -30,6 +30,7 @@
 
     $isContact = request()->routeIs('contact');
 $isAppointment = request()->is('book-appointment');
+    $isPreOrderAlert = request()->routeIs('pre-order-alert.*');
 
 @endphp
 
@@ -199,6 +200,13 @@ $isAppointment = request()->is('book-appointment');
 >
     BOOK AN APPOINTMENT
 </a>
+
+            <a
+                href="{{ route('pre-order-alert.index') }}"
+                class="bb-nav-link {{ $isPreOrderAlert ? 'is-active' : '' }}"
+            >
+                PRE-ORDER ALERT
+            </a>
 
             <a
 
@@ -792,6 +800,13 @@ $isAppointment = request()->is('book-appointment');
         class="bb-mobile-link {{ $isAppointment ? 'is-active' : '' }}"
             >
                 BOOK AN APPOINTMENT
+            </a>
+
+            <a
+                href="{{ route('pre-order-alert.index') }}"
+                class="bb-mobile-link {{ $isPreOrderAlert ? 'is-active' : '' }}"
+            >
+                PRE-ORDER ALERT
             </a>
 
             <a

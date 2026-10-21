@@ -112,6 +112,10 @@
     BOOK AN APPOINTMENT
 </a>
 
+                    <a href="{{ route('pre-order-alert.index') }}">
+                        PRE-ORDER ALERT
+                    </a>
+
                     <a href="{{ route('contact') }}">
                         CONTACT US
                     </a>

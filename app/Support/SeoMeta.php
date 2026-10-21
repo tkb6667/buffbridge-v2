@@ -235,6 +235,26 @@ class SeoMeta
         ]);
     }
 
+    public static function preOrderAlert(): array
+    {
+        $title = 'ติดตามสถานะสินค้าพรีออเดอร์ | BuffBridge';
+        $description = 'ติดตามสถานะสินค้าพรีออเดอร์ BuffBridge ตรวจสอบกำหนดวันสินค้ามาถึง (ETA) ประเทศต้นทาง และสถานะการจัดส่ง ทั้งสินค้าตรงเวลา ล่าช้า และมาถึงแล้ว';
+        $canonical = route('pre-order-alert.index');
+
+        return self::withGlobalSchemas([
+            'title' => $title,
+            'description' => $description,
+            'canonical' => $canonical,
+            'robots' => 'index,follow',
+            'ogTitle' => $title,
+            'ogDescription' => $description,
+            'ogUrl' => $canonical,
+            'ogType' => 'website',
+            'twitterTitle' => $title,
+            'twitterDescription' => $description,
+        ]);
+    }
+
     public static function contact(): array
     {
         $title = 'ติดต่อ Buffbridge ร้าน BB Gun & Airsoft ลาดพร้าว';

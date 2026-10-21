@@ -6,6 +6,7 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderHistoryController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\PreOrderAlertController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReviewController;
@@ -13,6 +14,9 @@ use App\Http\Controllers\TechnicalSeoController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+
+Route::get('/pre-order-alert', [PreOrderAlertController::class, 'index'])
+    ->name('pre-order-alert.index');
 
 Route::get('/sitemap.xml', [TechnicalSeoController::class, 'sitemap'])->name('sitemap');
 Route::get('/robots.txt', [TechnicalSeoController::class, 'robots'])->name('robots');

@@ -20,6 +20,7 @@ class TechnicalSeoController extends Controller
             ['loc' => route('posts.index')],
             ['loc' => route('contact')],
             ['loc' => route('appointments.create')],
+            ['loc' => route('pre-order-alert.index')],
             ['loc' => route('privacy')],
             ['loc' => route('term')],
         ]);
