@@ -17,6 +17,10 @@ return [
 
     'default' => env('CACHE_STORE', 'database'),
 
+    'sitemap_ttl' => (int) env('SITEMAP_CACHE_TTL', 300),
+
+    'category_menu_ttl' => (int) env('CATEGORY_MENU_CACHE_TTL', 60),
+
     /*
     |--------------------------------------------------------------------------
     | Cache Stores

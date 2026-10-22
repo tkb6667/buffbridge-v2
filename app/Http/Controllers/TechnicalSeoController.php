@@ -9,10 +9,24 @@ use App\Models\Product;
 use App\Models\Tag;
 use DOMDocument;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Cache;
 
 class TechnicalSeoController extends Controller
 {
     public function sitemap(): Response
+    {
+        $xml = Cache::remember(
+            'buffbridge.sitemap.xml',
+            max(1, (int) config('cache.sitemap_ttl', 300)),
+            fn () => $this->generateSitemapXml()
+        );
+
+        return response($xml, 200, [
+            'Content-Type' => 'application/xml; charset=UTF-8',
+        ]);
+    }
+
+    private function generateSitemapXml(): string
     {
         $urls = collect([
             ['loc' => route('home')],
@@ -92,9 +106,7 @@ class TechnicalSeoController extends Controller
             $urlset->appendChild($urlNode);
         }
 
-        return response($document->saveXML(), 200, [
-            'Content-Type' => 'application/xml; charset=UTF-8',
-        ]);
+        return $document->saveXML();
     }
 
     public function robots(): Response

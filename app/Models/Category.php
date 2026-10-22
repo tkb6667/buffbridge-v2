@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Cache;
 
 class Category extends Model
 {
@@ -65,10 +66,14 @@ class Category extends Model
             return $request->attributes->get('buffbridge.category_menu');
         }
 
-        $categories = self::query()
-            ->whereNull('parent_id')
-            ->with('children')
-            ->get();
+        $categories = Cache::remember(
+            'buffbridge.category_menu',
+            max(1, (int) config('cache.category_menu_ttl', 60)),
+            fn () => self::query()
+                ->whereNull('parent_id')
+                ->with('children')
+                ->get()
+        );
 
         $request?->attributes->set('buffbridge.category_menu', $categories);
 

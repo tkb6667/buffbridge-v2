@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Product;
-use App\Models\Category;
 use App\Models\Banner;
+use App\Models\Category;
+use App\Models\Product;
+use App\Models\StockLog;
 use App\Support\SeoMeta;
 
 class HomeController extends Controller
@@ -44,28 +44,30 @@ class HomeController extends Controller
             ->limit(8)
             ->get();
 
-
         // เช็ค active category ด้วย
         $mainCategoryIds = [1, 28, 62, 84];
         $categories = Category::query()->get(['id', 'parent_id']);
+        $categoryGroups = collect($mainCategoryIds)->mapWithKeys(
+            fn (int $categoryId) => [
+                $categoryId => Category::getAllNestedCategoryIds($categoryId, $categories),
+            ]
+        );
+        $productCountsByCategory = Product::query()
+            ->where('active', 1)
+            ->whereIn('category_id', $categoryGroups->flatten()->unique())
+            ->selectRaw('category_id, COUNT(*) as aggregate')
+            ->groupBy('category_id')
+            ->pluck('aggregate', 'category_id');
         $data = [];
 
-        foreach ($mainCategoryIds as $catId) {
-            // เอา category ids ทั้งหมดที่ active
-            $categoryIds = Category::getAllNestedCategoryIds($catId, $categories);
-
-            // ตรงนี้ถ้าใน Category model → getAllNestedCategoryIds ต้องกรอง active ด้วยนะ
-            // หรือถ้าไม่ได้กรอง → เรามากรอง products อีกชั้นก็ได้
-
-            $count = Product::where('active', 1) // <--- เพิ่มเช็ค active
-                ->whereIn('category_id', $categoryIds)
-                ->count();
-
-            $data["cate_{$catId}"] = $count;
+        foreach ($categoryGroups as $catId => $categoryIds) {
+            $data["cate_{$catId}"] = $categoryIds->sum(
+                fn (int $categoryId) => (int) $productCountsByCategory->get($categoryId, 0)
+            );
         }
 
         // Restock → product ต้อง active ด้วย
-        $products_restock = \App\Models\StockLog::where('type', 'restock')
+        $products_restock = StockLog::where('type', 'restock')
             ->with([
                 'product.images' => fn ($query) => $query
                     ->select(['id', 'product_id', 'image_path'])

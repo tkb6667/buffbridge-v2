@@ -1093,9 +1093,6 @@
     </x-slot>
 
     @php
-        $minProductPrice = (float) \App\Models\Product::min('price');
-        $maxProductPrice = (float) \App\Models\Product::max('price');
-
         $currentCategory = request('category');
 
         $allCategories = collect($categories_menu ?? [])
@@ -1121,14 +1118,6 @@
                 }
             }
         }
-
-        $brands = \App\Models\Product::query()
-            ->whereNotNull('brand')
-            ->where('brand','!=','')
-            ->select('brand')
-            ->distinct()
-            ->orderBy('brand')
-            ->pluck('brand');
 
         $brandOptions = [
             'all'=>'ALL BRANDS'

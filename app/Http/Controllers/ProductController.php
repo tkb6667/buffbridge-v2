@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Product;
+use App\Support\SeoMeta;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Support\SeoMeta;
 
 class ProductController extends Controller
 {
@@ -170,6 +170,15 @@ class ProductController extends Controller
         $products = $query->paginate(24)->withQueryString();
 
         $categories_menu = Category::menuTree();
+        $minProductPrice = (float) Product::min('price');
+        $maxProductPrice = (float) Product::max('price');
+        $brands = Product::query()
+            ->whereNotNull('brand')
+            ->where('brand', '!=', '')
+            ->select('brand')
+            ->distinct()
+            ->orderBy('brand')
+            ->pluck('brand');
 
         $selectedCategory = $request->filled('category')
             ? Category::find($request->category)
@@ -178,7 +187,14 @@ class ProductController extends Controller
 
         return view(
             'products.index',
-            compact('products', 'categories_menu', 'seo')
+            compact(
+                'products',
+                'categories_menu',
+                'minProductPrice',
+                'maxProductPrice',
+                'brands',
+                'seo'
+            )
         );
     }
 
